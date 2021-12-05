@@ -1,0 +1,4 @@
+LOAD FROM FILE default/bip
+LOAD FROM FILE default/sw
+LOAD FROM FILE default/radio
+LOAD FROM FILE default/ap

@@ -1,0 +1,83 @@
+;
+;- MAG   - ENG 2
+;- COWL  - COWL 2
+;
+;- BAT   - PROP SYNC
+;- ALT   - GEN 2
+;
+;- AVION - AVIONIC
+;
+;- FUEL  - PUMP 2
+;- DEICE - WIN SUFR
+;- PITOT - PITO HEAD 2
+;
+;- PANEL - YAW DAMPER
+;- BEACO - flood light
+;- NAV   - panel light
+;- STROB - win light
+;- TAXI  - WINDOWS HEAD
+;- LAND  - ENG AOA
+;
+;- GEAR  - GEAR 
+;
+SWITCH 1 LEFT GREEN array(sim/aircraft/parts/acf_gear_deploy[1]){1:1}
+SWITCH 1 LEFT YELLOW array(sim/aircraft/parts/acf_gear_deploy[1]){0.001:0.999}
+SWITCH 1 LEFT OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0}
+SWITCH 1 LEFT OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+
+SWITCH 1 CENTER GREEN array(sim/aircraft/parts/acf_gear_deploy[0]){1:1}
+SWITCH 1 CENTER YELLOW array(sim/aircraft/parts/acf_gear_deploy[0]){0.001:0.999}
+SWITCH 1 CENTER OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0}
+SWITCH 1 CENTER OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+
+SWITCH 1 RIGHT GREEN array(sim/aircraft/parts/acf_gear_deploy[2]){1:1}
+SWITCH 1 RIGHT YELLOW array(sim/aircraft/parts/acf_gear_deploy[2]){0.001:0.999}
+SWITCH 1 RIGHT OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0}
+SWITCH 1 RIGHT OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+
+SWITCH 1 MAG_OFF CMD_ON sim/magnetos/magnetos_off_2
+SWITCH 1 MAG_RIGHT CMD_ON sim/magnetos/magnetos_right_2
+SWITCH 1 MAG_LEFT CMD_ON sim/magnetos/magnetos_left_2
+SWITCH 1 MAG_BOTH CMD_ON sim/magnetos/magnetos_both_2
+SWITCH 1 ENG_START PUSH sim/ignition/ignition_up_2
+
+SWITCH 1 MASTER_BATTERY CMD_ON sim/systems/prop_sync_on
+SWITCH 1 MASTER_BATTERY CMD_OFF sim/systems/prop_sync_off
+SWITCH 1 MASTER_ALTENATOR CMD_ON sim/electrical/generator_2_on
+SWITCH 1 MASTER_ALTENATOR CMD_OFF sim/electrical/generator_2_off
+
+SWITCH 1 AVIONICS_POWER CMD_ON sim/audio_panel/transmit_audio_com1
+SWITCH 1 AVIONICS_POWER CMD_OFF sim/audio_panel/transmit_audio_com2
+
+SWITCH 1 FUEL_PUMP CMD_ON sim/fuel/fuel_pump_2_on
+SWITCH 1 FUEL_PUMP CMD_OFF sim/fuel/fuel_pump_2_off
+
+SWITCH 1 DE_ICE CMD_ON sim/ice/surf_heat_on
+SWITCH 1 DE_ICE CMD_OFF sim/ice/surf_heat_off
+
+SWITCH 1 PITOT_HEAT CMD_ON sim/ice/pitot_heat1_on
+SWITCH 1 PITOT_HEAT CMD_OFF sim/ice/pitot_heat1_off
+
+SWITCH 1 COWL_FLAPS SET_ON array(sim/flightmodel/engine/ENGN_cowl[1]):=0.0
+SWITCH 1 COWL_FLAPS SET_OFF array(sim/flightmodel/engine/ENGN_cowl[1]):=1.0
+
+SWITCH 1 PANEL_LIGHTS SET_ON dataref(sim/cockpit2/switches/yaw_damper_on):=1
+SWITCH 1 PANEL_LIGHTS SET_OFF dataref(sim/cockpit2/switches/yaw_damper_on):=0
+
+SWITCH 1 BEACON_LIGHTS IF_OFF RUN laminar/b58/lighting/flood_light_switch IF dataref(laminar/b58/flood_light_toggle/switch_pos){1:1}
+SWITCH 1 BEACON_LIGHTS IF_ON RUN laminar/b58/lighting/flood_light_switch IF dataref(laminar/b58/flood_light_toggle/switch_pos){0:0}
+SWITCH 1 NAV_LIGHTS IF_OFF RUN laminar/b58/lighting/panel_light_switch IF dataref(laminar/b58/panel_light_toggle/switch_pos){1:1}
+SWITCH 1 NAV_LIGHTS IF_ON RUN laminar/b58/lighting/panel_light_switch IF dataref(laminar/b58/panel_light_toggle/switch_pos){0:0}
+SWITCH 1 STROBE_LIGHTS IF_OFF RUN sim/lights/generic_01_light_tog IF array(sim/cockpit2/switches/generic_lights_switch[0]){1:1}
+SWITCH 1 STROBE_LIGHTS IF_ON RUN sim/lights/generic_01_light_tog IF array(sim/cockpit2/switches/generic_lights_switch[0]){0:0}
+
+SWITCH 1 TAXI_LIGHTS CMD_ON sim/ice/window_heat_on
+SWITCH 1 TAXI_LIGHTS CMD_OFF sim/ice/window_heat_off
+
+SWITCH 1 LANDING_LIGHTS CMD_ON sim/ice/AOA_heat0_on
+SWITCH 1 LANDING_LIGHTS CMD_ON sim/ice/AOA_heat1_on
+SWITCH 1 LANDING_LIGHTS CMD_OFF sim/ice/AOA_heat0_off
+SWITCH 1 LANDING_LIGHTS CMD_OFF sim/ice/AOA_heat1_off
+
+SWITCH 1 GEAR_SWITCH_UP CMD_ON sim/flight_controls/landing_gear_up
+SWITCH 1 GEAR_SWITCH_DOWN CMD_ON sim/flight_controls/landing_gear_down

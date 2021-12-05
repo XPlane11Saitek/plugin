@@ -1,0 +1,179 @@
+;----------- FREQ -----------
+RADIO -1 com1-freq MODE DEFAULT
+RADIO -1 com1-freq DISPLAY FLOAT/1000
+RADIO -1 com1-freq VALUE1 dataref(sim/cockpit2/radios/actuators/com1_frequency_hz_833)
+RADIO -1 com1-freq VALUE2 dataref(sim/cockpit2/radios/actuators/com1_standby_frequency_hz_833)
+RADIO -1 com1-freq SMALLDOWN sim/radios/stby_com1_fine_down
+RADIO -1 com1-freq SMALLUP sim/radios/stby_com1_fine_up
+RADIO -1 com1-freq BIGDOWN sim/radios/stby_com1_coarse_down
+RADIO -1 com1-freq BIGUP sim/radios/stby_com1_coarse_up
+RADIO -1 com1-freq ACT sim/radios/com1_standy_flip
+;-----------------------------
+RADIO -1 altitude MODE VALUE
+RADIO -1 altitude DISPLAY INT
+RADIO -1 altitude VALUE dataref(sim/cockpit/autopilot/altitude)
+RADIO -1 altitude BIG 1000
+RADIO -1 altitude SMALL 100
+RADIO -1 altitude MAX 40000
+RADIO -1 altitude MIN 1000
+RADIO -1 altitude TYPE LIMIT
+;-----------------------------
+RADIO -1 heading MODE VALUE
+RADIO -1 heading VALUE dataref(sim/cockpit/autopilot/heading_mag)
+RADIO -1 heading DISPLAY INT
+RADIO -1 heading BIG 10
+RADIO -1 heading SMALL 1
+RADIO -1 heading MAX 360
+RADIO -1 heading MIN 0
+RADIO -1 heading TYPE ROUND
+;----------- FREQ -----------
+RADIO -1 com2-freq MODE DEFAULT
+RADIO -1 com2-freq DISPLAY FLOAT/1000
+RADIO -1 com2-freq VALUE1 dataref(sim/cockpit2/radios/actuators/com2_frequency_hz_833)
+RADIO -1 com2-freq VALUE2 dataref(sim/cockpit2/radios/actuators/com2_standby_frequency_hz_833)
+RADIO -1 com2-freq SMALLDOWN sim/radios/stby_com2_fine_down
+RADIO -1 com2-freq SMALLUP sim/radios/stby_com2_fine_up
+RADIO -1 com2-freq BIGDOWN sim/radios/stby_com2_coarse_down
+RADIO -1 com2-freq BIGUP sim/radios/stby_com2_coarse_up
+RADIO -1 com2-freq ACT sim/radios/com2_standy_flip
+;----------- Baro1 -----------
+RADIO -1 com2-baro1 MODE VALUE
+RADIO -1 com2-baro1 VALUE dataref(sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot)
+RADIO -1 com2-baro1 DISPLAY FLOAT
+RADIO -1 com2-baro1 BIG 0.1
+RADIO -1 com2-baro1 SMALL 0.01
+RADIO -1 com2-baro1 MAX 40
+RADIO -1 com2-baro1 MIN 0
+RADIO -1 com2-baro1 TYPE LIMIT
+;----------- Baro2 -----------
+RADIO -1 com2-baro2 MODE VALUE
+RADIO -1 com2-baro2 VALUE dataref(sim/cockpit2/gauges/actuators/barometer_setting_in_hg_copilot)
+RADIO -1 com2-baro2 DISPLAY FLOAT
+RADIO -1 com2-baro2 BIG 0.1
+RADIO -1 com2-baro2 SMALL 0.01
+RADIO -1 com2-baro2 MAX 40
+RADIO -1 com2-baro2 MIN 0
+RADIO -1 com2-baro2 TYPE LIMIT
+;----------- minim -----------
+RADIO -1 com2-minim MODE VALUE
+RADIO -1 com2-minim VALUE dataref(sim/cockpit2/gauges/actuators/baro_altimeter_bug_ft_pilot)
+RADIO -1 com2-minim DISPLAY INT
+RADIO -1 com2-minim BIG 100
+RADIO -1 com2-minim SMALL 10
+RADIO -1 com2-minim MAX 7000
+RADIO -1 com2-minim MIN -1000
+RADIO -1 com2-minim TYPE LIMIT
+;----------- FREQ -----------
+RADIO -1 nav1-freq MODE DEFAULT
+RADIO -1 nav1-freq DISPLAY FLOAT/100
+RADIO -1 nav1-freq VALUE1 dataref(sim/cockpit/radios/nav1_freq_hz)
+RADIO -1 nav1-freq VALUE2 dataref(sim/cockpit/radios/nav1_stdby_freq_hz)
+RADIO -1 nav1-freq SMALLDOWN sim/radios/stby_nav1_fine_down
+RADIO -1 nav1-freq SMALLUP sim/radios/stby_nav1_fine_up
+RADIO -1 nav1-freq BIGDOWN sim/radios/stby_nav1_coarse_down
+RADIO -1 nav1-freq BIGUP sim/radios/stby_nav1_coarse_up
+RADIO -1 nav1-freq ACT sim/radios/nav1_standy_flip
+;----------- NAV1+DME -----------
+RADIO -1 nav1-dme-freq MODE SHOW
+RADIO -1 nav1-dme-freq VALUE dataref(sim/cockpit/radios/nav1_freq_hz)
+RADIO -1 nav1-dme-freq DISPLAY FLOAT/100
+;----------- NAV1+DME -----------
+RADIO -1 nav1-dme-dist MODE SHOW
+RADIO -1 nav1-dme-dist VALUE dataref(sim/cockpit/radios/nav1_dme_dist_m)
+RADIO -1 nav1-dme-dist DISPLAY FLOAT
+;----------- NAV1+OBS -----------
+RADIO -1 nav1-obs MODE VALUE
+RADIO -1 nav1-obs VALUE dataref(sim/cockpit/radios/nav1_obs_degm)
+RADIO -1 nav1-obs DISPLAY INT1
+RADIO -1 nav1-obs BIG 10
+RADIO -1 nav1-obs SMALL 1
+RADIO -1 nav1-obs MAX 360
+RADIO -1 nav1-obs MIN 0
+RADIO -1 nav1-obs TYPE ROUND
+;----------- NAV1+MAG -----------
+RADIO -1 nav1-mag MODE SHOW
+RADIO -1 nav1-mag VALUE dataref(sim/cockpit2/radios/indicators/nav1_bearing_deg_mag)
+RADIO -1 nav1-mag DISPLAY MINT
+;----------- FREQ -----------
+RADIO -1 nav2-freq MODE DEFAULT
+RADIO -1 nav2-freq DISPLAY FLOAT/100
+RADIO -1 nav2-freq VALUE1 dataref(sim/cockpit/radios/nav2_freq_hz)
+RADIO -1 nav2-freq VALUE2 dataref(sim/cockpit/radios/nav2_stdby_freq_hz)
+RADIO -1 nav2-freq SMALLDOWN sim/radios/stby_nav2_fine_down
+RADIO -1 nav2-freq SMALLUP sim/radios/stby_nav2_fine_up
+RADIO -1 nav2-freq BIGDOWN sim/radios/stby_nav2_coarse_down
+RADIO -1 nav2-freq BIGUP sim/radios/stby_nav2_coarse_up
+RADIO -1 nav2-freq ACT sim/radios/nav2_standy_flip
+;----------- nav2+DME -----------
+RADIO -1 nav2-dme-freq MODE SHOW
+RADIO -1 nav2-dme-freq VALUE dataref(sim/cockpit/radios/nav2_freq_hz)
+RADIO -1 nav2-dme-freq DISPLAY FLOAT/100
+;----------- nav2+DME -----------
+RADIO -1 nav2-dme-dist MODE SHOW
+RADIO -1 nav2-dme-dist VALUE dataref(sim/cockpit/radios/nav2_dme_dist_m)
+RADIO -1 nav2-dme-dist DISPLAY FLOAT
+;----------- nav2+OBS -----------
+RADIO -1 nav2-obs MODE VALUE
+RADIO -1 nav2-obs VALUE dataref(sim/cockpit/radios/nav2_obs_degm)
+RADIO -1 nav2-obs DISPLAY INT
+RADIO -1 nav2-obs BIG 10
+RADIO -1 nav2-obs SMALL 1
+RADIO -1 nav2-obs MAX 360
+RADIO -1 nav2-obs MIN 0
+RADIO -1 nav2-obs TYPE ROUND
+;----------- NAV2+MAG -----------
+RADIO -1 nav2-mag MODE SHOW
+RADIO -1 nav2-mag VALUE dataref(sim/cockpit2/radios/indicators/nav2_bearing_deg_mag)
+RADIO -1 nav2-mag DISPLAY MINT
+;----------- FREQ -----------
+RADIO -1 adf1-freq MODE DEFAULT
+RADIO -1 adf1-freq DISPLAY INT
+RADIO -1 adf1-freq VALUE1 dataref(sim/cockpit/radios/adf1_freq_hz)
+RADIO -1 adf1-freq VALUE2 dataref(sim/cockpit/radios/adf1_stdby_freq_hz)
+RADIO -1 adf1-freq SMALLDOWN sim/radios/stby_adf1_ones_tens_down
+RADIO -1 adf1-freq SMALLUP sim/radios/stby_adf1_ones_tens_up
+RADIO -1 adf1-freq BIGDOWN sim/radios/stby_adf1_hundreds_thous_down
+RADIO -1 adf1-freq BIGUP sim/radios/stby_adf1_hundreds_thous_up
+RADIO -1 adf1-freq ACT sim/radios/adf1_standy_flip
+;----------- adf1+OBS -----------
+RADIO -1 adf1-mag-freq MODE SHOW
+RADIO -1 adf1-mag-freq VALUE dataref(sim/cockpit/radios/adf1_freq_hz)
+RADIO -1 adf1-mag-freq DISPLAY INT
+RADIO -1 adf1-mag-deg MODE SHOW
+RADIO -1 adf1-mag-deg VALUE dataref(sim/cockpit2/radios/indicators/adf1_bearing_deg_mag)
+RADIO -1 adf1-mag-deg DISPLAY INT
+;----------- FREQ -----------
+RADIO -1 adf2-freq MODE DEFAULT
+RADIO -1 adf2-freq DISPLAY INT
+RADIO -1 adf2-freq VALUE1 dataref(sim/cockpit/radios/adf2_freq_hz)
+RADIO -1 adf2-freq VALUE2 dataref(sim/cockpit/radios/adf2_stdby_freq_hz)
+RADIO -1 adf2-freq SMALLDOWN sim/radios/stby_adf2_ones_tens_down
+RADIO -1 adf2-freq SMALLUP sim/radios/stby_adf2_ones_tens_up
+RADIO -1 adf2-freq BIGDOWN sim/radios/stby_adf2_hundreds_thous_down
+RADIO -1 adf2-freq BIGUP sim/radios/stby_adf2_hundreds_thous_up
+RADIO -1 adf2-freq ACT sim/radios/adf2_standy_flip
+;----------- adf2+OBS -----------
+RADIO -1 adf2-mag-freq MODE SHOW
+RADIO -1 adf2-mag-freq VALUE dataref(sim/cockpit/radios/adf2_freq_hz)
+RADIO -1 adf2-mag-freq DISPLAY INT
+;----------- adf2+OBS -----------
+RADIO -1 adf2-mag-deg MODE SHOW
+RADIO -1 adf2-mag-deg VALUE dataref(sim/cockpit2/radios/indicators/adf2_bearing_deg_mag)
+RADIO -1 adf2-mag-deg DISPLAY INT
+;----------- FREQ -----------
+RADIO -1 xpdr-freq MODE COMMAND
+RADIO -1 xpdr-freq DISPLAY INT
+RADIO -1 xpdr-freq VALUE dataref(sim/cockpit/radios/transponder_code)
+RADIO -1 xpdr-freq SMALLDOWN sim/transponder/transponder_34_down
+RADIO -1 xpdr-freq SMALLUP sim/transponder/transponder_34_up
+RADIO -1 xpdr-freq BIGDOWN sim/transponder/transponder_12_down
+RADIO -1 xpdr-freq BIGUP sim/transponder/transponder_12_up
+;----------- mode -----------
+RADIO -1 xpdr-mode MODE VALUE
+RADIO -1 xpdr-mode DISPLAY INT
+RADIO -1 xpdr-mode VALUE dataref(sim/cockpit/radios/transponder_mode)
+RADIO -1 xpdr-mode BIG 1
+RADIO -1 xpdr-mode SMALL 1
+RADIO -1 xpdr-mode MAX 4
+RADIO -1 xpdr-mode MIN 0
+RADIO -1 xpdr-mode TYPE LIMIT

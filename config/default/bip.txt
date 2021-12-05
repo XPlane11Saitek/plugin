@@ -1,0 +1,2 @@
+BIP -1 -1:-1 OFF (array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1}))
+BIP -1 -1:-1 YELLOW dataref(sim/cockpit/warnings/annunciator_test_pressed){1:1}

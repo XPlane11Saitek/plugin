@@ -1,0 +1,77 @@
+;
+;- MAG   - ENG 1
+;- COWL  - COWL 1
+;
+;- BAT   - BAT 1
+;- ALT   - GEN 1
+;
+;- AVION - AVIONIC
+;
+;- FUEL  - PUMP 1
+;- DEICE - PROP HEAD 1
+;- PITOT - PITO HEAD
+;
+;- PANEL - TESTING lights
+;- BEACO - BEACON
+;- NAV   - NAV
+;- STROB - STROBO
+;- TAXI  - TAXI
+;- LAND  - LAND
+;
+;- GEAR  - BREAK 
+;
+SWITCH 0 LEFT RED array(sim/cockpit2/fuel/fuel_quantity[0]){0:6.80389}
+SWITCH 0 LEFT YELLOW array(sim/cockpit2/fuel/fuel_quantity[0]){0:20.18486}
+SWITCH 0 LEFT GREEN array(sim/cockpit2/fuel/fuel_quantity[0]){0:40.1429}
+
+SWITCH 0 CENTER RED dataref(sim/cockpit2/annunciators/fuel_quantity){1:1}
+SWITCH 0 CENTER YELLOW array(sim/cockpit2/fuel/fuel_quantity[0]){0:80.2858}
+SWITCH 0 CENTER YELLOW array(sim/cockpit2/fuel/fuel_quantity[1]){0:80.2858}
+SWITCH 0 CENTER GREEN array(sim/cockpit2/fuel/fuel_quantity[0]){0:120.429}
+SWITCH 0 CENTER GREEN array(sim/cockpit2/fuel/fuel_quantity[1]){0:120.429}
+
+SWITCH 0 RIGHT RED array(sim/cockpit2/fuel/fuel_quantity[1]){0:6.80389}
+SWITCH 0 RIGHT YELLOW array(sim/cockpit2/fuel/fuel_quantity[1]){0:20.18486}
+SWITCH 0 RIGHT GREEN array(sim/cockpit2/fuel/fuel_quantity[1]){0:40.1429}
+
+SWITCH 0 MAG_OFF CMD_ON sim/magnetos/magnetos_off_1
+SWITCH 0 MAG_RIGHT CMD_ON sim/magnetos/magnetos_right_1
+SWITCH 0 MAG_LEFT CMD_ON sim/magnetos/magnetos_left_1
+SWITCH 0 MAG_BOTH CMD_ON sim/magnetos/magnetos_both_1
+SWITCH 0 ENG_START PUSH sim/ignition/ignition_up_1
+
+SWITCH 0 MASTER_BATTERY CMD_ON sim/electrical/battery_1_on
+SWITCH 0 MASTER_BATTERY CMD_OFF sim/electrical/battery_1_off
+SWITCH 0 MASTER_ALTENATOR CMD_ON sim/electrical/generator_1_on
+SWITCH 0 MASTER_ALTENATOR CMD_OFF sim/electrical/generator_1_off
+
+SWITCH 0 AVIONICS_POWER CMD_ON sim/systems/avionics_on
+SWITCH 0 AVIONICS_POWER CMD_OFF sim/systems/avionics_off
+
+SWITCH 0 FUEL_PUMP CMD_ON sim/fuel/fuel_pump_1_on
+SWITCH 0 FUEL_PUMP CMD_OFF sim/fuel/fuel_pump_1_off
+
+SWITCH 0 DE_ICE CMD_ON sim/ice/prop_heat_on
+SWITCH 0 DE_ICE CMD_OFF sim/ice/prop_heat_off
+
+SWITCH 0 PITOT_HEAT CMD_ON sim/ice/pitot_heat0_on
+SWITCH 0 PITOT_HEAT CMD_OFF sim/ice/pitot_heat0_off
+
+SWITCH 0 COWL_FLAPS SET_ON array(sim/flightmodel/engine/ENGN_cowl[0]):=0.0
+SWITCH 0 COWL_FLAPS SET_OFF array(sim/flightmodel/engine/ENGN_cowl[0]):=1.0
+
+SWITCH 0 PANEL_LIGHTS PUSH sim/annunciator/test_all_annunciators
+
+SWITCH 0 BEACON_LIGHTS CMD_ON sim/lights/beacon_lights_on
+SWITCH 0 BEACON_LIGHTS CMD_OFF sim/lights/beacon_lights_off
+SWITCH 0 NAV_LIGHTS CMD_ON sim/lights/nav_lights_on
+SWITCH 0 NAV_LIGHTS CMD_OFF sim/lights/nav_lights_off
+SWITCH 0 STROBE_LIGHTS CMD_ON sim/lights/strobe_lights_on
+SWITCH 0 STROBE_LIGHTS CMD_OFF sim/lights/strobe_lights_off
+SWITCH 0 TAXI_LIGHTS CMD_ON sim/lights/taxi_lights_on
+SWITCH 0 TAXI_LIGHTS CMD_OFF sim/lights/taxi_lights_off
+SWITCH 0 LANDING_LIGHTS CMD_ON sim/lights/landing_lights_on
+SWITCH 0 LANDING_LIGHTS CMD_OFF sim/lights/landing_lights_off
+
+SWITCH 0 GEAR_SWITCH_UP SET_ON dataref(sim/cockpit2/controls/parking_brake_ratio):=0.000000
+SWITCH 0 GEAR_SWITCH_DOWN SET_ON dataref(sim/cockpit2/controls/parking_brake_ratio):=1.000000

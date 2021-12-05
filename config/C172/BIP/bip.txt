@@ -1,0 +1,2 @@
+BIP -1 -1:-1 YELLOW dataref(sim/cockpit/warnings/annunciator_test_pressed){1:1}
+BIP -1 -1:-1 OFF dataref(sim/cockpit/electrical/battery_on){0:0}

@@ -1,0 +1,42 @@
+LOAD FROM FILE all/item/radio
+
+RADIO -1 COM1 MODE RENAME
+RADIO -1 COM1 NEXT com1-on
+RADIO -1 com1-on MODE RENAME
+RADIO -1 com1-on NEXT com1-freq
+
+RADIO -1 COM2 MODE RENAME
+RADIO -1 COM2 NEXT com2-on
+RADIO -1 com2-on MODE RENAME
+RADIO -1 com2-on NEXT com2-freq
+
+RADIO -1 NAV1 MODE RENAME
+RADIO -1 NAV1 NEXT nav1-on
+RADIO -1 nav1-on MODE RENAME
+RADIO -1 nav1-on NEXT nav1-freq
+
+RADIO -1 NAV2 MODE RENAME
+RADIO -1 NAV2 NEXT nav2-on
+RADIO -1 nav2-on MODE RENAME
+RADIO -1 nav2-on NEXT nav2-freq
+
+RADIO -1 ADF MODE RENAME
+RADIO -1 ADF NEXT adf-on
+RADIO -1 adf-on MODE RENAME
+RADIO -1 adf-on NEXT adf1-freq
+
+RADIO -1 DME MODE RENAME
+RADIO -1 DME NEXT dme-on
+RADIO -1 dme-on MODE ADD
+RADIO -1 dme-on[0] MODE RENAME
+RADIO -1 dme-on[0] NEXT nav1-dme-dist
+RADIO -1 dme-on[1] MODE RENAME
+RADIO -1 dme-on[1] NEXT nav2-dme-dist
+
+RADIO -1 XPDR MODE RENAME
+RADIO -1 XPDR NEXT xpdr-on
+RADIO -1 xpdr-on MODE ADD
+RADIO -1 xpdr-on[0] MODE RENAME
+RADIO -1 xpdr-on[0] NEXT xpdr-mode
+RADIO -1 xpdr-on[1] MODE RENAME
+RADIO -1 xpdr-on[1] NEXT xpdr-freq

@@ -1,0 +1,224 @@
+cmake_minimum_required(VERSION 3.18.0)
+project(saitek CXX C)
+
+# SETS
+#set(XPLANE11PLUGIN true)
+#set(USB true)
+set(DEBUG true)
+
+set(SDK_PATH  "SDK")
+message("SDK_PATH=" ${SDK_PATH})
+
+set(HID_PATH "hidapi")
+message("HID_PATH=" ${HID_PATH})
+
+if(APPLE)
+	set(HIDAPI ${HID_PATH}/mac/hid.c)
+elseif(UNIX)
+	set(HIDAPI ${HID_PATH}/linux/hid.c)
+elseif(WIN32)
+	set(HIDAPI ${HID_PATH}/windows/hid.c)
+endif()
+message("HIDAPI=" ${HIDAPI})
+
+
+set(DIR
+  src/
+  src/source/
+  src/range/
+  src/color/
+  src/output/
+  src/action/
+  src/display/
+  src/loader/
+  src/libs/
+  src/radio/
+  src/autopilot/
+  ${HID_PATH}/hidapi/
+)
+if(DEFINED XPLANE11PLUGIN)
+  set(DIR "${DIR}"
+    ${SDK_PATH}/CHeaders/XPLM
+    ${SDK_PATH}/CHeaders/Wrappers
+    ${SDK_PATH}/CHeaders/Widgets
+  )
+endif()
+
+
+set(CODE 
+  src/spec.cpp
+  src/debug.cpp
+  src/libs/line.cpp
+
+  src/loader/content.cpp
+  src/loader/reader.cpp
+
+  src/display/data.cpp
+  src/display/dataDiv.cpp
+  src/display/dataFloat.cpp
+  src/display/dataInt.cpp
+  src/display/dataInt1.cpp
+  src/display/dataInt2.cpp
+  src/display/dataMInt.cpp
+  src/display/dataShort.cpp
+  src/display/dataLoad.cpp
+  src/display/monitor.cpp
+
+  src/output/customRef.cpp
+  src/output/customWrite.cpp
+
+  src/source/command.cpp
+  src/source/value.cpp
+  src/source/const.cpp
+  src/source/dataref.cpp
+  src/source/array.cpp
+  src/source/sources.cpp
+
+  src/range/range.cpp
+  src/range/rangeOr.cpp
+  src/range/rangeAnd.cpp
+  src/range/rangeValue.cpp
+  src/range/rangeLoader.cpp
+
+  src/color/cell.cpp
+  src/color/color.cpp
+  src/bip.cpp
+
+  src/action/sw.cpp
+  src/action/swcmd.cpp
+  src/action/swpush.cpp
+  src/action/swset.cpp
+  src/action/swdec.cpp
+  src/action/swrun.cpp
+  src/action/swload.cpp
+  src/swith.cpp
+
+  src/radio/mode.cpp
+  src/radio/modeAdd.cpp
+  src/radio/modeCommand.cpp
+  src/radio/modeDefault.cpp
+  src/radio/modeDual.cpp
+  src/radio/modeIf.cpp
+  src/radio/modeOff.cpp
+  src/radio/modeTimeout.cpp
+  src/radio/modeValue.cpp
+  src/radio/modeShow.cpp
+  src/radio/modeLong.cpp
+  src/radio/modePush.cpp
+  src/radio/modeCMD.cpp
+  src/radio/modeLoad.cpp
+  src/radio.cpp
+
+  src/autopilot/ap.cpp
+  src/autopilot/apCmd.cpp
+  src/autopilot/apOff.cpp
+  src/autopilot/apIf.cpp
+  src/autopilot/apLoad.cpp
+  src/autopilot/apAdd.cpp
+  src/autopilot/apCopy.cpp
+  src/autopilot/apRadio.cpp
+  src/autopilot/apDisplay.cpp
+
+  src/multi.cpp
+  src/init.cpp
+  src/panel.cpp
+  src/panels.cpp
+  src/plugin.cpp
+)
+if(NOT DEFINED XPLANE11PLUGIN)
+  set(CODE "${CODE}"
+    src/main.cpp
+  )
+endif()
+
+set(HEADER src/plugin.h)
+message("HEADER=" ${HEADER})
+
+set(ALL ${CODE} ${HIDAPI} ${HEADER})
+
+if(APPLE)
+	add_executable(saitek ${ALL})
+elseif(UNIX)
+  if(DEFINED XPLANE11PLUGIN)
+    add_library(saitek SHARED ${ALL})
+  else()
+    add_executable(saitek ${ALL})
+  endif()
+elseif(WIN32)
+	add_library(saitek MODULE ${ALL})
+endif()
+
+if(APPLE)
+	set(OUTPUT_NAME "mac.xpl")
+elseif(UNIX)
+	set(OUTPUT_NAME "lin.xpl")
+elseif(WIN32)
+	set(OUTPUT_NAME "win.xpl")
+endif()
+message("OUTPUT_NAME=" ${OUTPUT_NAME})
+
+if(DEFINED XPLANE11PLUGIN)
+  set_target_properties(saitek PROPERTIES PREFIX "")
+  set_target_properties(saitek PROPERTIES SUFFIX "")
+  set_target_properties(saitek PROPERTIES OUTPUT_NAME "${OUTPUT_NAME}")
+endif()
+
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1 -DXPLM302=1 -DXPLM303=1")
+if(DEFINED XPLANE11PLUGIN)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DXPLANE11PLUGIN=true")
+endif()
+if(DEFINED DEBUG)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG=true")
+endif()
+if(DEFINED USB)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSB=true")
+endif()
+if(APPLE)
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-deprecated")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -arch x86_64")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra --std=c++11")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=1 -DIBM=0 -DLIN=0")
+elseif(UNIX)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra --std=c++11")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=0 -DIBM=0 -DLIN=1")
+elseif(WIN32)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MD")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=0 -DIBM=1 -DLIN=0")
+endif()
+
+include_directories(saitek ${DIR})
+
+if(APPLE)
+  if(DEFINED XPLANE11PLUGIN)
+    set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} ${SDK_PATH}/Libraries/Mac/)
+    FIND_LIBRARY(XPLM_LIBRARY XPLM ${SDK_PATH}/Libraries/Mac/)
+    FIND_LIBRARY(XPWIDGETS_LIBRARY XPWidgets ${SDK_PATH}/Libraries/Mac/)
+    target_link_libraries(saitek ${XPLM_LIBRARY} ${XPWIDGETS_LIBRARY})
+  endif()
+elseif(WIN32)
+elseif(UNIX)
+  find_library(HIDAPIDEPS_LIBRARY NAMES setupapi udev HINTS ${CMAKE_C_IMPLICIT_LINK_DIRECTORIES})
+  target_link_libraries(saitek ${HIDAPIDEPS_LIBRARY})
+endif()
+
+link_libraries(m)
+
+if(APPLE)
+  if(DEFINED XPLANE11PLUGIN)
+    SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden -bundle -framework OpenGL -framework Cocoa -framework OpenGL -framework XPLM -framework XPWidgets -framework IOKit")
+  else()
+  	SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden -framework Cocoa -framework IOKit")
+  endif()
+elseif(WIN32)
+elseif(UNIX)
+  # TODO 
+  #LIBS += `pkg-config libudev --libs`
+  if(DEFINED XPLANE11PLUGIN)
+  	SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden ")
+  else()
+    SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden  ")
+  endif()
+  # TOOD 
+  # -shared -rdynamic -nodefaultlibs -undefined_warning
+endif()

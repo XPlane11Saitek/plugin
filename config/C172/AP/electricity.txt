@@ -1,0 +1,25 @@
+MULTI -1 electricity MODE DISPLAY
+
+MULTI -1 electricity[AP] MODE SHOW
+MULTI -1 electricity[AP] VALUE array(sim/cockpit2/electrical/bus_volts[0])
+MULTI -1 electricity[AP] DISPLAY SHORT
+
+MULTI -1 electricity[HDG] MODE SHOW
+MULTI -1 electricity[HDG] VALUE array(sim/cockpit2/electrical/battery_amps[0]) 
+MULTI -1 electricity[HDG] DISPLAY SHORT
+
+MULTI -1 electricity[NAV] MODE SHOW
+MULTI -1 electricity[NAV] VALUE array(sim/cockpit2/electrical/generator_amps[0])
+MULTI -1 electricity[NAV] DISPLAY SHORT
+
+MULTI -1 electricity[IAS] MODE SHOW
+MULTI -1 electricity[IAS] VALUE array(sim/cockpit2/electrical/bus_volts[1])
+MULTI -1 electricity[IAS] DISPLAY FLOAT/1000
+
+MULTI -1 electricity[ALT] MODE SHOW
+MULTI -1 electricity[ALT] VALUE array(sim/cockpit2/electrical/battery_amps[1])
+MULTI -1 electricity[ALT] DISPLAY SHORT
+
+MULTI -1 electricity[VS] MODE SHOW
+MULTI -1 electricity[VS] VALUE array(sim/cockpit/electrical/battery_charge_watt_hr[0])
+MULTI -1 electricity[VS] DISPLAY SHORT

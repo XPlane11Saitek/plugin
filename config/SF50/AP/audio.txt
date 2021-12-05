@@ -1,0 +1,94 @@
+MULTI -1 audio MODE RADIO
+
+MULTI -1 audio[HDG] MODE RENAME
+MULTI -1 audio[HDG] NEXT com1-on
+
+MULTI -1 com1-on MODE DUAL
+MULTI -1 com1-on TIMEOUT 2
+MULTI -1 com1-on[0] MODE RENAME
+MULTI -1 com1-on[0] NEXT com1-freq
+MULTI -1 com1-on[1] MODE ADD
+MULTI -1 com1-on[1][0] MODE RENAME
+MULTI -1 com1-on[1][0] NEXT heading
+MULTI -1 com1-on[1][1] MODE RENAME
+MULTI -1 com1-on[1][1] NEXT altitude
+
+MULTI -1 audio[NAV] MODE RENAME
+MULTI -1 audio[NAV] NEXT com2-on
+
+MULTI -1 com2-on MODE DUAL
+MULTI -1 com2-on TIMEOUT 2
+MULTI -1 com2-on[0] MODE RENAME
+MULTI -1 com2-on[0] NEXT com2-freq
+MULTI -1 com2-on[1] MODE ADD
+MULTI -1 com2-on[1][0] MODE RENAME
+MULTI -1 com2-on[1][0] NEXT com2-baro1
+MULTI -1 com2-on[1][1] MODE RENAME
+MULTI -1 com2-on[1][1] NEXT com2-minim
+
+MULTI -1 audio[IAS] MODE RENAME
+MULTI -1 audio[IAS] NEXT nav1-on
+
+MULTI -1 nav1-on MODE DUAL
+MULTI -1 nav1-on TIMEOUT 2
+MULTI -1 nav1-on[0] MODE TIMEOUT
+MULTI -1 nav1-on[0] TIMEOUT 7
+MULTI -1 nav1-on[0][0] MODE RENAME
+MULTI -1 nav1-on[0][0] NEXT nav1-freq
+MULTI -1 nav1-on[0][1] MODE IF
+MULTI -1 nav1-on[0][1] VALUE dataref(sim/cockpit/radios/nav1_dme_dist_m){0:1}
+MULTI -1 nav1-on[0][1][T] MODE ADD
+MULTI -1 nav1-on[0][1][T][0] MODE RENAME
+MULTI -1 nav1-on[0][1][T][0] NEXT nav1-dme-freq
+MULTI -1 nav1-on[0][1][T][1] MODE OFF
+MULTI -1 nav1-on[0][1][F] MODE ADD
+MULTI -1 nav1-on[0][1][F][0] MODE RENAME
+MULTI -1 nav1-on[0][1][F][0] NEXT nav1-dme-freq
+MULTI -1 nav1-on[0][1][F][1] MODE RENAME
+MULTI -1 nav1-on[0][1][F][1] NEXT nav1-dme-dist
+MULTI -1 nav1-on[1] MODE ADD
+MULTI -1 nav1-on[1] LOCK YES
+MULTI -1 nav1-on[1][0] MODE RENAME
+MULTI -1 nav1-on[1][0] NEXT nav1-mag
+MULTI -1 nav1-on[1][1] MODE RENAME
+MULTI -1 nav1-on[1][1] NEXT nav1-obs
+
+MULTI -1 audio[ALT] MODE RENAME
+MULTI -1 audio[ALT] NEXT nav2-on
+
+MULTI -1 nav2-on MODE DUAL
+MULTI -1 nav2-on TIMEOUT 2
+MULTI -1 nav2-on[0] MODE TIMEOUT
+MULTI -1 nav2-on[0] TIMEOUT 7
+MULTI -1 nav2-on[0][0] MODE RENAME
+MULTI -1 nav2-on[0][0] NEXT nav2-freq
+MULTI -1 nav2-on[0][1] MODE IF
+MULTI -1 nav2-on[0][1] VALUE dataref(sim/cockpit/radios/nav2_dme_dist_m){0:1}
+MULTI -1 nav2-on[0][1][T] MODE ADD
+MULTI -1 nav2-on[0][1][T][0] MODE RENAME
+MULTI -1 nav2-on[0][1][T][0] NEXT nav2-dme-freq
+MULTI -1 nav2-on[0][1][T][1] MODE OFF
+MULTI -1 nav2-on[0][1][F] MODE ADD
+MULTI -1 nav2-on[0][1][F][0] MODE RENAME
+MULTI -1 nav2-on[0][1][F][0] NEXT nav2-dme-freq
+MULTI -1 nav2-on[0][1][F][1] MODE RENAME
+MULTI -1 nav2-on[0][1][F][1] NEXT nav2-dme-dist
+MULTI -1 nav2-on[1] MODE ADD
+MULTI -1 nav2-on[1] LOCK YES
+MULTI -1 nav2-on[1][0] MODE RENAME
+MULTI -1 nav2-on[1][0] NEXT nav2-mag
+MULTI -1 nav2-on[1][1] MODE RENAME
+MULTI -1 nav2-on[1][1] NEXT nav2-obs
+
+MULTI -1 audio[VS] MODE RENAME
+MULTI -1 audio[VS] NEXT adf1-on
+
+MULTI -1 adf1-on MODE DUAL
+MULTI -1 adf1-on TIMEOUT 2
+MULTI -1 adf1-on[0] MODE RENAME
+MULTI -1 adf1-on[0] NEXT adf1-freq
+MULTI -1 adf1-on[1] MODE ADD
+MULTI -1 adf1-on[1][0] MODE RENAME
+MULTI -1 adf1-on[1][0] NEXT com2-baro2
+MULTI -1 adf1-on[1][1] MODE RENAME
+MULTI -1 adf1-on[1][1] NEXT com2-minim

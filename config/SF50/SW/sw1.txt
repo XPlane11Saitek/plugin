@@ -1,0 +1,78 @@
+;
+;- MAG   - ???
+;- COWL  - Audio COM1/COM2
+;
+;- BAT   - BAT 2
+;- ALT   - GEN 2
+;
+;- AVION - AVION SWITCH
+;
+;- FUEL  - ENG FIRE
+;- DEICE - Deploy Parachute (Recovery system)
+;- PITOT - pressurization dump
+;
+;- PANEL - audio com1
+;- BEACO - audio com2
+;- NAV   - audio nav1
+;- STROB - audio nav2
+;- TAXI  - audio adf
+;- LAND  - audio dme
+;
+;- GEAR  - GEAR 
+;
+; TODO REPLACE FUEL
+;SWITCH 1 MAG_OFF CMD_ON laminar/SF50/ignition_down
+;SWITCH 1 MAG_RIGHT CMD_ON laminar/SF50/ignition_down
+;SWITCH 1 MAG_LEFT CMD_ON laminar/SF50/ignition_down
+;SWITCH 1 MAG_BOTH CMD_ON laminar/SF50/ignition_down
+;SWITCH 1 ENG_START CMD_ON laminar/SF50/ignition_up
+;laminar/sf50/fuel_selector_dwn
+;laminar/sf50/fuel_selector_up
+
+SWITCH 1 MASTER_BATTERY CMD_ON sim/electrical/battery_2_on
+SWITCH 1 MASTER_BATTERY CMD_OFF sim/electrical/battery_2_off
+SWITCH 1 MASTER_ALTENATOR CMD_ON sim/electrical/generator_2_on
+SWITCH 1 MASTER_ALTENATOR CMD_OFF sim/electrical/generator_2_off
+
+SWITCH 1 AVIONICS_POWER CMD_ON sim/systems/avionics_on
+SWITCH 1 AVIONICS_POWER CMD_OFF sim/systems/avionics_off
+
+SWITCH 1 FUEL_PUMP CMD_ON sim/engines/fire_ext_1_on
+SWITCH 1 FUEL_PUMP CMD_OFF sim/engines/fire_ext_1_off
+SWITCH 1 DE_ICE CMD_ON sim/flight_controls/deploy_parachute
+SWITCH 1 PITOT_HEAT CMD_ON sim/pressurization/dump_on
+SWITCH 1 PITOT_HEAT CMD_OFF sim/pressurization/dump_off
+
+SWITCH 1 COWL_FLAPS CMD_ON sim/audio_panel/transmit_audio_com1
+SWITCH 1 COWL_FLAPS CMD_OFF sim/audio_panel/transmit_audio_com2
+
+SWITCH 1 PANEL_LIGHTS CMD_ON sim/audio_panel/monitor_audio_com1_on
+SWITCH 1 PANEL_LIGHTS CMD_OFF sim/audio_panel/monitor_audio_com1_off
+SWITCH 1 BEACON_LIGHTS CMD_ON sim/audio_panel/monitor_audio_com2_on
+SWITCH 1 BEACON_LIGHTS CMD_OFF sim/audio_panel/monitor_audio_com2_off
+SWITCH 1 NAV_LIGHTS CMD_ON sim/audio_panel/monitor_audio_nav1_on
+SWITCH 1 NAV_LIGHTS CMD_OFF sim/audio_panel/monitor_audio_nav1_off
+SWITCH 1 STROBE_LIGHTS CMD_ON sim/audio_panel/monitor_audio_nav2_on
+SWITCH 1 STROBE_LIGHTS CMD_OFF sim/audio_panel/monitor_audio_nav2_off
+SWITCH 1 TAXI_LIGHTS CMD_ON sim/audio_panel/monitor_audio_adf1_on
+SWITCH 1 TAXI_LIGHTS CMD_OFF sim/audio_panel/monitor_audio_adf1_off
+SWITCH 1 LANDING_LIGHTS CMD_ON sim/audio_panel/monitor_audio_dme_on
+SWITCH 1 LANDING_LIGHTS CMD_OFF sim/audio_panel/monitor_audio_dme_off
+
+SWITCH 1 LEFT GREEN array(sim/aircraft/parts/acf_gear_deploy[1]){1:1}
+SWITCH 1 LEFT YELLOW array(sim/aircraft/parts/acf_gear_deploy[1]){0.001:0.999}
+SWITCH 1 LEFT OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0} 
+SWITCH 1 LEFT OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+
+SWITCH 1 CENTER GREEN array(sim/aircraft/parts/acf_gear_deploy[0]){1:1}
+SWITCH 1 CENTER YELLOW array(sim/aircraft/parts/acf_gear_deploy[0]){0.001:0.999}
+SWITCH 1 CENTER OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0}
+SWITCH 1 CENTER OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+
+SWITCH 1 RIGHT GREEN array(sim/aircraft/parts/acf_gear_deploy[2]){1:1}
+SWITCH 1 RIGHT YELLOW array(sim/aircraft/parts/acf_gear_deploy[2]){0.001:0.999}
+SWITCH 1 RIGHT OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0}
+SWITCH 1 RIGHT OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+
+SWITCH 1 GEAR_SWITCH_UP CMD_ON sim/flight_controls/landing_gear_up
+SWITCH 1 GEAR_SWITCH_DOWN CMD_ON sim/flight_controls/landing_gear_down

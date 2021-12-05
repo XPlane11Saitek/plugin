@@ -1,0 +1,152 @@
+LOAD FROM FILE all/item/radio
+
+RADIO -1 COM1 MODE RENAME
+RADIO -1 COM1 NEXT com1-power
+RADIO -1 com1-power MODE IF
+RADIO -1 com1-power VALUE (array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1}))
+RADIO -1 com1-power[T] MODE OFF
+RADIO -1 com1-power[F] MODE IF
+RADIO -1 com1-power[F] VALUE dataref(sim/cockpit/electrical/avionics_on){1:1}
+RADIO -1 com1-power[F][F] MODE OFF
+RADIO -1 com1-power[F][T] MODE RENAME
+RADIO -1 com1-power[F][T] NEXT com1-on
+RADIO -1 com1-on MODE DUAL
+RADIO -1 com1-on TIMEOUT 2
+RADIO -1 com1-on[0] MODE RENAME
+RADIO -1 com1-on[0] NEXT com1-freq
+RADIO -1 com1-on[1] MODE ADD
+RADIO -1 com1-on[1][0] MODE RENAME
+RADIO -1 com1-on[1][0] NEXT heading
+RADIO -1 com1-on[1][1] MODE RENAME
+RADIO -1 com1-on[1][1] NEXT altitude
+
+RADIO -1 COM2 MODE RENAME
+RADIO -1 COM2 NEXT com2-power
+RADIO -1 com2-power MODE IF
+RADIO -1 com2-power VALUE (array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1}))
+RADIO -1 com2-power[T] MODE OFF
+RADIO -1 com2-power[F] MODE IF
+RADIO -1 com2-power[F] VALUE dataref(sim/cockpit/electrical/avionics_on){1:1}
+RADIO -1 com2-power[F][F] MODE OFF
+RADIO -1 com2-power[F][T] MODE RENAME
+RADIO -1 com2-power[F][T] NEXT com2-on
+RADIO -1 com2-on MODE DUAL
+RADIO -1 com2-on TIMEOUT 2
+RADIO -1 com2-on[0] MODE RENAME
+RADIO -1 com2-on[0] NEXT com2-freq
+RADIO -1 com2-on[1] MODE ADD
+RADIO -1 com2-on[1][0] MODE RENAME
+RADIO -1 com2-on[1][0] NEXT com2-baro1
+RADIO -1 com2-on[1][1] MODE RENAME
+RADIO -1 com2-on[1][1] NEXT com2-minim
+
+RADIO -1 NAV1 MODE RENAME
+RADIO -1 NAV1 NEXT nav1-power
+RADIO -1 nav1-power MODE IF
+RADIO -1 nav1-power VALUE (array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1}))
+RADIO -1 nav1-power[T] MODE OFF
+RADIO -1 nav1-power[F] MODE IF
+RADIO -1 nav1-power[F] VALUE dataref(sim/cockpit/electrical/avionics_on){1:1}
+RADIO -1 nav1-power[F][F] MODE OFF
+RADIO -1 nav1-power[F][T] MODE RENAME
+RADIO -1 nav1-power[F][T] NEXT nav1-on
+RADIO -1 nav1-on MODE DUAL
+RADIO -1 nav1-on TIMEOUT 2
+RADIO -1 nav1-on[0] MODE TIMEOUT
+RADIO -1 nav1-on[0] TIMEOUT 7
+RADIO -1 nav1-on[0][0] MODE RENAME
+RADIO -1 nav1-on[0][0] NEXT nav1-freq
+RADIO -1 nav1-on[0][1] MODE IF
+RADIO -1 nav1-on[0][1] VALUE dataref(sim/cockpit/radios/nav1_dme_dist_m){0:1}
+RADIO -1 nav1-on[0][1][T] MODE ADD
+RADIO -1 nav1-on[0][1][T][0] MODE RENAME
+RADIO -1 nav1-on[0][1][T][0] NEXT nav1-dme-freq
+RADIO -1 nav1-on[0][1][T][1] MODE OFF
+RADIO -1 nav1-on[0][1][F] MODE ADD
+RADIO -1 nav1-on[0][1][F][0] MODE RENAME
+RADIO -1 nav1-on[0][1][F][0] NEXT nav1-dme-freq
+RADIO -1 nav1-on[0][1][F][1] MODE RENAME
+RADIO -1 nav1-on[0][1][F][1] NEXT nav1-dme-dist
+RADIO -1 nav1-on[1] MODE ADD
+RADIO -1 nav1-on[1] LOCK YES
+RADIO -1 nav1-on[1][0] MODE RENAME
+RADIO -1 nav1-on[1][0] NEXT nav1-mag
+RADIO -1 nav1-on[1][1] MODE RENAME
+RADIO -1 nav1-on[1][1] NEXT nav1-obs
+
+RADIO -1 NAV2 MODE RENAME
+RADIO -1 NAV2 NEXT nav2-power
+RADIO -1 nav2-power MODE IF
+RADIO -1 nav2-power VALUE (array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1}))
+RADIO -1 nav2-power[T] MODE OFF
+RADIO -1 nav2-power[F] MODE IF
+RADIO -1 nav2-power[F] VALUE dataref(sim/cockpit/electrical/avionics_on){1:1}
+RADIO -1 nav2-power[F][F] MODE OFF
+RADIO -1 nav2-power[F][T] MODE RENAME
+RADIO -1 nav2-power[F][T] NEXT nav2-on
+RADIO -1 nav2-on MODE DUAL
+RADIO -1 nav2-on TIMEOUT 2
+RADIO -1 nav2-on[0] MODE TIMEOUT
+RADIO -1 nav2-on[0] TIMEOUT 7
+RADIO -1 nav2-on[0][0] MODE RENAME
+RADIO -1 nav2-on[0][0] NEXT nav2-freq
+RADIO -1 nav2-on[0][1] MODE IF
+RADIO -1 nav2-on[0][1] VALUE dataref(sim/cockpit/radios/nav2_dme_dist_m){0:1}
+RADIO -1 nav2-on[0][1][T] MODE ADD
+RADIO -1 nav2-on[0][1][T][0] MODE RENAME
+RADIO -1 nav2-on[0][1][T][0] NEXT nav2-dme-freq
+RADIO -1 nav2-on[0][1][T][1] MODE OFF
+RADIO -1 nav2-on[0][1][F] MODE ADD
+RADIO -1 nav2-on[0][1][F][0] MODE RENAME
+RADIO -1 nav2-on[0][1][F][0] NEXT nav2-dme-freq
+RADIO -1 nav2-on[0][1][F][1] MODE RENAME
+RADIO -1 nav2-on[0][1][F][1] NEXT nav2-dme-dist
+RADIO -1 nav2-on[1] MODE ADD
+RADIO -1 nav2-on[1] LOCK YES
+RADIO -1 nav2-on[1][0] MODE RENAME
+RADIO -1 nav2-on[1][0] NEXT nav2-mag
+RADIO -1 nav2-on[1][1] MODE RENAME
+RADIO -1 nav2-on[1][1] NEXT nav2-obs
+
+RADIO -1 ADF MODE OFF
+
+RADIO -1 DME MODE RENAME
+RADIO -1 DME NEXT dme-power
+RADIO -1 dme-power MODE IF
+RADIO -1 dme-power VALUE (array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1}))
+RADIO -1 dme-power[T] MODE OFF
+RADIO -1 dme-power[F] MODE IF
+RADIO -1 dme-power[F] VALUE dataref(sim/cockpit/electrical/avionics_on){1:1}
+RADIO -1 dme-power[F][F] MODE OFF
+RADIO -1 dme-power[F][T] MODE RENAME
+RADIO -1 dme-power[F][T] NEXT dme-on
+RADIO -1 dme-on MODE ADD
+RADIO -1 dme-on[0] MODE IF
+RADIO -1 dme-on[0] VALUE dataref(sim/cockpit/radios/nav1_dme_dist_m){0:1}
+RADIO -1 dme-on[0][T] MODE OFF
+RADIO -1 dme-on[0][F] MODE RENAME
+RADIO -1 dme-on[0][F] NEXT nav1-dme-dist
+RADIO -1 dme-on[1] MODE IF
+RADIO -1 dme-on[1] VALUE dataref(sim/cockpit/radios/nav2_dme_dist_m){0:1}
+RADIO -1 dme-on[1][T] MODE OFF
+RADIO -1 dme-on[1][F] MODE RENAME
+RADIO -1 dme-on[1][F] NEXT nav2-dme-dist
+
+RADIO -1 XPDR MODE RENAME
+RADIO -1 XPDR NEXT xpdr-power
+RADIO -1 xpdr-power MODE IF
+RADIO -1 xpdr-power VALUE (array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1}))
+RADIO -1 xpdr-power[T] MODE OFF
+RADIO -1 xpdr-power[F] MODE IF
+RADIO -1 xpdr-power[F] VALUE dataref(sim/cockpit/electrical/avionics_on){1:1}
+RADIO -1 xpdr-power[F][F] MODE OFF
+RADIO -1 xpdr-power[F][T] MODE RENAME
+RADIO -1 xpdr-power[F][T] NEXT xpdr-on
+RADIO -1 xpdr-on MODE ADD
+RADIO -1 xpdr-on[0] MODE RENAME
+RADIO -1 xpdr-on[0] NEXT xpdr-mode
+RADIO -1 xpdr-on[1] MODE IF
+RADIO -1 xpdr-on[1] VALUE dataref(sim/cockpit/radios/transponder_mode){0:0}
+RADIO -1 xpdr-on[1][T] MODE OFF
+RADIO -1 xpdr-on[1][F] MODE RENAME
+RADIO -1 xpdr-on[1][F] NEXT xpdr-freq

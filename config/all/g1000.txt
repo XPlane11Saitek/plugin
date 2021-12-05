@@ -1,0 +1,73 @@
+
+MULTI -1 g1000 MODE IF
+MULTI -1 g1000 VALUE dataref(plugin/saitek/multi0/button/arm){1:1}
+; --------------------------- 
+MULTI -1 g1000[F] MODE RENAME
+MULTI -1 g1000[F] NEXT g1000n1
+MULTI -1 g1000[T] MODE RENAME
+MULTI -1 g1000[T] NEXT g1000n2
+
+MULTI -1 g1000n1 MODE ADD
+MULTI -1 g1000n1[0] MODE DISPLAY
+
+MULTI -1 g1000n1[0][AP] MODE LONG
+MULTI -1 g1000n1[0][AP] TIMEOUT 3
+MULTI -1 g1000n1[0][AP] COMMAND sim/GPS/g1000n1_direct
+MULTI -1 g1000n1[0][AP][0] MODE SCOMMAND
+MULTI -1 g1000n1[0][AP][0] VALUE const(0)
+MULTI -1 g1000n1[0][AP][0] UP sim/GPS/g1000n1_range_up
+MULTI -1 g1000n1[0][AP][0] DOWN sim/GPS/g1000n1_range_down
+MULTI -1 g1000n1[0][AP][0] DISPLAY INT
+
+MULTI -1 g1000n1[0][HDG] MODE LONG
+MULTI -1 g1000n1[0][HDG] TIMEOUT 3
+MULTI -1 g1000n1[0][HDG] COMMAND sim/GPS/g1000n1_menu
+MULTI -1 g1000n1[0][HDG][0] MODE SCOMMAND
+MULTI -1 g1000n1[0][HDG][0] VALUE const(1)
+MULTI -1 g1000n1[0][HDG][0] UP sim/GPS/g1000n1_fms_inner_up
+MULTI -1 g1000n1[0][HDG][0] DOWN sim/GPS/g1000n1_fms_inner_down
+MULTI -1 g1000n1[0][HDG][0] DISPLAY INT
+
+MULTI -1 g1000n1[0][NAV] MODE LONG
+MULTI -1 g1000n1[0][NAV] TIMEOUT 3
+MULTI -1 g1000n1[0][NAV] COMMAND sim/GPS/g1000n1_fpl
+MULTI -1 g1000n1[0][NAV][0] MODE SCOMMAND
+MULTI -1 g1000n1[0][NAV][0] VALUE const(2)
+MULTI -1 g1000n1[0][NAV][0] UP sim/GPS/g1000n1_fms_outer_up
+MULTI -1 g1000n1[0][NAV][0] DOWN sim/GPS/g1000n1_fms_outer_down
+MULTI -1 g1000n1[0][NAV][0] DISPLAY INT
+
+MULTI -1 g1000n1[0][ALT] MODE LONG
+MULTI -1 g1000n1[0][ALT] TIMEOUT 3
+MULTI -1 g1000n1[0][ALT] COMMAND sim/GPS/g1000n1_proc
+MULTI -1 g1000n1[0][ALT][0] MODE OFF
+
+MULTI -1 g1000n1[0][VS] MODE LONG
+MULTI -1 g1000n1[0][VS] TIMEOUT 3
+MULTI -1 g1000n1[0][VS] COMMAND sim/GPS/g1000n1_clr
+MULTI -1 g1000n1[0][VS][0] MODE OFF
+
+MULTI -1 g1000n1[0][IAS] MODE LONG
+MULTI -1 g1000n1[0][IAS] TIMEOUT 3
+MULTI -1 g1000n1[0][IAS] COMMAND sim/GPS/g1000n1_ent
+MULTI -1 g1000n1[0][IAS][0] MODE OFF
+
+MULTI -1 g1000n1[1] MODE DISPLAY
+
+;sim/GPS/g1000n1_softkey1
+;sim/GPS/g1000n1_softkey2
+;sim/GPS/g1000n1_softkey3
+;------------------------
+;sim/GPS/g1000n1_softkey4
+;sim/GPS/g1000n1_softkey5
+;sim/GPS/g1000n1_softkey6
+;------------------------
+;sim/GPS/g1000n1_softkey7
+;sim/GPS/g1000n1_softkey8
+;sim/GPS/g1000n1_softkey9
+;------------------------
+;sim/GPS/g1000n1_softkey10
+;sim/GPS/g1000n1_softkey11
+;sim/GPS/g1000n1_softkey12
+
+MULTI -1 g1000n2 MODE OFF
