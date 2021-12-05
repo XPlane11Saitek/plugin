@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="hidapi\windows\hid.c" />
+    <ClCompile Include="src\radio\modeLoad.cpp" />
+    <ClCompile Include="src\spec.cpp" />
+    <ClCompile Include="src\debug.cpp" />
+    <ClCompile Include="src\libs\line.cpp" />
+    <ClCompile Include="src\loader\content.cpp" />
+    <ClCompile Include="src\loader\reader.cpp" />
+    <ClCompile Include="src\display\data.cpp" />
+    <ClCompile Include="src\display\dataDiv.cpp" />
+    <ClCompile Include="src\display\dataFloat.cpp" />
+    <ClCompile Include="src\display\dataInt.cpp" />
+    <ClCompile Include="src\display\dataInt1.cpp" />
+    <ClCompile Include="src\display\dataInt2.cpp" />
+    <ClCompile Include="src\display\dataMInt.cpp" />
+    <ClCompile Include="src\display\dataShort.cpp" />
+    <ClCompile Include="src\display\dataLoad.cpp" />
+    <ClCompile Include="src\display\monitor.cpp" />
+    <ClCompile Include="src\output\customRef.cpp" />
+    <ClCompile Include="src\output\customWrite.cpp" />
+    <ClCompile Include="src\source\command.cpp" />
+    <ClCompile Include="src\source\value.cpp" />
+    <ClCompile Include="src\source\const.cpp" />
+    <ClCompile Include="src\source\dataref.cpp" />
+    <ClCompile Include="src\source\array.cpp" />
+    <ClCompile Include="src\source\sources.cpp" />
+    <ClCompile Include="src\range\range.cpp" />
+    <ClCompile Include="src\range\rangeAnd.cpp" />
+    <ClCompile Include="src\range\rangeLoader.cpp" />
+    <ClCompile Include="src\range\rangeOr.cpp" />
+    <ClCompile Include="src\range\rangeValue.cpp" />
+    <ClCompile Include="src\color\cell.cpp" />
+    <ClCompile Include="src\color\color.cpp" />
+    <ClCompile Include="src\bip.cpp" />
+    <ClCompile Include="src\action\sw.cpp" />
+    <ClCompile Include="src\action\swcmd.cpp" />
+    <ClCompile Include="src\action\swpush.cpp" />
+    <ClCompile Include="src\action\swset.cpp" />
+    <ClCompile Include="src\action\swdec.cpp" />
+    <ClCompile Include="src\action\swrun.cpp" />
+    <ClCompile Include="src\action\swload.cpp" />
+    <ClCompile Include="src\swith.cpp" />
+    <ClCompile Include="src\radio\mode.cpp" />
+    <ClCompile Include="src\radio\modeAdd.cpp" />
+    <ClCompile Include="src\radio\modeCommand.cpp" />
+    <ClCompile Include="src\radio\modeDefault.cpp" />
+    <ClCompile Include="src\radio\modeDual.cpp" />
+    <ClCompile Include="src\radio\modeIf.cpp" />
+    <ClCompile Include="src\radio\modeOff.cpp" />
+    <ClCompile Include="src\radio\modeTimeout.cpp" />
+    <ClCompile Include="src\radio\modeValue.cpp" />
+    <ClCompile Include="src\radio\modeShow.cpp" />
+    <ClCompile Include="src\radio\modeLong.cpp" />
+    <ClCompile Include="src\radio\modePush.cpp" />
+    <ClCompile Include="src\radio\modeCMD.cpp" />
+    <ClCompile Include="src\radio.cpp" />
+    <ClCompile Include="src\autopilot\ap.cpp" />
+    <ClCompile Include="src\autopilot\apCmd.cpp" />
+    <ClCompile Include="src\autopilot\apOff.cpp" />
+    <ClCompile Include="src\autopilot\apIf.cpp" />
+    <ClCompile Include="src\autopilot\apLoad.cpp" />
+    <ClCompile Include="src\autopilot\apAdd.cpp" />
+    <ClCompile Include="src\autopilot\apCopy.cpp" />
+    <ClCompile Include="src\autopilot\apRadio.cpp" />
+    <ClCompile Include="src\autopilot\apDisplay.cpp" />
+    <ClCompile Include="src\multi.cpp" />
+    <ClCompile Include="src\init.cpp" />
+    <ClCompile Include="src\panel.cpp" />
+    <ClCompile Include="src\panels.cpp" />
+    <ClCompile Include="src\plugin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\plugin.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{77e45c29-efb9-4fb4-8922-54ca510538fd}</ProjectGuid>
+    <RootNamespace>saitekBIP</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>.\Release\plugins\$(TargetName)\64\</OutDir>
+    <IntDir>.\Release\64\</IntDir>
+    <TargetName>win</TargetName>
+    <TargetExt>.xpl</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>.\Release\plugins\$(TargetName)\64\</OutDir>
+    <IntDir>.\Release\64\</IntDir>
+    <TargetName>win</TargetName>
+    <TargetExt>.xpl</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;SAITEKBIP_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_WIN32_WINDOWS=0x0601;WIN32;NDEBUG;_WINDOWS;_USRDLL;SIMDATA_EXPORTS;IBM=1;XPLM200=1;XPLM210=1;XPLM300=1;XPLM301=1;XPLM302=1;XPLM303=1;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>src/plugin.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\autopilot;src\swith;src\radio;src\color;src\source;src\range;src;X:\devel\SDK\CHeaders\XPLM;X:\devel\SDK\CHeaders\Wrappers;X:\devel\SDK\CHeaders\Widgets;X:\devel\SDK\Libraries\Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <StringPooling>true</StringPooling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>setupapi.lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>SDK\Libraries\Win;SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;SAITEKBIP_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WINVER=0x0601;_WIN32_WINNT=0x0601;_WIN32_WINDOWS=0x0601;WIN32;NDEBUG;_WINDOWS;_USRDLL;SIMDATA_EXPORTS;IBM=1;XPLM200=1;XPLM210=1;XPLM300=1;XPLM301=1;XPLM302=1;XPLM303=1;_CRT_SECURE_NO_WARNINGS;XPLANE11PLUGIN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\reader;src\autopilot;src\action;src\radio;src\color;src\source;src\libs;src\range;src\display;src\loader;src\output;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <StringPooling>true</StringPooling>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>setupapi.lib;Opengl32.lib;odbc32.lib;odbccp32.lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

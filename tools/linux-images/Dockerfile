@@ -1,0 +1,10 @@
+FROM debian:sid
+RUN apt update -y && \
+  apt upgrade -y && \
+  apt install -y make gcc qt5-qmake cmake g++ wget git libudev-dev pkg-config zip unzip wget && apt clean git && \
+  mkdir /app 
+RUN cd / && wget -O SDK.zip https://developer.x-plane.com/wp-content/plugins/code-sample-generation/sample_templates/XPSDK303.zip && \
+  /usr/bin/unzip SDK.zip && rm SDK.zip && rm -rf /SDK/Delphi && git clone https://github.com/libusb/hidapi
+WORKDIR /app
+#CMD export QT_SELECT=qt5 ; qmake ; make
+CMD cmake CMakeLists.txt; make

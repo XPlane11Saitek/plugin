@@ -1,0 +1,13 @@
+*.o
+Makefile
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+SDK/
+hidapi/
+mac.xpl
+lin.xpl
+/.vs/
+/Release/
+/x64/
+/64/

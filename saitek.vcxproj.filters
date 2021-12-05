@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\bip.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\multi.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plugin.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\swith.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeAdd.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeCommand.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeDefault.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeDual.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeIf.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeOff.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeShow.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeTimeout.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeValue.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\color\cell.cpp">
+      <Filter>src\color</Filter>
+    </ClCompile>
+    <ClCompile Include="src\color\color.cpp">
+      <Filter>src\color</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\array.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\dataref.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\range\rangeAnd.cpp">
+      <Filter>src\rang</Filter>
+    </ClCompile>
+    <ClCompile Include="src\range\rangeLoader.cpp">
+      <Filter>src\rang</Filter>
+    </ClCompile>
+    <ClCompile Include="src\range\rangeOr.cpp">
+      <Filter>src\rang</Filter>
+    </ClCompile>
+    <ClCompile Include="src\range\rangeValue.cpp">
+      <Filter>src\rang</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libs\line.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+    <ClCompile Include="hidapi\windows\hid.c" />
+    <ClCompile Include="src\autopilot\ap.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\autopilot\apAdd.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\autopilot\apCmd.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\autopilot\apCopy.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\autopilot\apDisplay.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\autopilot\apIf.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\autopilot\apLoad.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\autopilot\apOff.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\autopilot\apRadio.cpp">
+      <Filter>src\autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\const.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\command.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeLoad.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\loader\content.cpp">
+      <Filter>src\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\output\customRef.cpp">
+      <Filter>src\output</Filter>
+    </ClCompile>
+    <ClCompile Include="src\output\customWrite.cpp">
+      <Filter>src\output</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\data.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\dataDiv.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\dataFloat.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\dataInt.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\dataInt1.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\dataInt2.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\dataLoad.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\dataMInt.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\dataShort.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\action\sw.cpp">
+      <Filter>src\sw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\action\swcmd.cpp">
+      <Filter>src\sw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\action\swdec.cpp">
+      <Filter>src\sw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\action\swload.cpp">
+      <Filter>src\sw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\action\swpush.cpp">
+      <Filter>src\sw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\action\swrun.cpp">
+      <Filter>src\sw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\action\swset.cpp">
+      <Filter>src\sw</Filter>
+    </ClCompile>
+    <ClCompile Include="src\debug.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\init.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\panel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\panels.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spec.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\mode.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeCMD.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modeLong.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\radio\modePush.cpp">
+      <Filter>src\radio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\monitor.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\range\range.cpp">
+      <Filter>src\rang</Filter>
+    </ClCompile>
+    <ClCompile Include="src\loader\reader.cpp">
+      <Filter>src\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\sources.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\value.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{52e2ac39-ce05-4214-8f4f-037740ed2560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xml">
+      <UniqueIdentifier>{6bce6ea7-3575-498e-b019-5092ec29cea3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\source">
+      <UniqueIdentifier>{e9eac82f-f61e-4adb-8d3b-22397d4338b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\autopilot">
+      <UniqueIdentifier>{896daa6d-195a-470c-b520-d89d977e17ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\color">
+      <UniqueIdentifier>{e6afd81e-aea2-4706-b319-2d198762a279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\monitor">
+      <UniqueIdentifier>{f57270bd-fbd0-45b1-96cf-36d90b555fd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\loader">
+      <UniqueIdentifier>{0bcb72f3-7200-47d5-af97-206ce35d6974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\output">
+      <UniqueIdentifier>{e42afb8a-cbda-4960-9fdf-2f389bf4370a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\radio">
+      <UniqueIdentifier>{cca349bb-4125-4b9e-aeb6-f344672764e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rang">
+      <UniqueIdentifier>{c5dbc895-c2ad-4ba9-b73b-22c09f823b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sw">
+      <UniqueIdentifier>{47fe3bef-5fc8-4878-b6a7-b51349598ecf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\plugin.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

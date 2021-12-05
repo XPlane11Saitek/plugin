@@ -1,0 +1,37 @@
+
+.code: &code
+  before_script:
+    - cp -r /SDK ./
+    - cp -r /hidapi ./
+  artifacts:
+    expire_in: 1 week
+    name: "Plugin"
+    paths:
+      - lin.xpl
+      - mac.xpl
+      - win.xpl
+
+mac:
+  <<: *code
+  stage: build
+  script:
+    - cmake CMakeLists.txt
+    - make
+  tags: [shared-macos-amd64]
+
+win:
+  <<: *code
+  stage: build
+  script:
+    - cmake CMakeLists.txt
+    - make
+  tags: [shared-windows]
+
+linux:
+  <<: *code
+  stage: build
+  image: tarasmal/saitek:cmake
+  script:
+    - cmake CMakeLists.txt
+    - make
+ tags: [linux]
