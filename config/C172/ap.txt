@@ -14,17 +14,14 @@ MULTI -1 ALT[0] VALUE dataref(sim/aircraft/electrical/num_batteries){2:2}
 MULTI -1 ALT[0][T] MODE IF
 MULTI -1 ALT[0][T] VALUE ((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) OR (array(sim/cockpit/electrical/battery_array_on[1]){1:1})) AND (dataref(sim/cockpit/electrical/avionics_on){1:1})
 MULTI -1 ALT[0][T][T] MODE RENAME
-MULTI -1 ALT[0][T][T] NEXT ALT-on
+MULTI -1 ALT[0][T][T] NEXT ap
 MULTI -1 ALT[0][T][F] MODE OFF
 ; -----  DEFAULT MODEL ------
 MULTI -1 ALT[0][F] MODE IF
 MULTI -1 ALT[0][F] VALUE (dataref(sim/cockpit/electrical/battery_on){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1})
 MULTI -1 ALT[0][F][T] MODE RENAME
-MULTI -1 ALT[0][F][T] NEXT ALT-on
+MULTI -1 ALT[0][F][T] NEXT ap
 MULTI -1 ALT[0][F][F] MODE OFF
-;---------------------------
-MULTI -1 ALT-on MODE RENAME
-MULTI -1 ALT-on NEXT ap
 ;---------------------------
 LOAD FROM FILE all/ap
 LOAD FROM FILE all/item/ap
@@ -32,10 +29,22 @@ LOAD FROM FILE all/item/ap
 MULTI -1 VS MODE COPY
 MULTI -1 VS[1] MODE RENAME
 MULTI -1 VS[1] NEXT main
-MULTI -1 VS[0] MODE RENAME
-MULTI -1 VS[0] NEXT audio
+MULTI -1 VS[0] MODE IF
+MULTI -1 VS[0] VALUE dataref(sim/aircraft/electrical/num_batteries){2:2}
+; -----  G1000 MODEL ------
+MULTI -1 VS[0][T] MODE IF
+MULTI -1 VS[0][T] VALUE ((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) OR (array(sim/cockpit/electrical/battery_array_on[1]){1:1})) AND (dataref(sim/cockpit/electrical/avionics_on){1:1})
+MULTI -1 VS[0][T][T] MODE RENAME
+MULTI -1 VS[0][T][T] NEXT radio
+MULTI -1 VS[0][T][F] MODE OFF
+; -----  DEFAULT MODEL ------
+MULTI -1 VS[0][F] MODE IF
+MULTI -1 VS[0][F] VALUE (dataref(sim/cockpit/electrical/battery_on){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1})
+MULTI -1 VS[0][F][T] MODE RENAME
+MULTI -1 VS[0][F][T] NEXT radio
+MULTI -1 VS[0][F][F] MODE OFF
 ;---------------------------
-LOAD FROM FILE C172/AP/audio
+LOAD FROM FILE C172/AP/radio
 
 MULTI -1 IAS MODE COPY
 MULTI -1 IAS[1] MODE RENAME
@@ -46,28 +55,36 @@ MULTI -1 IAS[0] VALUE dataref(sim/aircraft/electrical/num_batteries){2:2}
 MULTI -1 IAS[0][T] MODE IF
 MULTI -1 IAS[0][T] VALUE ((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) OR (array(sim/cockpit/electrical/battery_array_on[1]){1:1})) AND (dataref(sim/cockpit/electrical/avionics_on){1:1})
 MULTI -1 IAS[0][T][T] MODE RENAME
-MULTI -1 IAS[0][T][T] NEXT IAS-g1000
+MULTI -1 IAS[0][T][T] NEXT g1000
 MULTI -1 IAS[0][T][F] MODE OFF
 ; -----  DEFAULT MODEL ------
 MULTI -1 IAS[0][F] MODE IF
 MULTI -1 IAS[0][F] VALUE (dataref(sim/cockpit/electrical/battery_on){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1})
 MULTI -1 IAS[0][F][T] MODE RENAME
-MULTI -1 IAS[0][F][T] NEXT IAS-g430
+MULTI -1 IAS[0][F][T] NEXT g430
 MULTI -1 IAS[0][F][F] MODE OFF
 ;---------------------------
-MULTI -1 IAS-g1000 MODE RENAME
-MULTI -1 IAS-g1000 NEXT g1000
-;---------------------------
-MULTI -1 IAS-g430 MODE RENAME
-MULTI -1 IAS-g430 NEXT g430
-;---------------------------
-LOAD FROM FILE all/g430
-LOAD FROM FILE all/g1000
+LOAD FROM FILE all/garmin/g430
+LOAD FROM FILE all/garmin/g1000
 
 MULTI -1 HDG MODE COPY
 MULTI -1 HDG[1] MODE RENAME
 MULTI -1 HDG[1] NEXT main
-MULTI -1 HDG[0] MODE OFF
+MULTI -1 HDG[0] MODE IF
+MULTI -1 HDG[0] VALUE dataref(sim/aircraft/electrical/num_batteries){2:2}
+; -----  G1000 MODEL ------
+MULTI -1 HDG[0][T] MODE IF
+MULTI -1 HDG[0][T] VALUE ((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) OR (array(sim/cockpit/electrical/battery_array_on[1]){1:1})) AND (dataref(sim/cockpit/electrical/avionics_on){1:1})
+MULTI -1 HDG[0][T][T] MODE RENAME
+MULTI -1 HDG[0][T][T] NEXT audio
+MULTI -1 HDG[0][T][F] MODE OFF
+; -----  DEFAULT MODEL ------
+MULTI -1 HDG[0][F] MODE IF
+MULTI -1 HDG[0][F] VALUE (dataref(sim/cockpit/electrical/battery_on){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1})
+MULTI -1 HDG[0][F][T] MODE RENAME
+MULTI -1 HDG[0][F][T] NEXT audio
+MULTI -1 HDG[0][F][F] MODE OFF
+LOAD FROM FILE C172/AP/audio
 
 MULTI -1 CRS MODE COPY
 MULTI -1 CRS[1] MODE RENAME

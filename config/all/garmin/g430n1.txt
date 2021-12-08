@@ -1,0 +1,40 @@
+MULTI -1 g430n1 MODE QUAD
+;---------------------------
+MULTI -1 g430n1[00] MODE DISPLAY
+MULTI -1 g430n1[00][AP] MODE SCOMMAND
+MULTI -1 g430n1[00][AP] VALUE const(0)
+MULTI -1 g430n1[00][AP] UP sim/GPS/g430n1_zoom_out
+MULTI -1 g430n1[00][AP] DOWN sim/GPS/g430n1_zoom_in
+MULTI -1 g430n1[00][AP] DISPLAY INT
+;---------------------------
+MULTI -1 g430n1[00][HDG] MODE SCOMMAND
+MULTI -1 g430n1[00][HDG] VALUE const(1)
+MULTI -1 g430n1[00][HDG] UP sim/GPS/g430n1_chapter_up
+MULTI -1 g430n1[00][HDG] DOWN sim/GPS/g430n1_chapter_dn
+MULTI -1 g430n1[00][HDG] DISPLAY INT
+;---------------------------
+MULTI -1 g430n1[00][NAV] MODE SCOMMAND
+MULTI -1 g430n1[00][NAV] VALUE const(2)
+MULTI -1 g430n1[00][NAV] UP sim/GPS/g430n1_page_up
+MULTI -1 g430n1[00][NAV] DOWN sim/GPS/g430n1_page_dn
+MULTI -1 g430n1[00][NAV] DISPLAY INT
+
+MULTI -1 g430n1[01] MODE CMD
+;---------------------------
+MULTI -1 g430n1[01][AP] CMD_ON sim/GPS/g430n1_direct
+MULTI -1 g430n1[01][HDG] CMD_ON sim/GPS/g430n1_menu
+MULTI -1 g430n1[01][NAV] CMD_ON sim/GPS/g430n1_cursor
+MULTI -1 g430n1[01][ALT] CMD_ON sim/GPS/g430n1_proc
+MULTI -1 g430n1[01][VS] CMD_ON sim/GPS/g430n1_clr
+MULTI -1 g430n1[01][IAS] CMD_ON sim/GPS/g430n1_ent
+
+MULTI -1 g430n1[10] MODE CMD
+;---------------------------
+MULTI -1 g430n1[10][HDG] CMD_ON sim/GPS/g430n1_chapter_up
+MULTI -1 g430n1[10][NAV] CMD_ON sim/GPS/g430n1_obs
+MULTI -1 g430n1[10][IAS] CMD_ON sim/GPS/g430n1_msg
+MULTI -1 g430n1[10][ALT] CMD_ON sim/GPS/g430n1_fpl
+MULTI -1 g430n1[10][VS] CMD_ON sim/GPS/g430n1_vnav
+
+
+MULTI -1 g430n1[11] MODE OFF

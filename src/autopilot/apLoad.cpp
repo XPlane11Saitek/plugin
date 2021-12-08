@@ -12,6 +12,7 @@
 #include "swload.h"
 #include "modeLoad.h"
 #include "rangeLoader.h"
+#include "apQuad.h"
 
 AP *createAP(FileContent *config, std::string button, std::string postfix)
 {
@@ -39,6 +40,12 @@ AP *LoadAP(FileContent *config, const char *button)
         return new APModeCOPY(
             createAP(config, button, "[0]"),
             createAP(config, button, "[1]"));
+    else if (!strcmp("QUAD", mode))
+        return new APModeQUAD(
+            createAP(config, button, "[00]"),
+            createAP(config, button, "[01]"),
+            createAP(config, button, "[10]"),
+            createAP(config, button, "[11]"));
     else if (!strcmp("RENAME", mode))
         return LoadAP(config, config->GetParam(button, "NEXT"));
     else if (!strcmp("CMD", mode))

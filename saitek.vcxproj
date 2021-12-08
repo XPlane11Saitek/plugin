@@ -82,6 +82,7 @@
     <ClCompile Include="src\autopilot\apAdd.cpp" />
     <ClCompile Include="src\autopilot\apCopy.cpp" />
     <ClCompile Include="src\autopilot\apRadio.cpp" />
+    <ClCompile Include="src\autopilot\apQuad.cpp" />
     <ClCompile Include="src\autopilot\apDisplay.cpp" />
     <ClCompile Include="src\multi.cpp" />
     <ClCompile Include="src\init.cpp" />

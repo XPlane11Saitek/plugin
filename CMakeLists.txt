@@ -118,6 +118,7 @@ set(CODE
   src/autopilot/apCopy.cpp
   src/autopilot/apRadio.cpp
   src/autopilot/apDisplay.cpp
+  src/autopilot/apQuad.cpp
 
   src/multi.cpp
   src/init.cpp
