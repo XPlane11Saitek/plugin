@@ -14,7 +14,7 @@ private:
     time_t lastUpdate;
 
 public: // Class
-    RadioModeTimeout(RadioMode *, RadioMode *, int);
+    RadioModeTimeout(RadioMode *, RadioMode *, const char *);
     ~RadioModeTimeout();
 
 public:

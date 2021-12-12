@@ -1,0 +1,11 @@
+
+test:check:
+  before_script:
+    - cp -r ~/SDK ./
+    - cp -r ~/hidapi ./
+  stage: check
+  script:
+    - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}"
+    - make
+    - ./saitek
+  tags: [mac]

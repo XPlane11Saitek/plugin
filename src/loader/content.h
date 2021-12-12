@@ -18,10 +18,15 @@ public:
     bool IsParam(const char *, const char *);
     const char *GetParam(const char *, const char *);
     float GetParamFloat(const char *, const char *);
+
+public:
     std::list<FileContentLine *>::iterator begin();
     std::list<FileContentLine *>::iterator end();
+
+public:
     FileContent *CreateConfigForPanel(const char *, int);
     FileContent *CreateConfigForButton(const char *);
+    void CheckALLUsage();
 };
 
 #endif

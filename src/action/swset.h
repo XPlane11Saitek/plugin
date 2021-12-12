@@ -6,12 +6,11 @@
 class SWDataSet : public SWAction
 {
 protected:
-    bool flag;
     float value;
     XP11Value *cmd;
 
 public:
-    SWDataSet(bool, const char *line);
+    SWDataSet(const char *line);
     ~SWDataSet();
 
 public:

@@ -1,10 +1,9 @@
 
 #include "swcmd.h"
 
-SWCommand::SWCommand(bool isOn, const char *lines)
+SWCommand::SWCommand(const char *lines)
 {
     this->cmd = new XP11Command(lines);
-    this->flag = isOn;
 }
 
 SWCommand::~SWCommand()
@@ -19,12 +18,10 @@ void SWCommand::Check()
 
 void SWCommand::On()
 {
-    if (this->flag)
-        this->cmd->Once();
+    this->cmd->Once();
 }
 
 void SWCommand::Off()
 {
-    if (!this->flag)
-        this->cmd->Once();
+    this->cmd->Once();
 }

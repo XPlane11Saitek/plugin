@@ -1,26 +1,20 @@
-MULTI -1 engine MODE DISPLAY
+MULTI -1 engine MODE display()
 
-MULTI -1 engine[AP] MODE SHOW
+MULTI -1 engine[AP] MODE show(FLOAT/1000)
 MULTI -1 engine[AP] VALUE array(sim/cockpit2/engine/indicators/engine_speed_rpm[0])
-MULTI -1 engine[AP] DISPLAY FLOAT/1000
 
-MULTI -1 engine[HDG] MODE SHOW
+MULTI -1 engine[HDG] MODE show(SHORT)
 MULTI -1 engine[HDG] VALUE array(sim/cockpit2/engine/indicators/oil_pressure_psi[0])
-MULTI -1 engine[HDG] DISPLAY SHORT
 
-MULTI -1 engine[NAV] MODE SHOW
+MULTI -1 engine[NAV] MODE show(INT)
 MULTI -1 engine[NAV] VALUE array(sim/cockpit2/engine/indicators/oil_temperature_deg_C[0])
-MULTI -1 engine[NAV] DISPLAY INT
 
-MULTI -1 engine[IAS] MODE SHOW
+MULTI -1 engine[IAS] MODE show(FLOAT/1000)
 MULTI -1 engine[IAS] VALUE array(sim/cockpit2/engine/indicators/EGT_deg_C[0])
-MULTI -1 engine[IAS] DISPLAY FLOAT/1000
 
-MULTI -1 engine[ALT] MODE SHOW
+MULTI -1 engine[ALT] MODE show(SHORT)
 MULTI -1 engine[ALT] VALUE dataref(sim/cockpit2/fuel/fuel_level_indicated_left)
-MULTI -1 engine[ALT] DISPLAY SHORT
 
-MULTI -1 engine[VS] MODE SHOW
+MULTI -1 engine[VS] MODE show(SHORT)
 MULTI -1 engine[VS] VALUE dataref(sim/cockpit2/fuel/fuel_level_indicated_right)
-MULTI -1 engine[VS] DISPLAY SHORT
 

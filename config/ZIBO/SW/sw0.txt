@@ -22,67 +22,67 @@
 ;
 
 ;STARTER 0-GRD 1-AUTO 2-CNT 3-FLT
-SWITCH 0 MAG_OFF CMD_ON laminar/B738/rotary/eng1_start_grd
+SWITCH 0 MAG_OFF ON command(laminar/B738/rotary/eng1_start_grd
 ;SWITCH 0 MAG_RIGHT --- ---
-SWITCH 0 MAG_LEFT CMD_ON laminar/B738/rotary/eng1_start_off
-SWITCH 0 MAG_BOTH CMD_ON laminar/B738/rotary/eng1_start_cont
-SWITCH 0 ENG_START CMD_ON laminar/B738/rotary/eng1_start_flt
+SWITCH 0 MAG_LEFT ON command(laminar/B738/rotary/eng1_start_off
+SWITCH 0 MAG_BOTH ON command(laminar/B738/rotary/eng1_start_cont
+SWITCH 0 ENG_START ON command(laminar/B738/rotary/eng1_start_flt
 
 ;APU 0-off 1-on 2-start			
-SWITCH 0 MASTER_BATTERY CMD_ON laminar/B738/switch/battery_dn
-SWITCH 0 MASTER_BATTERY CMD_OFF laminar/B738/switch/battery_up
+SWITCH 0 MASTER_BATTERY ON command(laminar/B738/switch/battery_dn
+SWITCH 0 MASTER_BATTERY OFF command(laminar/B738/switch/battery_up
 
 ;GEN
-SWITCH 0 MASTER_ALTENATOR CMD_ON laminar/B738/toggle_switch/gen1_dn
-SWITCH 0 MASTER_ALTENATOR CMD_ON laminar/B738/toggle_switch/gen2_dn
+SWITCH 0 MASTER_ALTENATOR ON command(laminar/B738/toggle_switch/gen1_dn
+SWITCH 0 MASTER_ALTENATOR ON command(laminar/B738/toggle_switch/gen2_dn
 
 ;IRS
-SWITCH 0 AVIONICS_POWER CMD_ON laminar/B738/toggle_switch/irs_L_right
-SWITCH 0 AVIONICS_POWER CMD_ON laminar/B738/toggle_switch/irs_L_right
-SWITCH 0 AVIONICS_POWER CMD_ON laminar/B738/toggle_switch/irs_R_right
-SWITCH 0 AVIONICS_POWER CMD_ON laminar/B738/toggle_switch/irs_R_right
-SWITCH 0 AVIONICS_POWER CMD_OFF laminar/B738/toggle_switch/irs_L_left
-SWITCH 0 AVIONICS_POWER CMD_OFF laminar/B738/toggle_switch/irs_L_left
-SWITCH 0 AVIONICS_POWER CMD_OFF laminar/B738/toggle_switch/irs_L_left
-SWITCH 0 AVIONICS_POWER CMD_OFF laminar/B738/toggle_switch/irs_R_left
-SWITCH 0 AVIONICS_POWER CMD_OFF laminar/B738/toggle_switch/irs_R_left
-SWITCH 0 AVIONICS_POWER CMD_OFF laminar/B738/toggle_switch/irs_R_left
+SWITCH 0 AVIONICS_POWER ON command(laminar/B738/toggle_switch/irs_L_right
+SWITCH 0 AVIONICS_POWER ON command(laminar/B738/toggle_switch/irs_L_right
+SWITCH 0 AVIONICS_POWER ON command(laminar/B738/toggle_switch/irs_R_right
+SWITCH 0 AVIONICS_POWER ON command(laminar/B738/toggle_switch/irs_R_right
+SWITCH 0 AVIONICS_POWER OFF command(laminar/B738/toggle_switch/irs_L_left
+SWITCH 0 AVIONICS_POWER OFF command(laminar/B738/toggle_switch/irs_L_left
+SWITCH 0 AVIONICS_POWER OFF command(laminar/B738/toggle_switch/irs_L_left
+SWITCH 0 AVIONICS_POWER OFF command(laminar/B738/toggle_switch/irs_R_left
+SWITCH 0 AVIONICS_POWER OFF command(laminar/B738/toggle_switch/irs_R_left
+SWITCH 0 AVIONICS_POWER OFF command(laminar/B738/toggle_switch/irs_R_left
 
 ;TANK 0-Off 1-on
-SWITCH 0 FUEL_PUMP SET_ON dataref(laminar/B738/fuel/fuel_tank_pos_lft1):=1
-SWITCH 0 FUEL_PUMP SET_ON dataref(laminar/B738/fuel/fuel_tank_pos_lft2):=1
-SWITCH 0 FUEL_PUMP SET_ON dataref(laminar/B738/fuel/fuel_tank_pos_rgt1):=1
-SWITCH 0 FUEL_PUMP SET_ON dataref(laminar/B738/fuel/fuel_tank_pos_rgt2):=1
-SWITCH 0 FUEL_PUMP SET_OFF dataref(laminar/B738/fuel/fuel_tank_pos_lft1):=0
-SWITCH 0 FUEL_PUMP SET_OFF dataref(laminar/B738/fuel/fuel_tank_pos_lft2):=0
-SWITCH 0 FUEL_PUMP SET_OFF dataref(laminar/B738/fuel/fuel_tank_pos_rgt1):=0
-SWITCH 0 FUEL_PUMP SET_OFF dataref(laminar/B738/fuel/fuel_tank_pos_rgt2):=0
+SWITCH 0 FUEL_PUMP ON set(dataref(laminar/B738/fuel/fuel_tank_pos_lft1):=1
+SWITCH 0 FUEL_PUMP ON set(dataref(laminar/B738/fuel/fuel_tank_pos_lft2):=1
+SWITCH 0 FUEL_PUMP ON set(dataref(laminar/B738/fuel/fuel_tank_pos_rgt1):=1
+SWITCH 0 FUEL_PUMP ON set(dataref(laminar/B738/fuel/fuel_tank_pos_rgt2):=1
+SWITCH 0 FUEL_PUMP OFF set(dataref(laminar/B738/fuel/fuel_tank_pos_lft1):=0
+SWITCH 0 FUEL_PUMP OFF set(dataref(laminar/B738/fuel/fuel_tank_pos_lft2):=0
+SWITCH 0 FUEL_PUMP OFF set(dataref(laminar/B738/fuel/fuel_tank_pos_rgt1):=0
+SWITCH 0 FUEL_PUMP OFF set(dataref(laminar/B738/fuel/fuel_tank_pos_rgt2):=0
 
 ;WINDOW 0-off 1-on
-SWITCH 0 DE_ICE SET_ON dataref(laminar/B738/ice/window_heat_l_side_pos):=1
-SWITCH 0 DE_ICE SET_ON dataref(laminar/B738/ice/window_heat_l_fwd_pos):=1
-SWITCH 0 DE_ICE SET_ON dataref(laminar/B738/ice/window_heat_r_side_pos):=1
-SWITCH 0 DE_ICE SET_ON dataref(laminar/B738/ice/window_heat_r_fwd_pos):=1
-SWITCH 0 DE_ICE SET_OFF dataref(laminar/B738/ice/window_heat_l_side_pos):=0
-SWITCH 0 DE_ICE SET_OFF dataref(laminar/B738/ice/window_heat_l_fwd_pos):=0
-SWITCH 0 DE_ICE SET_OFF dataref(laminar/B738/ice/window_heat_r_side_pos):=0
-SWITCH 0 DE_ICE SET_OFF dataref(laminar/B738/ice/window_heat_r_fwd_pos):=0
+SWITCH 0 DE_ICE ON set(dataref(laminar/B738/ice/window_heat_l_side_pos):=1
+SWITCH 0 DE_ICE ON set(dataref(laminar/B738/ice/window_heat_l_fwd_pos):=1
+SWITCH 0 DE_ICE ON set(dataref(laminar/B738/ice/window_heat_r_side_pos):=1
+SWITCH 0 DE_ICE ON set(dataref(laminar/B738/ice/window_heat_r_fwd_pos):=1
+SWITCH 0 DE_ICE OFF set(dataref(laminar/B738/ice/window_heat_l_side_pos):=0
+SWITCH 0 DE_ICE OFF set(dataref(laminar/B738/ice/window_heat_l_fwd_pos):=0
+SWITCH 0 DE_ICE OFF set(dataref(laminar/B738/ice/window_heat_r_side_pos):=0
+SWITCH 0 DE_ICE OFF set(dataref(laminar/B738/ice/window_heat_r_fwd_pos):=0
 
 ;PROBES  0-off 1-on
-SWITCH 0 PITOT_HEAT SET_ON dataref(laminar/B738/toggle_switch/capt_probes_pos):=1
-SWITCH 0 PITOT_HEAT SET_ON dataref(laminar/B738/toggle_switch/fo_probes_pos):=1
-SWITCH 0 PITOT_HEAT SET_OFF dataref(laminar/B738/toggle_switch/capt_probes_pos):=0
-SWITCH 0 PITOT_HEAT SET_OFF dataref(laminar/B738/toggle_switch/fo_probes_pos):=0
+SWITCH 0 PITOT_HEAT ON set(dataref(laminar/B738/toggle_switch/capt_probes_pos):=1
+SWITCH 0 PITOT_HEAT ON set(dataref(laminar/B738/toggle_switch/fo_probes_pos):=1
+SWITCH 0 PITOT_HEAT OFF set(dataref(laminar/B738/toggle_switch/capt_probes_pos):=0
+SWITCH 0 PITOT_HEAT OFF set(dataref(laminar/B738/toggle_switch/fo_probes_pos):=0
 
 ;MIXTURE 0 .. 1
-SWITCH 0 COWL_FLAPS SET_ON dataref(laminar/B738/engine/mixture_ratio1):=1.000
-SWITCH 0 COWL_FLAPS SET_OFF dataref(laminar/B738/engine/mixture_ratio1):=0.000
+SWITCH 0 COWL_FLAPS ON set(dataref(laminar/B738/engine/mixture_ratio1):=1.000
+SWITCH 0 COWL_FLAPS OFF set(dataref(laminar/B738/engine/mixture_ratio1):=0.000
 
 ;DOME INCORRECT NEED REWRITE
-SWITCH 0 PANEL_LIGHTS CMD_ON laminar/B738/toggle_switch/cockpit_dome_up
-SWITCH 0 PANEL_LIGHTS CMD_ON laminar/B738/toggle_switch/cockpit_dome_up
-SWITCH 0 PANEL_LIGHTS CMD_OFF laminar/B738/toggle_switch/cockpit_dome_dn
-SWITCH 0 PANEL_LIGHTS CMD_OFF laminar/B738/toggle_switch/cockpit_dome_dn
+SWITCH 0 PANEL_LIGHTS ON command(laminar/B738/toggle_switch/cockpit_dome_up
+SWITCH 0 PANEL_LIGHTS ON command(laminar/B738/toggle_switch/cockpit_dome_up
+SWITCH 0 PANEL_LIGHTS OFF command(laminar/B738/toggle_switch/cockpit_dome_dn
+SWITCH 0 PANEL_LIGHTS OFF command(laminar/B738/toggle_switch/cockpit_dome_dn
 
 ;SWITCH 0 BEACON_LIGHTS
 ;SWITCH 0 BEACON_LIGHTS
@@ -94,20 +94,20 @@ SWITCH 0 PANEL_LIGHTS CMD_OFF laminar/B738/toggle_switch/cockpit_dome_dn
 ;SWITCH 0 NAV_LIGHTS
 ;SWITCH 0 NAV_LIGHTS
 
-SWITCH 0 STROBE_LIGHTS CMD_ON laminar/B738/toggle_switch/position_light_up
-SWITCH 0 STROBE_LIGHTS CMD_ON laminar/B738/toggle_switch/position_light_up
-SWITCH 0 STROBE_LIGHTS CMD_OFF laminar/B738/toggle_switch/position_light_down
-SWITCH 0 STROBE_LIGHTS CMD_OFF laminar/B738/toggle_switch/position_light_down
+SWITCH 0 STROBE_LIGHTS ON command(laminar/B738/toggle_switch/position_light_up
+SWITCH 0 STROBE_LIGHTS ON command(laminar/B738/toggle_switch/position_light_up
+SWITCH 0 STROBE_LIGHTS OFF command(laminar/B738/toggle_switch/position_light_down
+SWITCH 0 STROBE_LIGHTS OFF command(laminar/B738/toggle_switch/position_light_down
 
-SWITCH 0 TAXI_LIGHTS CMD_ON laminar/B738/toggle_switch/taxi_light_brightness_pos_dn
-SWITCH 0 TAXI_LIGHTS CMD_ON laminar/B738/toggle_switch/taxi_light_brightness_pos_dn
-SWITCH 0 TAXI_LIGHTS CMD_OFF laminar/B738/toggle_switch/taxi_light_brightness_pos_up
-SWITCH 0 TAXI_LIGHTS CMD_OFF laminar/B738/toggle_switch/taxi_light_brightness_pos_up
+SWITCH 0 TAXI_LIGHTS ON command(laminar/B738/toggle_switch/taxi_light_brightness_pos_dn
+SWITCH 0 TAXI_LIGHTS ON command(laminar/B738/toggle_switch/taxi_light_brightness_pos_dn
+SWITCH 0 TAXI_LIGHTS OFF command(laminar/B738/toggle_switch/taxi_light_brightness_pos_up
+SWITCH 0 TAXI_LIGHTS OFF command(laminar/B738/toggle_switch/taxi_light_brightness_pos_up
 
-;SWITCH 0 LANDING_LIGHTS CMD_ON 
-;SWITCH 0 LANDING_LIGHTS CMD_ON 
-;SWITCH 0 LANDING_LIGHTS CMD_OFF
-;SWITCH 0 LANDING_LIGHTS CMD_OFF
+;SWITCH 0 LANDING_LIGHTS ON 
+;SWITCH 0 LANDING_LIGHTS ON 
+;SWITCH 0 LANDING_LIGHTS OFF
+;SWITCH 0 LANDING_LIGHTS OFF
 
-SWITCH 0 GEAR_SWITCH_UP SET_ON dataref(sim/cockpit2/controls/parking_brake_ratio):=0.000000
-SWITCH 0 GEAR_SWITCH_DOWN SET_ON dataref(sim/cockpit2/controls/parking_brake_ratio):=1.000000
+SWITCH 0 GEAR_SWITCH_UP ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=0.000000
+SWITCH 0 GEAR_SWITCH_DOWN ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=1.000000

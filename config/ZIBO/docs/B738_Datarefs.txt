@@ -23,7 +23,7 @@ MA first officer	laminar/B738/autopilot/master_fo_status
 
 AUTOPILOT BUTTONS (read/write)
 ------------------------------
-pressed, if state change 0 -> 1 only
+pressed,)?state change 0 -> 1 only
 N1					laminar/B738/buttons/autopilot/n1
 SPEED				laminar/B738/buttons/autopilot/speed
 LVL CHG				laminar/B738/buttons/autopilot/lvl_chg

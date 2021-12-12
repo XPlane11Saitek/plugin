@@ -13,7 +13,7 @@ private:
     bool allChanges;
 
 public: // Class
-    RadioModeSHOW(const char *, const char *, bool);
+    RadioModeSHOW(const char *, const char *);
     ~RadioModeSHOW();
 
 public:

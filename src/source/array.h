@@ -21,7 +21,7 @@ protected:
     void Check();
 
 public:
-    XP11ArrayValue(const char *line, int);
+    XP11ArrayValue(const char *line);
     ~XP11ArrayValue();
     int GetCollor();
 };

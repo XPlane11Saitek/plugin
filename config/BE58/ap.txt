@@ -1,42 +1,15 @@
 
-MULTI -1 main MODE CMD
-MULTI -1 main[FLAP_UP] CMD_ON sim/flight_controls/flaps_up
-MULTI -1 main[FLAP_DOWN] CMD_ON sim/flight_controls/flaps_down
-MULTI -1 main[TRIM] INC/DEC dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01
 
-; ALT
-MULTI -1 ALT MODE COPY
-MULTI -1 ALT[1] MODE RENAME
-MULTI -1 ALT[1] NEXT main
-MULTI -1 ALT[0] MODE RENAME
-MULTI -1 ALT[0] NEXT ap
-;---------------------------
-LOAD FROM FILE all/ap
-LOAD FROM FILE all/item/ap
+MULTI -1 ALT MODE next(ap)
+LOAD FROM FILE all/ap/ap
 
-MULTI -1 VS MODE COPY
-MULTI -1 VS[1] MODE RENAME
-MULTI -1 VS[1] NEXT main
-MULTI -1 VS[0] MODE RENAME
-MULTI -1 VS[0] NEXT radio
-;---------------------------
-LOAD FROM FILE BE58/AP/radio
+MULTI -1 VS MODE next(radio)
+LOAD FROM FILE all/ap/radio
 
+MULTI -1 IAS MODE next(g430)
+LOAD FROM FILE all/ap/garmin/g430
 
-MULTI -1 IAS MODE COPY
-MULTI -1 IAS[1] MODE RENAME
-MULTI -1 IAS[1] NEXT main
-MULTI -1 IAS[0] MODE RENAME
-MULTI -1 IAS[0] NEXT g430
-;---------------------------
-LOAD FROM FILE all/garmin/g430
+MULTI -1 HDG MODE next(audio)
+LOAD FROM FILE all/ap/audio
 
-MULTI -1 HDG MODE COPY
-MULTI -1 HDG[1] MODE RENAME
-MULTI -1 HDG[1] NEXT main
-MULTI -1 HDG[0] MODE OFF
-
-MULTI -1 CRS MODE COPY
-MULTI -1 CRS[1] MODE RENAME
-MULTI -1 CRS[1] NEXT main
-MULTI -1 CRS[0] MODE OFF
+MULTI -1 CRS MODE off()

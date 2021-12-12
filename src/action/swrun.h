@@ -5,13 +5,11 @@
 class SWRunIF : public SWAction
 {
 public:
-    SWRunIF(bool, const char *);
+    SWRunIF(const char *);
     ~SWRunIF();
 
 protected:
-    char cmdName[512];
-    bool flag;
-    XP11Command *cmd;
+    SWAction *cmd;
     XPlaneRange *value;
 
 public:

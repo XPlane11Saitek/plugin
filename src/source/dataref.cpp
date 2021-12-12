@@ -4,18 +4,28 @@
 #include <cstring>
 #include <regex>
 
+#ifndef XPLANE11PLUGIN
+#include "main.h"
+#endif
+
 XP11DataRef::XP11DataRef(const char *name)
 {
-    strcpy(this->line, name);
+#ifdef DEBUG
+    debug("%s DataRef attach [%s]", PLUGIN_DEBUG, name);
+#endif
 #ifdef XPLANE11PLUGIN
     this->command = NULL;
-#else
-    std::regex regex("(sim|laminar|plugin)\\/(\\w\\/?)+");
-    if (!std::regex_match(name, regex))
-        throw Exception("%s DEBUG incorrect/unexpected name [%s]",
-                        PLUGIN_ERROR, name);
-
 #endif
+    std::regex regex("(sim|laminar|plugin)\\/(\\w\\/?)+");
+    if (std::regex_match(name, regex))
+    {
+#ifndef XPLANE11PLUGIN
+        FindInFile("DataRefs.txt", name);
+#endif
+        strcpy(this->line, name);
+        return;
+    }
+    throw Exception("%s XP11DataRef incorrect/unexpected [%s]", PLUGIN_ERROR, name);
 }
 
 void XP11DataRef::Check()

@@ -2,7 +2,7 @@
 #include "swith.h"
 #include <cstring>
 #include "debug.h"
-#include "swload.h"
+#include "sw.h"
 
 SWPanel::SWPanel(hid_device *usbdev, const wchar_t *sn, int uids) : Panel(usbdev, sn, uids)
 {
@@ -58,7 +58,13 @@ void SWPanel::Load(FileContent *config)
     {
         FileContent *ledConfig = panelConfig->CreateConfigForButton(SWLedName[ledID]);
         for (FileContentLine *cmd : *ledConfig)
+        {
+#ifdef DEBUG
+            debug("%s SW%i LED ADD %s/%s %s", PLUGIN_DEBUG, this->panelNumber, SWLedName[ledID], cmd->key, cmd->value);
+#endif
+            cmd->usage = true;
             this->led[ledID]->Load(cmd->key, cmd->value);
+        }
         delete ledConfig;
         this->led[ledID]->SetState(-1);
     }
@@ -70,12 +76,14 @@ void SWPanel::Load(FileContent *config)
 #ifdef DEBUG
             debug("%s SW%i ADD %s/%s %s", PLUGIN_DEBUG, this->panelNumber, SWButtonName[buttonID], cmd->key, cmd->value);
 #endif
+            cmd->usage = true;
             this->content[buttonID].insert(this->content[buttonID].begin(), 1,
-                                           SWLoadAction(cmd->key, cmd->value));
+                                           SWAction::New(cmd->key, cmd->value));
         }
         delete buttonConfig;
         this->button[buttonID]->SetState(-1);
     }
+    panelConfig->CheckALLUsage();
     delete panelConfig;
     this->panelIsLoader = true;
     this->panelIsChecked = false;
@@ -104,6 +112,9 @@ void SWPanel::check()
         this->panelIsLoader = false;
         debug("%s SWITH%i FATAL ERROR [%s]", PLUGIN_ERROR, this->panelNumber, e.what());
         shutdown(CELL_ON_RED);
+#ifndef XPLANE11PLUGIN
+        throw Exception(e.what());
+#endif
     }
 }
 

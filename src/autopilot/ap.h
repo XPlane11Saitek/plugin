@@ -1,16 +1,19 @@
+
+#ifndef APFILE
+#define APFILE
+
 #include "monitor.h"
 #include "range.h"
 #include "spec.h"
 #include <ctime>
 #include "sw.h"
-
-#ifndef APFILE
-#define APFILE
+#include "content.h"
 
 class AP
 {
 public:
     virtual ~AP();
+    static AP *New(FileContent *, const char *);
 
 public:
     virtual void Check();

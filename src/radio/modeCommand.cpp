@@ -1,29 +1,29 @@
 
 #include "modeCommand.h"
-#include "sources.h"
+#include "value.h"
 #include <cstring>
-#include "dataLoad.h"
+#include "data.h"
 
 RadioModeCOMMAND::RadioModeCOMMAND(const char *value, const char *smallUp,
                                    const char *smallDown, const char *bigUp, const char *bigDown, const char *display)
 {
-    this->com = LoadValue(value);
+    this->com = XP11Value::New(value);
     this->smallDownCMD = new XP11Command(smallDown);
     this->smallUpCMD = new XP11Command(smallUp);
     this->bigDownCMD = new XP11Command(bigDown);
     this->bigUpCMD = new XP11Command(bigUp);
-    this->displayMode = LoadDisplay(display);
+    this->displayMode = STConvert::New(display);
 }
 
 RadioModeCOMMAND::RadioModeCOMMAND(const char *value, const char *smallUp,
                                    const char *smallDown, const char *display)
 {
-    this->com = LoadValue(value);
+    this->com = XP11Value::New(value);
     this->smallDownCMD = new XP11Command(smallDown);
     this->smallUpCMD = new XP11Command(smallUp);
     this->bigDownCMD = NULL;
     this->bigUpCMD = NULL;
-    this->displayMode = LoadDisplay(display);
+    this->displayMode = STConvert::New(display);
 }
 
 RadioModeCOMMAND::~RadioModeCOMMAND()
@@ -62,12 +62,14 @@ void RadioModeCOMMAND::Activated() {}
 
 void RadioModeCOMMAND::BigUp()
 {
-    this->bigUpCMD->Once();
+    if (this->bigUpCMD != NULL)
+        this->bigUpCMD->Once();
 }
 
 void RadioModeCOMMAND::BigDown()
 {
-    this->bigDownCMD->Once();
+    if (this->bigDownCMD != NULL)
+        this->bigDownCMD->Once();
 }
 
 void RadioModeCOMMAND::SmallUp()

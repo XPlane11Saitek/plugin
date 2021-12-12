@@ -1,21 +1,35 @@
 
 #include "array.h"
 #include "debug.h"
+
 #include <cstring>
 #include <regex>
+#include <iostream>
 
-XP11ArrayValue::XP11ArrayValue(const char *name, int num)
+#ifndef XPLANE11PLUGIN
+#include "main.h"
+#endif
+
+XP11ArrayValue::XP11ArrayValue(const char *line)
 {
-    this->item = num;
-    strcpy(this->line, name);
+#ifdef DEBUG
+    debug("%s XP11Array attach [%s]", PLUGIN_DEBUG, line);
+#endif
 #ifdef XPLANE11PLUGIN
     this->command = NULL;
-#else
-    std::regex regex("(sim|laminar|plugin)\\/(\\w\\/?)+");
-    if (!std::regex_match(name, regex))
-        throw Exception("%s DEBUG incorrect/unexpected name [%s]",
-                        PLUGIN_ERROR, name);
 #endif
+    std::cmatch query;
+    std::regex regex("((sim|laminar|plugin)\\/(\\w\\/?)+)\\[(\\d)\\]");
+    if (std::regex_match(line, query, regex))
+    {
+#ifndef XPLANE11PLUGIN
+        FindInFile("DataRefs.txt", query[1].str().c_str());
+#endif
+        this->item = std::atof(query[3].str().c_str());
+        strcpy(this->line, query[1].str().c_str());
+        return;
+    }
+    throw Exception("%s XP11Array attach incorrect/unexpected name [%s]", PLUGIN_ERROR, line);
 }
 
 XP11ArrayValue::~XP11ArrayValue() {}

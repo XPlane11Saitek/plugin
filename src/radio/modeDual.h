@@ -18,7 +18,7 @@ private:
     void switchTo(int);
 
 public: // Class
-    RadioModeDUAL(RadioMode *, RadioMode *, int);
+    RadioModeDUAL(RadioMode *, RadioMode *, const char *);
     ~RadioModeDUAL();
 
 public: //Mode

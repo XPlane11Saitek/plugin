@@ -1,13 +1,20 @@
 variables:
-  PLUGIN_VERSION: "0.1.0"
+  PLUGIN_VERSION: "0.2.0"
 
 stages:
   - test
+  - check
   - build
+  - deploy
+  - qa
   - release
 
-
 include:
+  - /.gitlab-ci-test.yml
+  - /.gitlab-ci-build.yml
+  - /.gitlab-ci-deploy.yml
+  - /.gitlab-ci-qa.yml
+  - /.gitlab-ci-release.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
   # TODO BUG  FIXED / Remove Code Quality LONG  
@@ -17,74 +24,3 @@ include:
 
 sast:
   stage: test
-
-.code: &code
-  artifacts:
-    expire_in: 1 week
-    name: "Plugin"
-    paths:
-      - lin.xpl
-      - mac.xpl
-      - win.xpl
-
-linux:
-  <<: *code
-  before_script:
-    - cp -r /SDK ./
-    - cp -r /hidapi ./
-  stage: build
-  image: tarasmal/saitek:cmake
-  script:
-    - cmake CMakeLists.txt
-    - make
-  tags: [linux]
-
-mac:
-  <<: *code
-  stage: build
-  before_script:
-    - cp -r ~/SDK ./
-    - cp -r ~/hidapi ./
-  script:
-    - cmake CMakeLists.txt
-    - make
-  tags: [mac]
-
-win:
-  <<: *code
-  stage: build
-  before_script:
-    - cp -r ~/SDK ./
-    - cp -r ~/hidapi ./
-  script:
-    - msbuild saitek.sln /p:Configuration=Release
-    - cp Release\plugins\saitek\64\win.xpl ./
-  tags: [win10]
-
-release:
-  <<: *code
-  stage: release
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
-  script:
-    - echo "Running the release job."
-  release:
-    tag_name: 'v$PLUGIN_VERSION($CI_COMMIT_SHORT_SHA)'
-    name: 'Release $PLUGIN_VERSION($CI_COMMIT_SHORT_SHA)'
-    description: '$PLUGIN_VERSION($CI_COMMIT_SHORT_SHA) : $EXTRA_DESCRIPTION'
-    ref: '$CI_COMMIT_SHA'
-    assets:
-      links:
-        - name: 'mac.xpl'
-          url: '${CI_JOB_URL}/file/mac.xpl?job=mac'
-        - name: 'lin.xpl'
-          url: '${CI_JOB_URL}/file/lin.xpl?job=linux'
-        - name: 'win.xpl'
-          url: '${CI_JOB_URL}/file/win.xpl?job=win'
-  needs:
-    - job: linux
-      artifacts: true
-    - job: mac
-      artifacts: true
-  only:
-    - master
-    

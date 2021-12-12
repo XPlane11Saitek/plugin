@@ -1,44 +1,44 @@
-SWITCH 0 MAG_OFF CMD_ON sim/magnetos/magnetos_off_1
-SWITCH 0 MAG_RIGHT CMD_ON sim/magnetos/magnetos_right_1
-SWITCH 0 MAG_LEFT CMD_ON sim/magnetos/magnetos_left_1
-SWITCH 0 MAG_BOTH CMD_ON sim/magnetos/magnetos_both_1
-SWITCH 0 ENG_START PUSH sim/ignition/ignition_up_1
+SWITCH 0 MAG_OFF ON command(sim/magnetos/magnetos_off_1)
+SWITCH 0 MAG_RIGHT ON command(sim/magnetos/magnetos_right_1)
+SWITCH 0 MAG_LEFT ON command(sim/magnetos/magnetos_left_1)
+SWITCH 0 MAG_BOTH ON command(sim/magnetos/magnetos_both_1)
+SWITCH 0 ENG_START CMD push(sim/ignition/ignition_up_1)
 
-SWITCH 0 MASTER_BATTERY CMD_ON sim/electrical/battery_1_on
-SWITCH 0 MASTER_BATTERY CMD_OFF sim/electrical/battery_1_off
-SWITCH 0 MASTER_ALTENATOR CMD_ON sim/electrical/generator_1_on
-SWITCH 0 MASTER_ALTENATOR CMD_OFF sim/electrical/generator_1_off
+SWITCH 0 MASTER_BATTERY ON command(sim/electrical/battery_1_on)
+SWITCH 0 MASTER_BATTERY OFF command(sim/electrical/battery_1_off)
+SWITCH 0 MASTER_ALTENATOR ON command(sim/electrical/generator_1_on)
+SWITCH 0 MASTER_ALTENATOR OFF command(sim/electrical/generator_1_off)
 
-SWITCH 0 AVIONICS_POWER CMD_ON sim/systems/avionics_on
-SWITCH 0 AVIONICS_POWER CMD_OFF sim/systems/avionics_off
+SWITCH 0 AVIONICS_POWER ON command(sim/systems/avionics_on)
+SWITCH 0 AVIONICS_POWER OFF command(sim/systems/avionics_off)
 
-SWITCH 0 FUEL_PUMP CMD_ON sim/fuel/fuel_pump_1_on
-SWITCH 0 FUEL_PUMP CMD_OFF sim/fuel/fuel_pump_1_off
+SWITCH 0 FUEL_PUMP ON command(sim/fuel/fuel_pump_1_on)
+SWITCH 0 FUEL_PUMP OFF command(sim/fuel/fuel_pump_1_off)
 
 ; TODO FIXED THIS
 ;SWITCH 0 DE_ICE
 
-SWITCH 0 PITOT_HEAT CMD_ON sim/ice/pitot_heat0_on
-SWITCH 0 PITOT_HEAT CMD_OFF sim/ice/pitot_heat0_off
+SWITCH 0 PITOT_HEAT ON command(sim/ice/pitot_heat0_on)
+SWITCH 0 PITOT_HEAT OFF command(sim/ice/pitot_heat0_off)
 
 ; TODO FIXED THIS
 ;SWITCH 0 COWL_FLAPS
 
-SWITCH 0 PANEL_LIGHTS PUSH sim/annunciator/test_all_annunciators
+SWITCH 0 PANEL_LIGHTS CMD push(sim/annunciator/test_all_annunciators)
 
-SWITCH 0 BEACON_LIGHTS CMD_ON sim/lights/beacon_lights_on
-SWITCH 0 BEACON_LIGHTS CMD_OFF sim/lights/beacon_lights_off
-SWITCH 0 NAV_LIGHTS CMD_ON sim/lights/nav_lights_on
-SWITCH 0 NAV_LIGHTS CMD_OFF sim/lights/nav_lights_off
-SWITCH 0 STROBE_LIGHTS CMD_ON sim/lights/strobe_lights_on
-SWITCH 0 STROBE_LIGHTS CMD_OFF sim/lights/strobe_lights_off
-SWITCH 0 TAXI_LIGHTS CMD_ON sim/lights/taxi_lights_on
-SWITCH 0 TAXI_LIGHTS CMD_OFF sim/lights/taxi_lights_off
-SWITCH 0 LANDING_LIGHTS CMD_ON sim/lights/landing_lights_on
-SWITCH 0 LANDING_LIGHTS CMD_OFF sim/lights/landing_lights_off
+SWITCH 0 BEACON_LIGHTS ON command(sim/lights/beacon_lights_on)
+SWITCH 0 BEACON_LIGHTS OFF command(sim/lights/beacon_lights_off)
+SWITCH 0 NAV_LIGHTS ON command(sim/lights/nav_lights_on)
+SWITCH 0 NAV_LIGHTS OFF command(sim/lights/nav_lights_off)
+SWITCH 0 STROBE_LIGHTS ON command(sim/lights/strobe_lights_on)
+SWITCH 0 STROBE_LIGHTS OFF command(sim/lights/strobe_lights_off)
+SWITCH 0 TAXI_LIGHTS ON command(sim/lights/taxi_lights_on)
+SWITCH 0 TAXI_LIGHTS OFF command(sim/lights/taxi_lights_off)
+SWITCH 0 LANDING_LIGHTS ON command(sim/lights/landing_lights_on)
+SWITCH 0 LANDING_LIGHTS OFF command(sim/lights/landing_lights_off)
 
-SWITCH 0 GEAR_SWITCH_UP CMD_ON sim/flight_controls/landing_gear_up
-SWITCH 0 GEAR_SWITCH_DOWN CMD_ON sim/flight_controls/landing_gear_down
+SWITCH 0 GEAR_SWITCH_UP ON command(sim/flight_controls/landing_gear_up)
+SWITCH 0 GEAR_SWITCH_DOWN ON command(sim/flight_controls/landing_gear_down)
 
 SWITCH 0 LEFT GREEN array(sim/aircraft/parts/acf_gear_deploy[1]){1:1}
 SWITCH 0 LEFT YELLOW array(sim/aircraft/parts/acf_gear_deploy[1]){0.001:0.999}

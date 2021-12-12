@@ -1,27 +1,25 @@
-MULTI -1 main MODE CMD
-MULTI -1 main[FLAP_UP] CMD_ON sim/flight_controls/flaps_up
-MULTI -1 main[FLAP_DOWN] CMD_ON sim/flight_controls/flaps_down
-MULTI -1 main[TRIM] INC/DEC dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01
-MULTI -1 main[AP] CMD_ON sim/autopilot/fdir_servos_toggle
-;MULTI -1 main[AP] CMD_OFF sim/autopilot/fdir_toggle
-MULTI -1 main[HDG] CMD_ON sim/autopilot/heading
-MULTI -1 main[NAV] CMD_ON sim/autopilot/NAV
-MULTI -1 main[IAS] CMD_ON sim/autopilot/level_change
-MULTI -1 main[VS] CMD_ON sim/autopilot/alt_vs
-MULTI -1 main[ALT] CMD_ON sim/autopilot/altitude_hold
-MULTI -1 main[APR] CMD_ON sim/autopilot/approach
-MULTI -1 main[REV] CMD_ON sim/autopilot/back_course
+MULTI -1 main MODE command
+MULTI -1 main[FLAP_UP] ON command(sim/flight_controls/flaps_up)
+MULTI -1 main[FLAP_DOWN] ON command(sim/flight_controls/flaps_down)
+MULTI -1 main[TRIM] CMD  inc(dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01)
+MULTI -1 main[AP] ON command(sim/autopilot/fdir_servos_toggle)
+;MULTI -1 main[AP] OFF command(sim/autopilot/fdir_toggle)
+MULTI -1 main[HDG] ON command(sim/autopilot/heading)
+MULTI -1 main[NAV] ON command(sim/autopilot/NAV)
+MULTI -1 main[IAS] ON command(sim/autopilot/level_change)
+MULTI -1 main[VS] ON command(sim/autopilot/alt_vs)
+MULTI -1 main[ALT] ON command(sim/autopilot/altitude_hold)
+MULTI -1 main[APR] ON command(sim/autopilot/approach)
+MULTI -1 main[REV] ON command(sim/autopilot/back_course)
 
-MULTI -1 ALT MODE COPY
-MULTI -1 ALT[1] MODE RENAME
-MULTI -1 ALT[1] NEXT main
+MULTI -1 ALT MODE copy
+MULTI -1 ALT[1] MODE next(main)
 ; ------------------------------------
-MULTI -1 ALT[0] MODE DISPLAY
-MULTI -1 ALT[0][AP] MODE SCOMMAND
+MULTI -1 ALT[0] MODE display
+MULTI -1 ALT[0][AP] MODE command(INT)
 MULTI -1 ALT[0][AP] VALUE dataref(sim/cockpit/autopilot/altitude)
 MULTI -1 ALT[0][AP] UP sim/autopilot/altitude_up
 MULTI -1 ALT[0][AP] DOWN sim/autopilot/altitude_down
-MULTI -1 ALT[0][AP] DISPLAY INT
 ; ------------------------------------
 MULTI -1 ALT[0][AP] LED dataref(sim/cockpit/autopilot/autopilot_mode){2:2}
 MULTI -1 ALT[0][HDG] LED dataref(sim/cockpit2/autopilot/heading_status){2:2}
@@ -32,16 +30,14 @@ MULTI -1 ALT[0][VS] LED dataref(sim/cockpit2/autopilot/vvi_status){2:2}
 MULTI -1 ALT[0][APR] LED dataref(sim/cockpit2/autopilot/approach_status){2:2}
 MULTI -1 ALT[0][REV] LED dataref(sim/cockpit2/autopilot/backcourse_status){2:2}
 
-MULTI -1 VS MODE COPY
-MULTI -1 VS[1] MODE RENAME
-MULTI -1 VS[1] NEXT main
+MULTI -1 VS MODE copy
+MULTI -1 VS[1] MODE next(main)
 ; ------------------------------------
-MULTI -1 VS[0] MODE DISPLAY
-MULTI -1 VS[0][AP] MODE SCOMMAND
+MULTI -1 VS[0] MODE display
+MULTI -1 VS[0][AP] MODE command(INT)
 MULTI -1 VS[0][AP] VALUE dataref(sim/cockpit/autopilot/vertical_velocity)
 MULTI -1 VS[0][AP] UP sim/autopilot/nose_up
 MULTI -1 VS[0][AP] DOWN sim/autopilot/nose_down
-MULTI -1 VS[0][AP] DISPLAY INT/100
 ; ------------------------------------
 MULTI -1 VS[0][AP] LED dataref(sim/cockpit/autopilot/autopilot_mode){2:2}
 MULTI -1 VS[0][HDG] LED dataref(sim/cockpit2/autopilot/heading_status){2:2}
@@ -52,16 +48,14 @@ MULTI -1 VS[0][VS] LED dataref(sim/cockpit2/autopilot/vvi_status){2:2}
 MULTI -1 VS[0][APR] LED dataref(sim/cockpit2/autopilot/approach_status){2:2}
 MULTI -1 VS[0][REV] LED dataref(sim/cockpit2/autopilot/backcourse_status){2:2}
 
-MULTI -1 IAS MODE COPY
-MULTI -1 IAS[1] MODE RENAME
-MULTI -1 IAS[1] NEXT main
+MULTI -1 IAS MODE copy
+MULTI -1 IAS[1] MODE next(main)
 ; ------------------------------------
-MULTI -1 IAS[0] MODE DISPLAY
-MULTI -1 IAS[0][AP] MODE SCOMMAND
+MULTI -1 IAS[0] MODE display()
+MULTI -1 IAS[0][AP] MODE command(INT)
 MULTI -1 IAS[0][AP] VALUE dataref(sim/cockpit/autopilot/airspeed)
 MULTI -1 IAS[0][AP] UP sim/autopilot/airspeed_up
 MULTI -1 IAS[0][AP] DOWN sim/autopilot/airspeed_down
-MULTI -1 IAS[0][AP] DISPLAY INT
 ; ------------------------------------
 MULTI -1 IAS[0][AP] LED dataref(sim/cockpit/autopilot/autopilot_mode){2:2}
 MULTI -1 IAS[0][HDG] LED dataref(sim/cockpit2/autopilot/heading_status){2:2}
@@ -72,16 +66,14 @@ MULTI -1 IAS[0][VS] LED dataref(sim/cockpit2/autopilot/vvi_status){2:2}
 MULTI -1 IAS[0][APR] LED dataref(sim/cockpit2/autopilot/approach_status){2:2}
 MULTI -1 IAS[0][REV] LED dataref(sim/cockpit2/autopilot/backcourse_status){2:2}
 
-MULTI -1 HDG MODE COPY
-MULTI -1 HDG[1] MODE RENAME
-MULTI -1 HDG[1] NEXT main
+MULTI -1 HDG MODE copy
+MULTI -1 HDG[1] MODE next(main)
 ; ------------------------------------
-MULTI -1 HDG[0] MODE DISPLAY
-MULTI -1 HDG[0][AP] MODE SCOMMAND
+MULTI -1 HDG[0] MODE display()
+MULTI -1 HDG[0][AP] MODE command(INT)
 MULTI -1 HDG[0][AP] VALUE dataref(sim/cockpit/autopilot/heading_mag)
 MULTI -1 HDG[0][AP] UP sim/autopilot/heading_up
 MULTI -1 HDG[0][AP] DOWN sim/autopilot/heading_down
-MULTI -1 HDG[0][AP] DISPLAY INT
 ; ------------------------------------
 MULTI -1 HDG[0][AP] LED dataref(sim/cockpit/autopilot/autopilot_mode){2:2}
 MULTI -1 HDG[0][HDG] LED dataref(sim/cockpit2/autopilot/heading_status){2:2}
@@ -92,30 +84,17 @@ MULTI -1 HDG[0][VS] LED dataref(sim/cockpit2/autopilot/vvi_status){2:2}
 MULTI -1 HDG[0][APR] LED dataref(sim/cockpit2/autopilot/approach_status){2:2}
 MULTI -1 HDG[0][REV] LED dataref(sim/cockpit2/autopilot/backcourse_status){2:2}
 
-MULTI -1 CRS MODE COPY
-MULTI -1 CRS[1] MODE RENAME
-MULTI -1 CRS[1] NEXT main
+MULTI -1 CRS MODE copy
+MULTI -1 CRS[1] MODE next(main)
 ; ------------------------------------
-MULTI -1 CRS[0] MODE DISPLAY
-MULTI -1 CRS[0][AP] MODE IF
-MULTI -1 CRS[0][AP] VALUE dataref(sim/cockpit/switches/HSI_selector){2:2}
-MULTI -1 CRS[0][AP][T] MODE OFF
-MULTI -1 CRS[0][AP][F] MODE IF
-MULTI -1 CRS[0][AP][F] VALUE dataref(sim/cockpit/switches/HSI_selector){0:0}
-MULTI -1 CRS[0][AP][F][T] MODE SVALUE
+MULTI -1 CRS[0] MODE display
+MULTI -1 CRS[0][AP] MODE if(dataref(sim/cockpit/switches/HSI_selector){2:2})
+MULTI -1 CRS[0][AP][T] MODE off
+MULTI -1 CRS[0][AP][F] MODE if(dataref(sim/cockpit/switches/HSI_selector){0:0})
+MULTI -1 CRS[0][AP][F][T] MODE value(1,1,0,360,ROUND,INT1)
 MULTI -1 CRS[0][AP][F][T] VALUE dataref(sim/cockpit/radios/nav1_obs_degm)
-MULTI -1 CRS[0][AP][F][T] DISPLAY INT1
-MULTI -1 CRS[0][AP][F][T] STEP 1
-MULTI -1 CRS[0][AP][F][T] MAX 360
-MULTI -1 CRS[0][AP][F][T] MIN 0
-MULTI -1 CRS[0][AP][F][T] TYPE ROUND
-MULTI -1 CRS[0][AP][F][F] MODE SVALUE
+MULTI -1 CRS[0][AP][F][F] MODE value(1,1,0,360,ROUND,INT2)
 MULTI -1 CRS[0][AP][F][F] VALUE dataref(sim/cockpit/radios/nav2_obs_degm)
-MULTI -1 CRS[0][AP][F][F] DISPLAY INT2
-MULTI -1 CRS[0][AP][F][F] STEP 1
-MULTI -1 CRS[0][AP][F][F] MAX 360
-MULTI -1 CRS[0][AP][F][F] MIN 0
-MULTI -1 CRS[0][AP][F][F] TYPE ROUND
 ; ------------------------------------
 MULTI -1 CRS[0][AP] LED dataref(sim/cockpit/autopilot/autopilot_mode){2:2}
 MULTI -1 CRS[0][HDG] LED dataref(sim/cockpit2/autopilot/heading_status){2:2}

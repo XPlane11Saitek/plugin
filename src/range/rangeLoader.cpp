@@ -1,6 +1,6 @@
 
 #include "rangeLoader.h"
-#include "sources.h"
+#include "value.h"
 #include "rangeOr.h"
 #include "rangeAnd.h"
 #include "rangeValue.h"
@@ -13,21 +13,17 @@
 
 XPlaneRange *LoadSingleRange(const char *line)
 {
-    XP11Value *value = LoadValue(line);
     std::cmatch query;
-    std::regex regex("\\{(\\-?\\d+(.\\d+)?)\\:(\\-?\\d+(.\\d+)?)\\}");
-    // 0 {-11.01:50}
-    // 1 -11.01
-    // 2 .01
-    // 3 50
-    // 4
+    std::regex regex("(.+)\\{(\\-?\\d+(\\.\\d+)?)\\:(\\-?\\d+(\\.\\d+)?)\\}");
 
-    if (std::regex_search(line, query, regex))
+    if (std::regex_match(line, query, regex))
+    {
+        XP11Value *value = XP11Value::New(query[1].str().c_str());
         return new XPRangeValue(value,
-                                std::atof(query[1].str().c_str()),
-                                std::atof(query[3].str().c_str()));
-    else
-        throw Exception("%s LoadRange incorrect/unexpected incorrect range [%s]", PLUGIN_ERROR, line);
+                                std::atof(query[2].str().c_str()),
+                                std::atof(query[4].str().c_str()));
+    }
+    throw Exception("%s LoadRange incorrect/unexpected incorrect range [%s]", PLUGIN_ERROR, line);
 }
 
 XPlaneRange *LoadRange(const char *line)

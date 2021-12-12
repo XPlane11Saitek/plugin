@@ -1,0 +1,8 @@
+
+MULTI -1 g1000 MODE if(dataref(plugin/saitek/multi0/button/arm){1:1})
+; --------------------------- 
+MULTI -1 g1000[F] MODE next(g1000n1)
+MULTI -1 g1000[T] MODE next(g1000n2)
+
+LOAD FROM FILE all/ap/garmin/g1000n1
+LOAD FROM FILE all/ap/garmin/g1000n2

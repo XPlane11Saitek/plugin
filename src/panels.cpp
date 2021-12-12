@@ -13,7 +13,7 @@ SaitekDriver::SaitekDriver()
 
 void SaitekDriver::Test()
 {
-    wchar_t serialNumber[MAX_USB_HEADER_STR];
+    wchar_t serialNumber[MAX_USB_HEADER_STR] = {0};
     /* BIP */
     this->device.insert(this->device.begin(), 1,
                         this->createPanelBIP(NULL, serialNumber, 0));
@@ -27,7 +27,7 @@ void SaitekDriver::Test()
     /* RADIO */
     this->device.insert(this->device.begin(), 1,
                         this->createPanelRadio(NULL, serialNumber, 0));
-    // MULTI
+    /* MULTI */
     this->device.insert(this->device.begin(), 1,
                         this->createPanelMULTI(NULL, serialNumber, 0));
 }
@@ -50,7 +50,7 @@ void SaitekDriver::findUSB(int vendorID, int deviceID, onCallback func)
         hid_device *usbAddr = hid_open_path(cursor->path);
         if (usbAddr != NULL)
         {
-            wchar_t serialNumber[MAX_USB_HEADER_STR];
+            wchar_t serialNumber[MAX_USB_HEADER_STR] = {0};
             hid_get_serial_number_string(usbAddr, serialNumber, MAX_USB_HEADER_STR);
             debug("%s USB[%i:%i] SN %ls", PLUGIN_INFO, vendorID, deviceID, serialNumber);
             Panel *element = ((*this).*(func))(usbAddr, serialNumber, uid++);
@@ -98,8 +98,8 @@ void SaitekDriver::Load(std::string filename)
         {
 
             debug("%s PANEL ERROR [%s]", PLUGIN_ERROR, e.what());
-#ifdef DEBUG
-            throw Exception("%s", e.what());
+#ifndef XPLANE11PLUGIN
+            throw Exception(e.what());
 #endif
         }
     }

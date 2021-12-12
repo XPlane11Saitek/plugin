@@ -7,7 +7,7 @@ protected:
     int content;
 
 public:
-    XP11Constant(int);
+    XP11Constant(const char *);
     ~XP11Constant();
 
 public:

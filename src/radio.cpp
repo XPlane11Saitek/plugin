@@ -4,7 +4,6 @@
 // radio
 #include "modeOff.h"
 #include <cstring>
-#include "modeLoad.h"
 
 RadioPanel::RadioPanel(hid_device *usbdev, const wchar_t *sn, int uids) : Panel(usbdev, sn, uids)
 {
@@ -85,6 +84,9 @@ void RadioPanel::check()
         this->panelIsLoader = false;
         debug("%s RADIO%i FATAL ERROR [%s]", PLUGIN_ERROR, this->panelNumber, e.what());
         this->show(33);
+#ifndef XPLANE11PLUGIN
+        throw Exception(e.what());
+#endif
     }
 }
 
@@ -247,13 +249,14 @@ void RadioPanel::Load(FileContent *config)
     FileContent *panelConfig = config->CreateConfigForPanel(
         "RADIO", this->panelNumber);
     for (int item = 0; item < RADIO_MODE_COUNT; item++)
-        this->upMode[item] = LoadRadio(panelConfig, RadioButtonName[item]);
+        this->upMode[item] = RadioMode::New(panelConfig, RadioButtonName[item]);
     this->upPanel = this->upMode[0];
     for (int item = 0; item < RADIO_MODE_COUNT; item++)
-        this->downMode[item] = LoadRadio(panelConfig, RadioButtonName[item]);
+        this->downMode[item] = RadioMode::New(panelConfig, RadioButtonName[item]);
     this->downPanel = this->downMode[0];
     this->panelIsLoader = true;
     this->panelIsChecked = false;
+    panelConfig->CheckALLUsage();
     delete panelConfig;
     debug("%s RADIO%i Download completion", PLUGIN_INFO, this->panelNumber);
 }

@@ -8,7 +8,10 @@ const char *FileContent::getParamDefault(const char *button, const char *key, co
 {
     for (FileContentLine *row : this->content)
         if ((!strcmp(button, row->button)) && (!strcmp(key, row->key)))
+        {
+            row->usage = true;
             return row->value;
+        }
     return defaults;
 }
 
@@ -49,6 +52,7 @@ FileContent *FileContent::CreateConfigForPanel(const char *pname, int number)
                 res->content.insert(res->content.begin(), 1, row);
     return res;
 }
+
 FileContent *FileContent::CreateConfigForButton(const char *button)
 {
     FileContent *res = new FileContent();
@@ -56,4 +60,11 @@ FileContent *FileContent::CreateConfigForButton(const char *button)
         if (!strcmp(row->button, button))
             res->content.insert(res->content.begin(), 1, row);
     return res;
+}
+
+void FileContent::CheckALLUsage()
+{
+    for (FileContentLine *row : this->content)
+        if (!row->usage)
+            debug("%s Load in %s:%i [%s]", PLUGIN_WARNING, row->filename, row->lineNumber, row->line);
 }

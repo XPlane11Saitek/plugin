@@ -1,0 +1,11 @@
+
+deploy:mac:
+  stage: deploy
+  script:
+  - rsync -avH config/ ~/X-Plane\ 11/Resources/plugins/saitek/config/ --delete --delete-after
+  - cp mac.xpl ~/X-Plane\ 11/Resources/plugins/saitek/64/mac.xpl
+  when: manual
+  needs:
+    - job: build:mac
+      artifacts: true
+  tags: [mac]

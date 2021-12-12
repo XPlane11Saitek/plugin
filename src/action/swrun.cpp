@@ -1,22 +1,21 @@
 #include "swrun.h"
 #include "rangeLoader.h"
+
 #include "debug.h"
 #include <iostream>
-#include <string.h>
+#include <regex>
 
-SWRunIF::SWRunIF(bool isOnFlag, const char *line)
+SWRunIF::SWRunIF(const char *line)
 {
-    // TODO REVIEW BUG NUMBER
-    this->flag = isOnFlag;
-    if (sscanf(line, "RUN %s IF ", this->cmdName))
+    std::cmatch query;
+    std::regex regex("(.+)(\\s+)?\\?(\\s+)?(.+)");
+    if (std::regex_search(line, query, regex))
     {
-        this->cmd = new XP11Command(this->cmdName);
-        size_t pos = 3 + 1 + strlen(this->cmdName) + 1 + 2 + 1;
-        const char *valueName = &line[pos];
-        this->value = LoadRange(valueName);
+        this->cmd = SWAction::New(query[1].str().c_str());
+        this->value = LoadRange(query[4].str().c_str());
         return;
     }
-    throw Exception("%s SWRunIF incorrect/unexpected line [%s]", PLUGIN_ERROR, line);
+    throw Exception("%s RUNIF incorrect/unexpected line [%s]", PLUGIN_ERROR, line);
 }
 
 SWRunIF::~SWRunIF()
@@ -33,12 +32,12 @@ void SWRunIF::Check()
 
 void SWRunIF::On()
 {
-    if (this->flag && this->value->IsValueInRange())
-        this->cmd->Once();
+    if (this->value->IsValueInRange())
+        this->cmd->On();
 }
 
 void SWRunIF::Off()
 {
-    if (!this->flag && this->value->IsValueInRange())
-        this->cmd->Once();
+    if (this->value->IsValueInRange())
+        this->cmd->Off();
 }

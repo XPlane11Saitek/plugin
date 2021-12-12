@@ -1,10 +1,20 @@
 
 #include "debug.h"
 #include "const.h"
+#include <regex>
 
-XP11Constant::XP11Constant(int data)
+XP11Constant::XP11Constant(const char *data)
 {
-    this->content = data;
+#ifdef DEBUG
+    debug("%s Const attach [%s]", PLUGIN_DEBUG, data);
+#endif
+    std::regex regex("\\-?\\d+(\\.\\d+)?");
+    if (std::regex_match(data, regex))
+    {
+        this->content = std::atof(data);
+        return;
+    }
+    throw Exception("%s Const incorrect/unexpected [%s]", PLUGIN_ERROR, data);
 }
 
 XP11Constant::~XP11Constant() {}

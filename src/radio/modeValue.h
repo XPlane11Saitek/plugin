@@ -16,10 +16,10 @@ private:
 
 private:
     void update(float);
+    static float load(const char *);
 
 public: // Class
-    RadioModeValue(const char *, const char *, float, float, float, float, bool);
-    RadioModeValue(const char *, const char *, float, float, float, bool);
+    RadioModeValue(const char *, const char *);
     ~RadioModeValue();
 
 public:

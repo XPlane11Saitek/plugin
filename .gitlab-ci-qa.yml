@@ -1,0 +1,62 @@
+.qa_mac: &qa_mac 
+  stage: qa
+  script:
+  - echo ok
+  when: manual
+  needs:
+    - job: deploy:mac
+  tags: [mac]
+
+# SW
+qa:mac:c172g1000-sw:
+  <<: *qa_mac
+
+qa:mac:c172-sw:
+  <<: *qa_mac
+
+qa:mac:be58-sw:
+  <<: *qa_mac
+
+qa:mac:sf50-sw:
+  <<: *qa_mac
+
+# BIP
+qa:mac:c172g1000-bip:
+  <<: *qa_mac
+
+qa:mac:c172-bip:
+  <<: *qa_mac
+
+qa:mac:be58-bip:
+  <<: *qa_mac
+
+qa:mac:sf50-bip:
+  <<: *qa_mac
+
+# RADIO
+qa:mac:c172g1000-radio:
+  <<: *qa_mac
+
+qa:mac:c172-radio:
+  <<: *qa_mac
+
+qa:mac:be58-radio:
+  <<: *qa_mac
+
+qa:mac:sf50-radio:
+  <<: *qa_mac
+
+# MULTI
+qa:mac:c172g1000-ap:
+  <<: *qa_mac
+
+qa:mac:c172-ap:
+  <<: *qa_mac
+
+qa:mac:be58-ap:
+  <<: *qa_mac
+
+qa:mac:sf50-ap:
+  <<: *qa_mac
+
+

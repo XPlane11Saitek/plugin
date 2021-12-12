@@ -6,11 +6,10 @@
 class SWCommand : public SWAction
 {
 private:
-    bool flag;
     XP11Command *cmd;
 
 public:
-    SWCommand(bool, const char *line);
+    SWCommand(const char *line);
     ~SWCommand();
 
 public:

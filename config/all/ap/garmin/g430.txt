@@ -1,0 +1,81 @@
+
+
+MULTI -1 g430 MODE if(dataref(plugin/saitek/multi0/button/arm){1:1})
+; --------------------------- 
+MULTI -1 g430[F] MODE next(g430n1)
+MULTI -1 g430[T] MODE next(g430n2)
+
+MULTI -1 g430n1 MODE quad()
+;---------------------------
+MULTI -1 g430n1[00] MODE display(INT)
+MULTI -1 g430n1[00][AP] MODE command(INT)
+MULTI -1 g430n1[00][AP] VALUE const(0)
+MULTI -1 g430n1[00][AP] UP sim/GPS/g430n1_zoom_out
+MULTI -1 g430n1[00][AP] DOWN sim/GPS/g430n1_zoom_in
+;---------------------------
+MULTI -1 g430n1[00][HDG] MODE command(INT)
+MULTI -1 g430n1[00][HDG] VALUE const(1)
+MULTI -1 g430n1[00][HDG] UP sim/GPS/g430n1_chapter_up
+MULTI -1 g430n1[00][HDG] DOWN sim/GPS/g430n1_chapter_dn
+;---------------------------
+MULTI -1 g430n1[00][NAV] MODE command(INT)
+MULTI -1 g430n1[00][NAV] VALUE const(2)
+MULTI -1 g430n1[00][NAV] UP sim/GPS/g430n1_page_up
+MULTI -1 g430n1[00][NAV] DOWN sim/GPS/g430n1_page_dn
+
+MULTI -1 g430n1[01] MODE command()
+;---------------------------
+MULTI -1 g430n1[01][AP] ON command(sim/GPS/g430n1_direct)
+MULTI -1 g430n1[01][HDG] ON command(sim/GPS/g430n1_menu)
+MULTI -1 g430n1[01][NAV] ON command(sim/GPS/g430n1_cursor)
+MULTI -1 g430n1[01][ALT] ON command(sim/GPS/g430n1_proc)
+MULTI -1 g430n1[01][VS] ON command(sim/GPS/g430n1_clr)
+MULTI -1 g430n1[01][IAS] ON command(sim/GPS/g430n1_ent)
+
+MULTI -1 g430n1[10] MODE command()
+;---------------------------
+MULTI -1 g430n1[10][HDG] ON command(sim/GPS/g430n1_chapter_up)
+MULTI -1 g430n1[10][NAV] ON command(sim/GPS/g430n1_obs)
+MULTI -1 g430n1[10][IAS] ON command(sim/GPS/g430n1_msg)
+MULTI -1 g430n1[10][ALT] ON command(sim/GPS/g430n1_fpl)
+MULTI -1 g430n1[10][VS] ON command(sim/GPS/g430n1_vnav)
+
+
+MULTI -1 g430n1[11] MODE off()
+
+
+MULTI -1 g430n2 MODE quad()
+;---------------------------
+MULTI -1 g430n2[00] MODE display()
+MULTI -1 g430n2[00][AP] MODE command(INT)
+MULTI -1 g430n2[00][AP] VALUE const(0)
+MULTI -1 g430n2[00][AP] UP sim/GPS/g430n2_zoom_out
+MULTI -1 g430n2[00][AP] DOWN sim/GPS/g430n2_zoom_in
+;---------------------------
+MULTI -1 g430n2[00][HDG] MODE command(INT)
+MULTI -1 g430n2[00][HDG] VALUE const(1)
+MULTI -1 g430n2[00][HDG] UP sim/GPS/g430n2_chapter_up
+MULTI -1 g430n2[00][HDG] DOWN sim/GPS/g430n2_chapter_dn
+;---------------------------
+MULTI -1 g430n2[00][NAV] MODE command(INT)
+MULTI -1 g430n2[00][NAV] VALUE const(2)
+MULTI -1 g430n2[00][NAV] UP sim/GPS/g430n2_page_up
+MULTI -1 g430n2[00][NAV] DOWN sim/GPS/g430n2_page_dn
+
+MULTI -1 g430n2[01] MODE command()
+;---------------------------
+MULTI -1 g430n2[01][AP] ON command(sim/GPS/g430n2_direct)
+MULTI -1 g430n2[01][HDG] ON command(sim/GPS/g430n2_menu)
+MULTI -1 g430n2[01][NAV] ON command(sim/GPS/g430n2_cursor)
+MULTI -1 g430n2[01][VS] ON command(sim/GPS/g430n2_clr)
+MULTI -1 g430n2[01][IAS] ON command(sim/GPS/g430n2_ent)
+
+MULTI -1 g430n2[10] MODE command()
+;---------------------------
+MULTI -1 g430n2[10][HDG] ON command(sim/GPS/g430n2_chapter_up)
+MULTI -1 g430n2[10][NAV] ON command(sim/GPS/g430n2_obs)
+MULTI -1 g430n2[10][IAS] ON command(sim/GPS/g430n2_msg)
+MULTI -1 g430n2[10][ALT] ON command(sim/GPS/g430n2_fpl)
+MULTI -1 g430n2[10][VS] ON command(sim/GPS/g430n2_vnav)
+
+MULTI -1 g430n2[11] MODE off

@@ -2,12 +2,20 @@
 #include "modeTimeout.h"
 #include <stdlib.h>
 #include "debug.h"
+#include <regex>
 
-RadioModeTimeout::RadioModeTimeout(RadioMode *a, RadioMode *b, int timeout)
+RadioModeTimeout::RadioModeTimeout(RadioMode *a, RadioMode *b, const char *param)
 {
     this->a[0] = a;
     this->a[1] = b;
-    this->idleTimeout = timeout;
+    std::cmatch query;
+    std::regex regex("(\\d+)");
+    if (std::regex_match(param, query, regex))
+    {
+        this->idleTimeout = std::atof(query[0].str().c_str());
+        return;
+    }
+    throw Exception("%s Radio dual(\\d) incorrect/unexpected [%s]", PLUGIN_ERROR, param);
 }
 
 RadioModeTimeout::~RadioModeTimeout()

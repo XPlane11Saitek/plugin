@@ -66,6 +66,7 @@ bool FileReader::loadData(std::string line, std::string filename, int pos)
         strcpy(raw->value, query[5].str().c_str());
         raw->lineNumber = pos;
         raw->panelNumber = std::atoi(query[2].str().c_str());
+        raw->usage = false;
         this->content.insert(this->content.begin(), 1, raw);
         return true;
     }

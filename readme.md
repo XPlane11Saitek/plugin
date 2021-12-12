@@ -171,9 +171,9 @@ Support buttons
 ```
 SWITCH <ID> <BUTTON> PUSH <XPLANE-COMMAND-REF>
 ```
-* `CMD_ON` or `CMD_OFF`
+* `ON` or `OFF`
 ```
-SWITCH <ID> <BUTTON> [CMD_ON|CMD_OFF] <XPLANE-COMMAND-REF>
+SWITCH <ID> <BUTTON> [ON|OFF] <XPLANE-COMMAND-REF>
 ```
 * `SET_ON` or `SET_OFF`
 ```
@@ -189,22 +189,22 @@ SWITCH <ID> <BUTTON> [IF_ON|IF_OFF] RUN <XPLANE-COMMAND-REF> IF <VALUE>
 
 For cessna 172
 ```
-SWITCH 0 MAG_OFF CMD_ON sim/magnetos/magnetos_off
-SWITCH 0 MAG_RIGHT CMD_ON sim/magnetos/magnetos_right_1
-SWITCH 0 MAG_LEFT CMD_ON sim/magnetos/magnetos_left_1
-SWITCH 0 MAG_BOTH CMD_ON sim/magnetos/magnetos_both_1
-SWITCH 0 ENG_START PUSH sim/ignition/ignition_up_1
+SWITCH 0 MAG_OFF ON command(sim/magnetos/magnetos_off)
+SWITCH 0 MAG_RIGHT ON command(sim/magnetos/magnetos_right_1)
+SWITCH 0 MAG_LEFT ON command(sim/magnetos/magnetos_left_1)
+SWITCH 0 MAG_BOTH ON command(sim/magnetos/magnetos_both_1)
+SWITCH 0 ENG_START CMD push(sim/ignition/ignition_up_1)
 
-SWITCH 0 GEAR_SWITCH_UP SET_ON dataref(sim/cockpit2/controls/parking_brake_ratio):=0.000000
-SWITCH 0 GEAR_SWITCH_DOWN SET_ON dataref(sim/cockpit2/controls/parking_brake_ratio):=1.000000
+SWITCH 0 GEAR_SWITCH_UP ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=0.000000)
+SWITCH 0 GEAR_SWITCH_DOWN ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=1.000000)
 
-SWITCH 1 PANEL_LIGHTS PUSH sim/annunciator/test_all_annunciators
+SWITCH 1 PANEL_LIGHTS CMD push(sim/annunciator/test_all_annunciators)
 
 # Multiple Action for one button
-SWITCH 0 PITOT_HEAT CMD_ON sim/ice/pitot_heat0_on
-SWITCH 0 PITOT_HEAT CMD_OFF sim/ice/pitot_heat0_off
-SWITCH 0 PITOT_HEAT CMD_ON sim/ice/pitot_heat1_on
-SWITCH 0 PITOT_HEAT CMD_OFF sim/ice/pitot_heat1_off
+SWITCH 0 PITOT_HEAT ON command(sim/ice/pitot_heat0_on)
+SWITCH 0 PITOT_HEAT OFF command(sim/ice/pitot_heat0_off)
+SWITCH 0 PITOT_HEAT ON command(sim/ice/pitot_heat1_on)
+SWITCH 0 PITOT_HEAT OFF command(sim/ice/pitot_heat1_off)
 
 ```
 

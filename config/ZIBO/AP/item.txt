@@ -7,7 +7,7 @@ MULTI -1 com1-freq SMALLDOWN sim/radios/stby_com1_fine_down
 MULTI -1 com1-freq SMALLUP sim/radios/stby_com1_fine_up
 MULTI -1 com1-freq BIGDOWN sim/radios/stby_com1_coarse_down
 MULTI -1 com1-freq BIGUP sim/radios/stby_com1_coarse_up
-MULTI -1 com1-freq ACT sim/radios/com1_standy_flip
+MULTI -1 com1-freq ACT command(sim/radios/com1_standy_flip
 ;-----------------------------
 MULTI -1 altitude MODE VALUE
 MULTI -1 altitude DISPLAY INT
@@ -35,7 +35,7 @@ MULTI -1 com2-freq SMALLDOWN sim/radios/stby_com2_fine_down
 MULTI -1 com2-freq SMALLUP sim/radios/stby_com2_fine_up
 MULTI -1 com2-freq BIGDOWN sim/radios/stby_com2_coarse_down
 MULTI -1 com2-freq BIGUP sim/radios/stby_com2_coarse_up
-MULTI -1 com2-freq ACT sim/radios/com2_standy_flip
+MULTI -1 com2-freq ACT command(sim/radios/com2_standy_flip
 ;----------- Baro1 -----------
 MULTI -1 com2-baro1 MODE VALUE
 MULTI -1 com2-baro1 VALUE dataref(sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot
@@ -72,7 +72,7 @@ MULTI -1 nav1-freq SMALLDOWN sim/radios/stby_nav1_fine_down
 MULTI -1 nav1-freq SMALLUP sim/radios/stby_nav1_fine_up
 MULTI -1 nav1-freq BIGDOWN sim/radios/stby_nav1_coarse_down
 MULTI -1 nav1-freq BIGUP sim/radios/stby_nav1_coarse_up
-MULTI -1 nav1-freq ACT sim/radios/nav1_standy_flip
+MULTI -1 nav1-freq ACT command(sim/radios/nav1_standy_flip
 ;----------- NAV1+DME -----------
 MULTI -1 nav1-dme-freq MODE SHOW
 MULTI -1 nav1-dme-freq VALUE dataref(sim/cockpit/radios/nav1_freq_hz
@@ -103,7 +103,7 @@ MULTI -1 nav2-freq SMALLDOWN sim/radios/stby_nav2_fine_down
 MULTI -1 nav2-freq SMALLUP sim/radios/stby_nav2_fine_up
 MULTI -1 nav2-freq BIGDOWN sim/radios/stby_nav2_coarse_down
 MULTI -1 nav2-freq BIGUP sim/radios/stby_nav2_coarse_up
-MULTI -1 nav2-freq ACT sim/radios/nav2_standy_flip
+MULTI -1 nav2-freq ACT command(sim/radios/nav2_standy_flip
 ;----------- nav2+DME -----------
 MULTI -1 nav2-dme-freq MODE SHOW
 MULTI -1 nav2-dme-freq VALUE dataref(sim/cockpit/radios/nav2_freq_hz
@@ -134,32 +134,14 @@ MULTI -1 adf1-freq SMALLDOWN sim/radios/stby_adf1_ones_tens_down
 MULTI -1 adf1-freq SMALLUP sim/radios/stby_adf1_ones_tens_up
 MULTI -1 adf1-freq BIGDOWN sim/radios/stby_adf1_hundreds_thous_down
 MULTI -1 adf1-freq BIGUP sim/radios/stby_adf1_hundreds_thous_up
-MULTI -1 adf1-freq ACT sim/radios/adf1_standy_flip
-;----------- adf1+OBS -----------
-MULTI -1 adf1-mag-freq MODE SHOW
-MULTI -1 adf1-mag-freq VALUE dataref(sim/cockpit/radios/adf1_freq_hz
-MULTI -1 adf1-mag-freq DISPLAY INT
-MULTI -1 adf1-mag-deg MODE SHOW
-MULTI -1 adf1-mag-deg VALUE dataref(sim/cockpit2/radios/indicators/adf1_bearing_deg_mag
-MULTI -1 adf1-mag-deg DISPLAY INT
-;----------- FREQ -----------
-MULTI -1 adf2-freq MODE DEFAULT
-MULTI -1 adf2-freq DISPLAY INT
-MULTI -1 adf2-freq VALUE1 dataref(sim/cockpit/radios/adf2_freq_hz
-MULTI -1 adf2-freq VALUE2 dataref(sim/cockpit/radios/adf2_stdby_freq_hz
-MULTI -1 adf2-freq SMALLDOWN sim/radios/stby_adf2_ones_tens_down
-MULTI -1 adf2-freq SMALLUP sim/radios/stby_adf2_ones_tens_up
-MULTI -1 adf2-freq BIGDOWN sim/radios/stby_adf2_hundreds_thous_down
-MULTI -1 adf2-freq BIGUP sim/radios/stby_adf2_hundreds_thous_up
-MULTI -1 adf2-freq ACT sim/radios/adf2_standy_flip
-;----------- adf2+OBS -----------
-MULTI -1 adf2-mag-freq MODE SHOW
-MULTI -1 adf2-mag-freq VALUE dataref(sim/cockpit/radios/adf2_freq_hz
-MULTI -1 adf2-mag-freq DISPLAY INT
-;----------- adf2+OBS -----------
-MULTI -1 adf2-mag-deg MODE SHOW
-MULTI -1 adf2-mag-deg VALUE dataref(sim/cockpit2/radios/indicators/adf2_bearing_deg_mag
-MULTI -1 adf2-mag-deg DISPLAY INT
+MULTI -1 adf1-freq ACT command(sim/radios/adf1_standy_flip
+;;----------- adf1+OBS -----------
+;MULTI -1 adf1-mag-freq MODE SHOW
+;MULTI -1 adf1-mag-freq VALUE dataref(sim/cockpit/radios/adf1_freq_hz
+;MULTI -1 adf1-mag-freq DISPLAY INT
+;MULTI -1 adf1-mag-deg MODE SHOW
+;MULTI -1 adf1-mag-deg VALUE dataref(sim/cockpit2/radios/indicators/adf1_bearing_deg_mag
+;MULTI -1 adf1-mag-deg DISPLAY INT
 ;----------- FREQ -----------
 MULTI -1 xpdr-freq MODE COMMAND
 MULTI -1 xpdr-freq DISPLAY INT

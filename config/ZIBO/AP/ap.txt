@@ -5,8 +5,8 @@ MULTI -1 ap[AP] LED dataref(sim/cockpit/autopilot/autopilot_mode){2:2
 MULTI -1 ap[AP] MODE SHOW
 MULTI -1 ap[AP] VALUE dataref(sim/cockpit/autopilot/autopilot_mode
 MULTI -1 ap[AP] DISPLAY INT
-MULTI -1 ap[AP][LONG] CMD_ON sim/autopilot/fdir_servos_toggle
-MULTI -1 ap[AP] CMD_OFF sim/autopilot/fdir_toggle
+MULTI -1 ap[AP][LONG] ON command(sim/autopilot/fdir_servos_toggle
+MULTI -1 ap[AP] OFF command(sim/autopilot/fdir_toggle
 
 MULTI -1 ap[ALT] LED dataref(sim/cockpit2/autopilot/altitude_hold_status){2:2
 MULTI -1 ap[ALT] MODE COMMAND
@@ -14,7 +14,7 @@ MULTI -1 ap[ALT] VALUE dataref(sim/cockpit/autopilot/altitude
 MULTI -1 ap[ALT] UP sim/autopilot/altitude_up
 MULTI -1 ap[ALT] DOWN sim/autopilot/altitude_down
 MULTI -1 ap[ALT] DISPLAY INT/100
-MULTI -1 ap[ALT][LONG] CMD_ON sim/autopilot/altitude_hold
+MULTI -1 ap[ALT][LONG] ON command(sim/autopilot/altitude_hold
 
 MULTI -1 ap[VS] LED dataref(sim/cockpit2/autopilot/vvi_status){2:2
 MULTI -1 ap[VS] MODE COMMAND
@@ -22,7 +22,7 @@ MULTI -1 ap[VS] VALUE dataref(sim/cockpit/autopilot/vertical_velocity
 MULTI -1 ap[VS] UP sim/autopilot/nose_up
 MULTI -1 ap[VS] DOWN sim/autopilot/nose_down
 MULTI -1 ap[VS] DISPLAY INT/100
-MULTI -1 ap[VS][LONG] CMD_ON sim/autopilot/alt_vs
+MULTI -1 ap[VS][LONG] ON command(sim/autopilot/alt_vs
 
 MULTI -1 ap[HDG] LED dataref(sim/cockpit2/autopilot/heading_status){2:2
 MULTI -1 ap[HDG] MODE COMMAND
@@ -30,7 +30,7 @@ MULTI -1 ap[HDG] VALUE dataref(sim/cockpit/autopilot/heading_mag
 MULTI -1 ap[HDG] UP sim/autopilot/heading_up
 MULTI -1 ap[HDG] DOWN sim/autopilot/heading_down
 MULTI -1 ap[HDG] DISPLAY INT
-MULTI -1 ap[HDG][LONG] CMD_ON sim/autopilot/heading
+MULTI -1 ap[HDG][LONG] ON command(sim/autopilot/heading
 
 MULTI -1 ap[NAV] LED dataref(sim/cockpit2/autopilot/nav_status){2:2
 MULTI -1 ap[NAV] MODE VALUE
@@ -40,7 +40,7 @@ MULTI -1 ap[NAV] MAX 2
 MULTI -1 ap[NAV] MIN 0
 MULTI -1 ap[NAV] TYPE ROUND
 MULTI -1 ap[NAV] DISPLAY INT
-MULTI -1 ap[NAV][LONG] CMD_ON sim/autopilot/NAV
+MULTI -1 ap[NAV][LONG] ON command(sim/autopilot/NAV
 
 MULTI -1 ap[IAS] LED dataref(sim/cockpit2/autopilot/speed_status){2:2
 MULTI -1 ap[IAS] MODE COMMAND
@@ -48,12 +48,12 @@ MULTI -1 ap[IAS] VALUE dataref(sim/cockpit/autopilot/airspeed
 MULTI -1 ap[IAS] UP sim/autopilot/airspeed_up
 MULTI -1 ap[IAS] DOWN sim/autopilot/airspeed_down
 MULTI -1 ap[IAS] DISPLAY INT
-MULTI -1 ap[IAS][LONG] CMD_ON sim/autopilot/level_change
+MULTI -1 ap[IAS][LONG] ON command(sim/autopilot/level_change
 
 MULTI -1 ap[APR] LED dataref(sim/cockpit2/autopilot/approach_status){2:2
 MULTI -1 ap[APR] MODE IF
 MULTI -1 ap[APR] VALUE dataref(sim/cockpit/switches/HSI_selector){2:2
-MULTI -1 ap[APR][T] MODE OFF
+MULTI -1 ap[APR][T] MODE off
 MULTI -1 ap[APR][F] MODE IF
 MULTI -1 ap[APR][F] VALUE dataref(sim/cockpit/switches/HSI_selector){0:0
 MULTI -1 ap[APR][F][T] MODE COMMAND
@@ -72,7 +72,7 @@ MULTI -1 ap[APR][F][F] STEP 1
 MULTI -1 ap[APR][F][F] MAX 360
 MULTI -1 ap[APR][F][F] MIN 0
 MULTI -1 ap[APR][F][F] TYPE ROUND
-MULTI -1 ap[APR][LONG] CMD_ON sim/autopilot/approach
+MULTI -1 ap[APR][LONG] ON command(sim/autopilot/approach
 
 MULTI -1 ap[REV] LED dataref(sim/cockpit2/autopilot/backcourse_status){2:2
 MULTI -1 ap[REV] MODE VALUE
@@ -82,15 +82,15 @@ MULTI -1 ap[REV] STEP 100
 MULTI -1 ap[REV] MAX 7000
 MULTI -1 ap[REV] MIN -1000
 MULTI -1 ap[REV] TYPE LIMIT
-MULTI -1 ap[REV][LONG] CMD_ON sim/autopilot/back_course
+MULTI -1 ap[REV][LONG] ON command(sim/autopilot/back_course
 
 MULTI -1 ap[FLAP_UP] MODE RENAME
 MULTI -1 ap[FLAP_UP] NEXT ap[FLAP]
-MULTI -1 ap[FLAP_UP] CMD_ON sim/flight_controls/flaps_up
+MULTI -1 ap[FLAP_UP] ON command(sim/flight_controls/flaps_up
 
 MULTI -1 ap[FLAP_DOWN] MODE RENAME
 MULTI -1 ap[FLAP_DOWN] NEXT ap[FLAP]
-MULTI -1 ap[FLAP_DOWN] CMD_ON sim/flight_controls/flaps_down
+MULTI -1 ap[FLAP_DOWN] ON command(sim/flight_controls/flaps_down
 
 MULTI -1 ap[FLAP] MODE ADD
 MULTI -1 ap[FLAP][0] MODE SHOW

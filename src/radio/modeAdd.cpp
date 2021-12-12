@@ -1,14 +1,14 @@
 
 #include "modeAdd.h"
+#include <cstring>
 
-RadioModeADD::RadioModeADD(RadioMode *b, RadioMode *a, bool isLock, bool isRadioMode)
+RadioModeADD::RadioModeADD(RadioMode *b, RadioMode *a, const char *param)
 {
     this->a[0] = a;
     this->a[1] = b;
-    this->leftA = new Monitor(isRadioMode);
-    this->leftB = new Monitor(isRadioMode);
-    this->isLockSW = isLock;
-    this->isRadio = isRadioMode;
+    this->leftA = new Monitor(false);
+    this->leftB = new Monitor(false);
+    this->isLockSW = !strcmp("LOCK", param);
 }
 
 RadioModeADD::~RadioModeADD()

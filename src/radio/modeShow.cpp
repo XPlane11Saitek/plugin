@@ -1,15 +1,27 @@
 
 #include "modeShow.h"
-#include "sources.h"
+#include "value.h"
 #include <cstring>
 #include <stdlib.h>
-#include "dataLoad.h"
+#include "data.h"
+#include <regex>
+#include "debug.h"
+#include <iostream>
 
-RadioModeSHOW::RadioModeSHOW(const char *value, const char *mode, bool allChange)
+RadioModeSHOW::RadioModeSHOW(const char *value, const char *param)
 { // COM Setting
-    this->com = LoadValue(value);
-    this->displayMode = LoadDisplay(mode);
-    this->allChanges = allChange;
+    std::cmatch query;
+    if (std::regex_match(param, query, std::regex("(.*),ALL")))
+    {
+        this->com = XP11Value::New(value);
+        this->displayMode = STConvert::New(query[1].str().c_str());
+        this->allChanges = true;
+        return;
+    }
+    this->com = XP11Value::New(value);
+    this->displayMode = STConvert::New(param);
+    this->allChanges = false;
+    return;
 }
 
 RadioModeSHOW::~RadioModeSHOW()

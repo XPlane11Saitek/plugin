@@ -21,73 +21,73 @@
 ;- GEAR  - GEAR
 ;
 
-SWITCH 1 MAG_OFF CMD_ON laminar/B738/rotary/eng2_start_grd
+SWITCH 1 MAG_OFF ON command(laminar/B738/rotary/eng2_start_grd
 ;SWITCH 1 MAG_RIGHT --- ---
-SWITCH 1 MAG_LEFT CMD_ON laminar/B738/rotary/eng2_start_off
-SWITCH 1 MAG_BOTH CMD_ON laminar/B738/rotary/eng2_start_cont
-SWITCH 1 ENG_START CMD_ON laminar/B738/rotary/eng2_start_flt
+SWITCH 1 MAG_LEFT ON command(laminar/B738/rotary/eng2_start_off
+SWITCH 1 MAG_BOTH ON command(laminar/B738/rotary/eng2_start_cont
+SWITCH 1 ENG_START ON command(laminar/B738/rotary/eng2_start_flt
 
 ;APU 0-off 1-on 2-start			
-SWITCH 1 MASTER_BATTERY CMD_ON laminar/B738/spring_toggle_switch/APU_start_pos_dn
-SWITCH 1 MASTER_BATTERY CMD_ON laminar/B738/spring_toggle_switch/APU_start_pos_dn
-SWITCH 1 MASTER_BATTERY CMD_OFF laminar/B738/spring_toggle_switch/APU_start_pos_up
-SWITCH 1 MASTER_BATTERY CMD_OFF laminar/B738/spring_toggle_switch/APU_start_pos_up
+SWITCH 1 MASTER_BATTERY ON command(laminar/B738/spring_toggle_switch/APU_start_pos_dn
+SWITCH 1 MASTER_BATTERY ON command(laminar/B738/spring_toggle_switch/APU_start_pos_dn
+SWITCH 1 MASTER_BATTERY OFF/B738/spring_toggle_switch/APU_start_pos_up
+SWITCH 1 MASTER_BATTERY OFF/B738/spring_toggle_switch/APU_start_pos_up
 
 ;GEN
-SWITCH 1 MASTER_ALTENATOR CMD_ON laminar/B738/toggle_switch/apu_gen1_dn
-SWITCH 1 MASTER_ALTENATOR CMD_ON laminar/B738/toggle_switch/apu_gen2_dn
+SWITCH 1 MASTER_ALTENATOR ON command(laminar/B738/toggle_switch/apu_gen1_dn
+SWITCH 1 MASTER_ALTENATOR ON command(laminar/B738/toggle_switch/apu_gen2_dn
 
 ; GPU
-SWITCH 1 AVIONICS_POWER CMD_ON laminar/B738/toggle_switch/gpu_dn
+SWITCH 1 AVIONICS_POWER ON command(laminar/B738/toggle_switch/gpu_dn
 
 ;TANK 0-Off 1-on
-SWITCH 1 FUEL_PUMP SET_ON dataref(laminar/B738/fuel/fuel_tank_pos_ctr1):=1
-SWITCH 1 FUEL_PUMP SET_ON dataref(laminar/B738/fuel/fuel_tank_pos_ctr2):=1
-SWITCH 1 FUEL_PUMP SET_OFF dataref(laminar/B738/fuel/fuel_tank_pos_ctr1):=0
-SWITCH 1 FUEL_PUMP SET_OFF dataref(laminar/B738/fuel/fuel_tank_pos_ctr2):=0
+SWITCH 1 FUEL_PUMP ON set(dataref(laminar/B738/fuel/fuel_tank_pos_ctr1):=1
+SWITCH 1 FUEL_PUMP ON set(dataref(laminar/B738/fuel/fuel_tank_pos_ctr2):=1
+SWITCH 1 FUEL_PUMP OFF set(dataref(laminar/B738/fuel/fuel_tank_pos_ctr1):=0
+SWITCH 1 FUEL_PUMP OFF set(dataref(laminar/B738/fuel/fuel_tank_pos_ctr2):=0
 
 ;HYDRO 0-off 1-on
-SWITCH 1 DE_ICE SET_ON dataref(laminar/B738/toggle_switch/electric_hydro_pumps1_pos):=1
-SWITCH 1 DE_ICE SET_ON dataref(laminar/B738/toggle_switch/electric_hydro_pumps2_pos):=1
-SWITCH 1 DE_ICE SET_OFF dataref(laminar/B738/toggle_switch/electric_hydro_pumps1_pos):=0
-SWITCH 1 DE_ICE SET_OFF dataref(laminar/B738/toggle_switch/electric_hydro_pumps2_pos):=0
+SWITCH 1 DE_ICE ON set(dataref(laminar/B738/toggle_switch/electric_hydro_pumps1_pos):=1
+SWITCH 1 DE_ICE ON set(dataref(laminar/B738/toggle_switch/electric_hydro_pumps2_pos):=1
+SWITCH 1 DE_ICE OFF set(dataref(laminar/B738/toggle_switch/electric_hydro_pumps1_pos):=0
+SWITCH 1 DE_ICE OFF set(dataref(laminar/B738/toggle_switch/electric_hydro_pumps2_pos):=0
 
 ;ANTI ICE 0-off 1-on
-SWITCH 1 PITOT_HEAT SET_ON dataref(laminar/B738/ice/wing_heat_pos):=1
-SWITCH 1 PITOT_HEAT SET_ON dataref(laminar/B738/ice/eng1_heat_pos):=1
-SWITCH 1 PITOT_HEAT SET_ON dataref(laminar/B738/ice/eng2_heat_pos):=1
-SWITCH 1 PITOT_HEAT SET_OFF dataref(laminar/B738/ice/wing_heat_pos):=0
-SWITCH 1 PITOT_HEAT SET_OFF dataref(laminar/B738/ice/eng1_heat_pos):=0
-SWITCH 1 PITOT_HEAT SET_OFF dataref(laminar/B738/ice/eng2_heat_pos):=0
+SWITCH 1 PITOT_HEAT ON set(dataref(laminar/B738/ice/wing_heat_pos):=1
+SWITCH 1 PITOT_HEAT ON set(dataref(laminar/B738/ice/eng1_heat_pos):=1
+SWITCH 1 PITOT_HEAT ON set(dataref(laminar/B738/ice/eng2_heat_pos):=1
+SWITCH 1 PITOT_HEAT OFF set(dataref(laminar/B738/ice/wing_heat_pos):=0
+SWITCH 1 PITOT_HEAT OFF set(dataref(laminar/B738/ice/eng1_heat_pos):=0
+SWITCH 1 PITOT_HEAT OFF set(dataref(laminar/B738/ice/eng2_heat_pos):=0
 
 ;MIXTURE 0 .. 1
-SWITCH 1 COWL_FLAPS SET_ON dataref(laminar/B738/engine/mixture_ratio2):=1.000
-SWITCH 1 COWL_FLAPS SET_OFF dataref(laminar/B738/engine/mixture_ratio2):=0.000
+SWITCH 1 COWL_FLAPS ON set(dataref(laminar/B738/engine/mixture_ratio2):=1.000
+SWITCH 1 COWL_FLAPS OFF set(dataref(laminar/B738/engine/mixture_ratio2):=0.000
 
 ;LEFT PACK 0-off 2-open
-SWITCH 1 PANEL_LIGHTS SET_ON dataref(laminar/B738/air/l_pack_pos):=2
-SWITCH 1 PANEL_LIGHTS SET_OFF dataref(laminar/B738/air/l_pack_pos):=0
+SWITCH 1 PANEL_LIGHTS ON set(dataref(laminar/B738/air/l_pack_pos):=2
+SWITCH 1 PANEL_LIGHTS OFF set(dataref(laminar/B738/air/l_pack_pos):=0
 
 ;BLEED ENG1	0-off 1-on
-SWITCH 1 BEACON_LIGHTS SET_ON dataref(laminar/B738/toggle_switch/bleed_air_1_pos):=1
-SWITCH 1 BEACON_LIGHTS SET_OFF dataref(laminar/B738/toggle_switch/bleed_air_1_pos):=0
+SWITCH 1 BEACON_LIGHTS ON set(dataref(laminar/B738/toggle_switch/bleed_air_1_pos):=1
+SWITCH 1 BEACON_LIGHTS OFF set(dataref(laminar/B738/toggle_switch/bleed_air_1_pos):=0
 
 ;ISOLATION 0-close 1-auto
-SWITCH 1 NAV_LIGHTS SET_ON dataref(laminar/B738/air/isolation_valve_pos):=1
-SWITCH 1 NAV_LIGHTS SET_OFF dataref(laminar/B738/air/isolation_valve_pos):=0
+SWITCH 1 NAV_LIGHTS ON set(dataref(laminar/B738/air/isolation_valve_pos):=1
+SWITCH 1 NAV_LIGHTS OFF set(dataref(laminar/B738/air/isolation_valve_pos):=0
 
 ;BLEED APU 0-off 1-on
-SWITCH 1 STROBE_LIGHTS SET_ON dataref(laminar/B738/toggle_switch/bleed_air_apu_pos):=1
-SWITCH 1 STROBE_LIGHTS SET_OFF dataref(laminar/B738/toggle_switch/bleed_air_apu_pos):=0
+SWITCH 1 STROBE_LIGHTS ON set(dataref(laminar/B738/toggle_switch/bleed_air_apu_pos):=1
+SWITCH 1 STROBE_LIGHTS OFF set(dataref(laminar/B738/toggle_switch/bleed_air_apu_pos):=0
 
 ;RIGHT PACK 0-off 2-open
-SWITCH 1 TAXI_LIGHTS SET_ON dataref(laminar/B738/air/r_pack_pos):=2
-SWITCH 1 TAXI_LIGHTS SET_OFF dataref(laminar/B738/air/r_pack_pos):=0
+SWITCH 1 TAXI_LIGHTS ON set(dataref(laminar/B738/air/r_pack_pos):=2
+SWITCH 1 TAXI_LIGHTS OFF set(dataref(laminar/B738/air/r_pack_pos):=0
 
 ;BLEED ENG2	0-off 1-on
-SWITCH 1 LANDING_LIGHTS SET_ON dataref(laminar/B738/toggle_switch/bleed_air_2_pos):=1
-SWITCH 1 LANDING_LIGHTS SET_OFF dataref(laminar/B738/toggle_switch/bleed_air_2_pos):=0
+SWITCH 1 LANDING_LIGHTS ON set(dataref(laminar/B738/toggle_switch/bleed_air_2_pos):=1
+SWITCH 1 LANDING_LIGHTS OFF set(dataref(laminar/B738/toggle_switch/bleed_air_2_pos):=0
 
 ;GEAR 0-u 1-off 2
-SWITCH 1 GEAR_SWITCH_UP CMD_ON laminar/B738/push_button/gear_up
-SWITCH 1 GEAR_SWITCH_DOWN CMD_ON laminar/B738/push_button/gear_down
+SWITCH 1 GEAR_SWITCH_UP ON command(laminar/B738/push_button/gear_up
+SWITCH 1 GEAR_SWITCH_DOWN ON command(laminar/B738/push_button/gear_down

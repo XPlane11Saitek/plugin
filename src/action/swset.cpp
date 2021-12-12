@@ -2,21 +2,20 @@
 #include "swset.h"
 #include "debug.h"
 #include <stdio.h>
-#include "sources.h"
+#include "value.h"
 #include <regex>
 
-SWDataSet::SWDataSet(bool isOn, const char *line)
+SWDataSet::SWDataSet(const char *line)
 {
-    this->flag = isOn;
-    this->cmd = LoadValue(line);
     std::cmatch query;
-    std::regex regex("\\:\\=(\\s+)?(\\-?\\d+(.\\d+)?)");
-    // 0 := -20.01
-    // 1
-    // 2 -20.01
-    // 3 .01
+    std::regex regex("(.+)\\:\\=(\\s+)?(\\-?\\d+(.\\d+)?)");
     if (std::regex_search(line, query, regex))
-        this->value = std::atof(query[2].str().c_str());
+    {
+        this->cmd = XP11Value::New(query[1].str().c_str());
+        this->value = std::atof(query[3].str().c_str());
+        return;
+    }
+    throw Exception("%s SET incorrect/unexpected line [%s]", PLUGIN_ERROR, line);
 }
 
 void SWDataSet::Check()
@@ -31,12 +30,10 @@ SWDataSet::~SWDataSet()
 
 void SWDataSet::On()
 {
-    if (this->flag)
-        this->cmd->SetValue(this->value);
+    this->cmd->SetValue(this->value);
 }
 
 void SWDataSet::Off()
 {
-    if (!this->flag)
-        this->cmd->SetValue(this->value);
+    this->cmd->SetValue(this->value);
 }

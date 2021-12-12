@@ -1,10 +1,18 @@
 cmake_minimum_required(VERSION 3.18.0)
 project(saitek CXX C)
 
+if(DEFINED XPVERSION)
+  message("XPVERSION=" ${XPVERSION})
+else()
+  set(XPVERSION, "0.2.0")
+  message("XPVERSION=" ${XPVERSION})
+endif()
+add_compile_definitions(XPVERSION="${XPVERSION}")
+
 # SETS
-set(XPLANE11PLUGIN true)
+#set(XPLANE11PLUGIN true)
 #set(USB true)
-set(DEBUG true)
+#set(DEBUG true)
 
 set(SDK_PATH  "SDK")
 message("SDK_PATH=" ${SDK_PATH})
@@ -61,7 +69,6 @@ set(CODE
   src/display/dataInt2.cpp
   src/display/dataMInt.cpp
   src/display/dataShort.cpp
-  src/display/dataLoad.cpp
   src/display/monitor.cpp
 
   src/output/customRef.cpp
@@ -72,7 +79,6 @@ set(CODE
   src/source/const.cpp
   src/source/dataref.cpp
   src/source/array.cpp
-  src/source/sources.cpp
 
   src/range/range.cpp
   src/range/rangeOr.cpp
@@ -85,35 +91,34 @@ set(CODE
   src/bip.cpp
 
   src/action/sw.cpp
+  src/action/swoff.cpp
+  src/action/swon.cpp
   src/action/swcmd.cpp
   src/action/swpush.cpp
   src/action/swset.cpp
   src/action/swdec.cpp
   src/action/swrun.cpp
-  src/action/swload.cpp
   src/swith.cpp
 
   src/radio/mode.cpp
-  src/radio/modeAdd.cpp
-  src/radio/modeCommand.cpp
+  src/radio/modeOff.cpp
+  src/radio/modeIf.cpp
   src/radio/modeDefault.cpp
   src/radio/modeDual.cpp
-  src/radio/modeIf.cpp
-  src/radio/modeOff.cpp
+  src/radio/modeAdd.cpp
   src/radio/modeTimeout.cpp
   src/radio/modeValue.cpp
   src/radio/modeShow.cpp
-  src/radio/modeLong.cpp
+  src/radio/modeCommand.cpp
+  src/radio/modeHold.cpp
+  src/radio/modeExec.cpp
   src/radio/modePush.cpp
-  src/radio/modeCMD.cpp
-  src/radio/modeLoad.cpp
   src/radio.cpp
 
   src/autopilot/ap.cpp
   src/autopilot/apCmd.cpp
   src/autopilot/apOff.cpp
   src/autopilot/apIf.cpp
-  src/autopilot/apLoad.cpp
   src/autopilot/apAdd.cpp
   src/autopilot/apCopy.cpp
   src/autopilot/apRadio.cpp
@@ -218,8 +223,8 @@ if(APPLE)
   	SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden -framework Cocoa -framework IOKit")
   endif()
 elseif(WIN32)
-elseif(UNIX)
   # TODO 
+elseif(UNIX)
   #LIBS += `pkg-config libudev --libs`
   if(DEFINED XPLANE11PLUGIN)
   	SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden ")

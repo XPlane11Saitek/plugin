@@ -1,21 +1,21 @@
 
 #include "modeDefault.h"
-#include "sources.h"
+#include "value.h"
 #include <cstring>
-#include "dataLoad.h"
+#include "data.h"
 
 RadioModeDEFAULT::RadioModeDEFAULT(const char *value1, const char *value2, const char *smallUp,
                                    const char *smallDown, const char *bigUp, const char *bigDown,
                                    const char *act, const char *display)
 {
-    this->com1 = LoadValue(value1);
-    this->com2 = LoadValue(value2);
+    this->com1 = XP11Value::New(value1);
+    this->com2 = XP11Value::New(value2);
     this->smallDownCMD = new XP11Command(smallDown);
     this->smallUpCMD = new XP11Command(smallUp);
     this->bigDownCMD = new XP11Command(bigDown);
     this->bigUpCMD = new XP11Command(bigUp);
     this->comActStby = new XP11Command(act);
-    this->displayMode = LoadDisplay(display);
+    this->displayMode = STConvert::New(display);
 }
 
 RadioModeDEFAULT::~RadioModeDEFAULT()

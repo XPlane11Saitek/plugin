@@ -2,7 +2,6 @@
 #include "multi.h"
 #include "debug.h"
 #include "apOff.h"
-#include "apLoad.h"
 #include <cstring>
 
 MULTIPanel::MULTIPanel(hid_device *usbdev, const wchar_t *sn, int uids) : Panel(usbdev, sn, uids)
@@ -101,6 +100,9 @@ void MULTIPanel::check()
     {
         this->panelIsLoader = false;
         debug("%s MULTI%i FATAL ERROR [%s]", PLUGIN_ERROR, this->panelNumber, e.what());
+#ifndef XPLANE11PLUGIN
+        throw Exception(e.what());
+#endif
     }
 }
 
@@ -218,10 +220,11 @@ void MULTIPanel::Load(FileContent *config)
     FileContent *panelConfig = config->CreateConfigForPanel(
         "MULTI", this->panelNumber);
     for (int item = 0; item < MULTI_MODE_COUNT; item++)
-        this->mode[item] = LoadAP(panelConfig, MULTIModeName[item]);
+        this->mode[item] = AP::New(panelConfig, MULTIModeName[item]);
     this->active = this->mode[0];
     this->panelIsChecked = false;
     this->panelIsLoader = true;
+    panelConfig->CheckALLUsage();
     delete panelConfig;
     debug("%s MULTI%i Download completion", PLUGIN_INFO, this->panelNumber);
 }

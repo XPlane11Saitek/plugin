@@ -1,0 +1,9 @@
+MULTI -1 radio MODE radio
+LOAD FROM FILE all/ap/item
+LOAD FROM FILE all/ap/mode
+
+MULTI -1 radio[HDG] MODE next(com1)
+MULTI -1 radio[NAV] MODE next(com2)
+MULTI -1 radio[IAS] MODE next(nav1)
+MULTI -1 radio[ALT] MODE next(nav2)
+MULTI -1 radio[VS] MODE next(adf)

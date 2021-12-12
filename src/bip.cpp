@@ -63,13 +63,13 @@ void BIP::Load(FileContent *config)
         "BIP", this->panelNumber);
     FileContent *ledConfig = panelConfig->CreateConfigForButton("-1:-1");
     for (FileContentLine *cmd : *ledConfig)
-
         for (int row = 0; row < BIP_CELL_ROW; row++)
             for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
             {
 #ifdef DEBUG
-                debug("%s BIP%i ADD %i:%i[%s] %s", PLUGIN_DEBUG, this->panelNumber, row, colum, cmd->key, cmd->value);
+                debug("%s BIP%i LED ADD %i:%i[%s] %s", PLUGIN_DEBUG, this->panelNumber, row, colum, cmd->key, cmd->value);
 #endif
+                cmd->usage = true;
                 this->led[row][colum]->Load(cmd->key, cmd->value);
             }
     delete ledConfig;
@@ -83,11 +83,13 @@ void BIP::Load(FileContent *config)
 #ifdef DEBUG
                 debug("%s BIP%i ADD %i:%i[%s] %s", PLUGIN_DEBUG, this->panelNumber, row, colum, cmd->key, cmd->value);
 #endif
+                cmd->usage = true;
                 this->led[row][colum]->Load(cmd->key, cmd->value);
             }
             this->led[row][colum]->SetState(-1);
             delete ledConfig;
         }
+    panelConfig->CheckALLUsage();
     delete panelConfig;
     this->panelIsLoader = true;
     this->panelIsChecked = false;
@@ -114,6 +116,9 @@ void BIP::check()
         this->panelIsLoader = false;
         debug("%s BIP%i FATAL ERROR[%s]", PLUGIN_ERROR, this->panelNumber, e.what());
         this->shutdown(CELL_ON_RED);
+#ifndef XPLANE11PLUGIN
+        throw Exception(e.what());
+#endif
     }
 }
 

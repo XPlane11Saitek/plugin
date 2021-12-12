@@ -1,0 +1,74 @@
+MULTI -1 ap MODE copy
+MULTI -1 ap[1] MODE command
+MULTI -1 ap[1][FLAP_UP] ON command(sim/flight_controls/flaps_up)
+MULTI -1 ap[1][FLAP_DOWN] ON command(sim/flight_controls/flaps_down)
+MULTI -1 ap[1][TRIM] CMD  inc(dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01)
+
+MULTI -1 ap[0] MODE display
+
+MULTI -1 ap[0][AP] LED dataref(sim/cockpit/autopilot/autopilot_mode){2:2}
+MULTI -1 ap[0][HDG] LED dataref(sim/cockpit2/autopilot/heading_status){2:2}
+MULTI -1 ap[0][VS] LED dataref(sim/cockpit2/autopilot/vvi_status){2:2}
+MULTI -1 ap[0][IAS] LED dataref(sim/cockpit2/autopilot/speed_status){2:2}
+MULTI -1 ap[0][NAV] LED dataref(sim/cockpit2/autopilot/nav_status){2:2}
+MULTI -1 ap[0][ALT] LED dataref(sim/cockpit2/autopilot/altitude_hold_status){2:2}
+MULTI -1 ap[0][REV] LED dataref(sim/cockpit2/autopilot/backcourse_status){2:2}
+MULTI -1 ap[0][APR] LED dataref(sim/cockpit2/autopilot/approach_status){2:2}
+
+MULTI -1 ap[0][AP] MODE hold(sim/autopilot/fdir_servos_toggle,3)
+MULTI -1 ap[0][AP][0] MODE exec(sim/autopilot/fdir_toggle)
+MULTI -1 ap[0][AP][0][0] MODE show(INT)
+MULTI -1 ap[0][AP][0][0] VALUE dataref(sim/cockpit/autopilot/autopilot_mode)
+
+MULTI -1 ap[0][ALT] MODE hold(sim/autopilot/altitude_hold,3)
+MULTI -1 ap[0][ALT][0] MODE command(INT/100)
+MULTI -1 ap[0][ALT][0] VALUE dataref(sim/cockpit/autopilot/altitude)
+MULTI -1 ap[0][ALT][0] UP sim/autopilot/altitude_up
+MULTI -1 ap[0][ALT][0] DOWN sim/autopilot/altitude_down
+
+MULTI -1 ap[0][VS] MODE hold(sim/autopilot/alt_vs,3)
+MULTI -1 ap[0][VS][0] MODE command(INT/100)
+MULTI -1 ap[0][VS][0] VALUE dataref(sim/cockpit/autopilot/vertical_velocity)
+MULTI -1 ap[0][VS][0] UP sim/autopilot/nose_up
+MULTI -1 ap[0][VS][0] DOWN sim/autopilot/nose_down
+
+MULTI -1 ap[0][HDG] MODE hold(sim/autopilot/heading,3)
+MULTI -1 ap[0][HDG][0] MODE command(INT)
+MULTI -1 ap[0][HDG][0] VALUE dataref(sim/cockpit/autopilot/heading_mag)
+MULTI -1 ap[0][HDG][0] UP sim/autopilot/heading_up
+MULTI -1 ap[0][HDG][0] DOWN sim/autopilot/heading_down
+
+MULTI -1 ap[0][NAV] MODE hold(sim/autopilot/NAV,3)
+MULTI -1 ap[0][NAV][0] MODE value(1,1,0,2,ROUND,INT)
+MULTI -1 ap[0][NAV][0] VALUE dataref(sim/cockpit/switches/HSI_selector)
+
+MULTI -1 ap[0][IAS] MODE hold(sim/autopilot/level_change,3)
+MULTI -1 ap[0][IAS][0] MODE command(INT)
+MULTI -1 ap[0][IAS][0] VALUE dataref(sim/cockpit/autopilot/airspeed)
+MULTI -1 ap[0][IAS][0] UP sim/autopilot/airspeed_up
+MULTI -1 ap[0][IAS][0] DOWN sim/autopilot/airspeed_down
+
+MULTI -1 ap[0][APR] MODE hold(sim/autopilot/approach,3)
+MULTI -1 ap[0][APR][0] MODE if(dataref(sim/cockpit/switches/HSI_selector){2:2})
+MULTI -1 ap[0][APR][0][T] MODE off
+MULTI -1 ap[0][APR][0][F] MODE if(dataref(sim/cockpit/switches/HSI_selector){0:0})
+MULTI -1 ap[0][APR][0][F][T] MODE value(1,1,0,360,ROUND,INT1)
+MULTI -1 ap[0][APR][0][F][T] VALUE dataref(sim/cockpit/radios/nav1_obs_degm)
+MULTI -1 ap[0][APR][0][F][F] MODE value(1,1,0,360,ROUND,INT2)
+MULTI -1 ap[0][APR][0][F][F] VALUE dataref(sim/cockpit/radios/nav2_obs_degm)
+
+MULTI -1 ap[0][REV] MODE hold(sim/autopilot/back_course,3)
+MULTI -1 ap[0][REV][0] MODE value(100,100,-1000,7000,LIMIT,INT)
+MULTI -1 ap[0][REV][0] VALUE dataref(sim/cockpit2/gauges/actuators/baro_altimeter_bug_ft_pilot)
+
+MULTI -1 ap[0][FLAP_UP] MODE next(ap[FLAP])
+MULTI -1 ap[0][FLAP_DOWN] MODE next(ap[FLAP])
+
+MULTI -1 ap[FLAP] MODE add()
+MULTI -1 ap[FLAP][0] MODE show(INT,ALL)
+MULTI -1 ap[FLAP][0] VALUE array(sim/flightmodel2/wing/flap1_deg[0])
+MULTI -1 ap[FLAP][1] MODE show(INT,ALL)
+MULTI -1 ap[FLAP][1] VALUE array(sim/flightmodel2/wing/flap1_deg[1])
+
+MULTI -1 ap[0][TRIM] MODE show(FLOAT,ALL)
+MULTI -1 ap[0][TRIM] VALUE dataref(sim/cockpit2/controls/elevator_trim)

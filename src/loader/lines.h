@@ -10,4 +10,6 @@ struct FileContentLine
     char button[64];
     char key[64];
     char value[512];
+    //
+    bool usage;
 };

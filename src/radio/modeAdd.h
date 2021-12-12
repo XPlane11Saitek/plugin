@@ -11,10 +11,9 @@ private:
     RadioMode *a[2];
     Monitor *leftA;
     Monitor *leftB;
-    bool isRadio;
 
 public: // Class
-    RadioModeADD(RadioMode *, RadioMode *, bool, bool);
+    RadioModeADD(RadioMode *, RadioMode *, const char *);
     ~RadioModeADD();
     void Check();
     void Show(Monitor *[2]);
