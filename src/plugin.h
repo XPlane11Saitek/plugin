@@ -1,7 +1,7 @@
 
 #define PLUGIN_NAME "saitek"
 #ifndef XPVERSION
-#define XPVERSION "0.2.0"
+#define XPVERSION "0.2.1"
 #endif
 #define PLUGIN_VERSION PLUGIN_NAME " - " XPVERSION " (build " __DATE__ " " __TIME__ ")"
 #define PLUGIN_SIGN "com.gmail.tarasmal.saitek"

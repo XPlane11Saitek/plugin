@@ -1,9 +1,16 @@
-MULTI -1 radio MODE radio
+
+MULTI -1 radio MODE copy
+MULTI -1 radio[1] MODE command
+MULTI -1 radio[1][FLAP_UP] ON command(sim/flight_controls/flaps_up)
+MULTI -1 radio[1][FLAP_DOWN] ON command(sim/flight_controls/flaps_down)
+MULTI -1 radio[1][TRIM] CMD  inc(dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01)
+;-----------------------------
+MULTI -1 radio[0] MODE radio
 LOAD FROM FILE all/ap/item
 LOAD FROM FILE all/ap/mode
 
-MULTI -1 radio[HDG] MODE next(com1)
-MULTI -1 radio[NAV] MODE next(com2)
-MULTI -1 radio[IAS] MODE next(nav1)
-MULTI -1 radio[ALT] MODE next(nav2)
-MULTI -1 radio[VS] MODE next(adf)
+MULTI -1 radio[0][HDG] MODE next(com1)
+MULTI -1 radio[0][NAV] MODE next(com2)
+MULTI -1 radio[0][IAS] MODE next(nav1)
+MULTI -1 radio[0][ALT] MODE next(nav2)
+MULTI -1 radio[0][VS] MODE next(adf)

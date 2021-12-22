@@ -16,11 +16,17 @@ LOAD FROM FILE all/ap/garmin/g430
 MULTI -1 HDG MODE next(audio)
 LOAD FROM FILE all/ap/audio
 
-MULTI -1 CRS MODE add()
+
+MULTI -1 CRS MODE copy
+MULTI -1 CRS[1] MODE command
+MULTI -1 CRS[1][FLAP_UP] ON command(sim/flight_controls/flaps_up)
+MULTI -1 CRS[1][FLAP_DOWN] ON command(sim/flight_controls/flaps_down)
+MULTI -1 CRS[1][TRIM] CMD  inc(dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01)
+MULTI -1 CRS[0] MODE add()
 ;---------------------------
-MULTI -1 CRS[0] MODE next(engine)
+MULTI -1 CRS[0][0] MODE next(engine)
 LOAD FROM FILE C172/AP/engine
 ;---------------------------
-MULTI -1 CRS[1] MODE next(electricity)
+MULTI -1 CRS[0][1] MODE next(electricity)
 LOAD FROM FILE C172/AP/electricity
 

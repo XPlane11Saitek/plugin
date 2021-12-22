@@ -1,9 +1,16 @@
 
 
-MULTI -1 g430 MODE if(dataref(plugin/saitek/multi0/button/arm){1:1})
+MULTI -1 g430 MODE copy
+MULTI -1 g430[1] MODE command
+MULTI -1 g430[1][FLAP_UP] ON command(sim/flight_controls/flaps_up)
+MULTI -1 g430[1][FLAP_DOWN] ON command(sim/flight_controls/flaps_down)
+MULTI -1 g430[1][TRIM] CMD  inc(dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01)
+;-----------------------------
+
+MULTI -1 g430[0] MODE if(dataref(plugin/saitek/multi0/button/arm){1:1})
 ; --------------------------- 
-MULTI -1 g430[F] MODE next(g430n1)
-MULTI -1 g430[T] MODE next(g430n2)
+MULTI -1 g430[0][F] MODE next(g430n1)
+MULTI -1 g430[0][T] MODE next(g430n2)
 
 MULTI -1 g430n1 MODE quad()
 ;---------------------------

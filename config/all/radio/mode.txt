@@ -75,19 +75,14 @@ RADIO -1 adf[1][F] MODE off()
 
 RADIO -1 dme MODE dual(2)
 RADIO -1 dme[0] MODE if(dataref(sim/cockpit2/radios/actuators/dme_power){1:1})
-RADIO -1 dme[0][T] MODE if(dataref(sim/cockpit/radios/nav1_dme_dist_m){0:1})
-RADIO -1 dme[0][T][T] MODE if(dataref(sim/cockpit/radios/nav2_dme_dist_m){0:1})
-RADIO -1 dme[0][T][T][T] MODE add()
-RADIO -1 dme[0][T][T][T][0] MODE next(nav1-dme-dist)
-RADIO -1 dme[0][T][T][T][1] MODE next(nav2-dme-dist)
-RADIO -1 dme[0][T][T][F] MODE add()
-RADIO -1 dme[0][T][T][F][0] MODE next(nav1-dme-dist)
-RADIO -1 dme[0][T][T][F][1] MODE off
-RADIO -1 dme[0][T][F] MODE if(dataref(sim/cockpit/radios/nav2_dme_dist_m){0:1})
-RADIO -1 dme[0][T][F][T] MODE add()
-RADIO -1 dme[0][T][F][T][0] MODE off()
-RADIO -1 dme[0][T][F][T][1] MODE next(nav2-dme-dist)
-RADIO -1 dme[0][T][F][F] MODE off
+RADIO -1 dme[0][T] MODE add()
+RADIO -1 dme[0][T][0] MODE if(dataref(sim/cockpit/radios/nav1_dme_dist_m){0:1})
+RADIO -1 dme[0][T][0][T] MODE off
+RADIO -1 dme[0][T][0][F] MODE next(nav1-dme-dist)
+RADIO -1 dme[0][T][1] MODE if(dataref(sim/cockpit/radios/nav2_dme_dist_m){0:1})
+RADIO -1 dme[0][T][1][T] MODE off
+RADIO -1 dme[0][T][1][F] MODE next(nav2-dme-dist)
+
 RADIO -1 dme[0][F] MODE off
 RADIO -1 dme[1] MODE add()
 RADIO -1 dme[1][0] MODE next(com2-baro2)
@@ -95,6 +90,9 @@ RADIO -1 dme[1][1] MODE off
 
 RADIO -1 xpdr MODE dual(2)
 RADIO -1 xpdr[0] MODE add()
-RADIO -1 xpdr[0][0] MODE next(xpdr-freq)
-RADIO -1 xpdr[0][1] MODE next(xpdr-mode)
+RADIO -1 xpdr[0][0] MODE next(xpdr-mode)
+RADIO -1 xpdr[0][1] MODE if(dataref(sim/cockpit/radios/transponder_mode){0:0})
+RADIO -1 xpdr[0][1][T] MODE off()
+RADIO -1 xpdr[0][1][F] MODE next(xpdr-freq)
+; TODO CUTTOM 
 RADIO -1 xpdr[1] MODE off()
