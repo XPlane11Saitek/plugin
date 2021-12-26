@@ -20,26 +20,6 @@
 #include <regex>
 #include <iostream>
 
-void RadioMode::Check() {}
-
-RadioMode::~RadioMode() {}
-
-void RadioMode::Show(Monitor *[2]) {}
-
-void RadioMode::Push() {}
-
-void RadioMode::Release() {}
-
-void RadioMode::Activated() {}
-
-void RadioMode::BigUp() {}
-
-void RadioMode::BigDown() {}
-
-void RadioMode::SmallUp() {}
-
-void RadioMode::SmallDown() {}
-
 RadioMode *createRadio(FileContent *config, std::string button, std::string postfix)
 {
     return RadioMode::New(config, (button + postfix).c_str());
@@ -47,9 +27,7 @@ RadioMode *createRadio(FileContent *config, std::string button, std::string post
 
 RadioMode *RadioMode::New(FileContent *config, const char *button)
 {
-#ifdef DEBUG
-    debug("%s RadioMode::New %s", PLUGIN_DEBUG, button);
-#endif
+    debug("RadioMode::New %s", button);
     const char *mode = config->GetParam(button, "MODE");
     std::cmatch query;
     std::regex regex("(\\w+)(\\((.*)\\))?");
@@ -128,5 +106,5 @@ RadioMode *RadioMode::New(FileContent *config, const char *button)
                 createRadio(config, button, "[0]"),
                 query[3].str().c_str());
     }
-    throw Exception("%s RADIO [%s][%s] ERROR", PLUGIN_ERROR, button, mode);
+    throw Exception("RADIO [%s][%s] ERROR", button, mode);
 }

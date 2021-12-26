@@ -10,9 +10,7 @@
 
 XP11DataRef::XP11DataRef(const char *name)
 {
-#ifdef DEBUG
-    debug("%s DataRef attach [%s]", PLUGIN_DEBUG, name);
-#endif
+    debug("DataRef attach [%s]", name);
 #ifdef XPLANE11PLUGIN
     this->command = NULL;
 #endif
@@ -20,12 +18,12 @@ XP11DataRef::XP11DataRef(const char *name)
     if (std::regex_match(name, regex))
     {
 #ifndef XPLANE11PLUGIN
-        FindInFile("DataRefs.txt", name);
+        FindInFile(&SupportDatarefList, name);
 #endif
-        strcpy(this->line, name);
+        strncpy(this->line, name, STR_DATAREF_SIZE);
         return;
     }
-    throw Exception("%s XP11DataRef incorrect/unexpected [%s]", PLUGIN_ERROR, name);
+    throw Exception("XP11DataRef incorrect/unexpected [%s]", name);
 }
 
 void XP11DataRef::Check()
@@ -33,7 +31,7 @@ void XP11DataRef::Check()
 #ifdef XPLANE11PLUGIN
     this->command = XPLMFindDataRef(this->line);
     if (this->command == NULL)
-        throw Exception("%s XP11DataRef::Check/XPLMFindDataRef incorrect/unexpected NULL or not found [%s]", PLUGIN_ERROR, line);
+        throw Exception("XP11DataRef::Check/XPLMFindDataRef incorrect/unexpected NULL or not found [%s]", line);
     this->commandType = XPLMGetDataRefTypes(this->command);
 #endif
     this->GetValue();
@@ -59,7 +57,7 @@ float XP11DataRef::GetValue()
     }
     break;
     }
-    throw Exception("%s XP11DataRef::GetValue incorrect/unexpected xplmType [%s][%i]",
+    throw Exception("XP11DataRef::GetValue incorrect/unexpected xplmType [%s][%i]",
                     PLUGIN_ERROR, line, this->commandType);
 #else
     return 0;
@@ -68,9 +66,7 @@ float XP11DataRef::GetValue()
 
 void XP11DataRef::SetValue(float newValue)
 {
-#ifdef DEBUG
-    debug("%s SET [%s][%f]", PLUGIN_DEBUG, this->line, newValue);
-#endif
+    info("SET [%s][%f]", this->line, newValue);
 #ifdef XPLANE11PLUGIN
     switch (this->commandType)
     {
@@ -88,7 +84,7 @@ void XP11DataRef::SetValue(float newValue)
     }
     break;
     }
-    throw Exception("%s XP11DataRef::SetValue incorrect/unexpected xplmType [%s][%i]",
+    throw Exception("XP11DataRef::SetValue incorrect/unexpected xplmType [%s][%i]",
                     PLUGIN_ERROR, line, this->commandType);
 #endif
 }

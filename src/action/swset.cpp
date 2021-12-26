@@ -15,7 +15,7 @@ SWDataSet::SWDataSet(const char *line)
         this->value = std::atof(query[3].str().c_str());
         return;
     }
-    throw Exception("%s SET incorrect/unexpected line [%s]", PLUGIN_ERROR, line);
+    throw Exception("SET incorrect/unexpected line [%s]", line);
 }
 
 void SWDataSet::Check()

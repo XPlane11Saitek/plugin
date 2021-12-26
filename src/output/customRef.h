@@ -5,10 +5,12 @@
 #include "XPLMDataAccess.h"
 #endif
 
+#include "plugin.h"
+
 class CustomRef
 {
 protected:
-    char cmdName[64];
+    char cmdName[STR_DATAREF_SIZE];
     int state;
 #ifdef XPLANE11PLUGIN
     XPLMDataRef cmd;

@@ -5,10 +5,8 @@
 class XPlaneRange
 {
 public:
-    virtual ~XPlaneRange();
-
-public:
-    virtual void Check();
+    virtual ~XPlaneRange(){};
+    virtual void Check(){};
     virtual bool IsValueInRange();
 };
 #endif

@@ -13,14 +13,6 @@
 #include <regex>
 #include <iostream>
 
-SWAction::~SWAction() {}
-
-void SWAction::Check() {}
-
-void SWAction::On() {}
-
-void SWAction::Off() {}
-
 SWAction *SWAction::New(const char *param, const char *line)
 {
     if (!strcmp("ON", param))
@@ -29,7 +21,7 @@ SWAction *SWAction::New(const char *param, const char *line)
         return new SWOff(SWAction::New(line));
     if (!strcmp("CMD", param))
         return SWAction::New(line);
-    throw Exception("%s Action [%s] incorrect/unexpected [%s]", PLUGIN_ERROR, param, line);
+    throw Exception("Action [%s] incorrect/unexpected [%s]", param, line);
 }
 
 SWAction *SWAction::New(const char *line)
@@ -53,7 +45,7 @@ SWAction *SWAction::New(const char *line)
             return new SWOff(SWAction::New(query[2].str().c_str()));
         if (!strcmp(query[1].str().c_str(), "runif"))
             return new SWRunIF(query[2].str().c_str());
-        throw Exception("%s Action incorrect/unexpected value [%s]in[%s]", PLUGIN_ERROR, line, query[1].str().c_str());
+        throw Exception("Action incorrect/unexpected value [%s]in[%s]", line, query[1].str().c_str());
     };
-    throw Exception("%s Action incorrect/unexpected [%s]", PLUGIN_ERROR, line);
+    throw Exception("Action incorrect/unexpected [%s]", line);
 }

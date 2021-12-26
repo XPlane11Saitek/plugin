@@ -20,8 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hidapi\windows\hid.c" />
-    <ClCompile Include="src\spec.cpp" />
-    <ClCompile Include="src\debug.cpp" />
+    <ClCompile Include="src\libs\spec.cpp" />
+    <ClCompile Include="src\libs\debug.cpp" />
     <ClCompile Include="src\libs\line.cpp" />
     <ClCompile Include="src\loader\content.cpp" />
     <ClCompile Include="src\loader\reader.cpp" />
@@ -48,7 +48,7 @@
     <ClCompile Include="src\range\rangeValue.cpp" />
     <ClCompile Include="src\color\cell.cpp" />
     <ClCompile Include="src\color\color.cpp" />
-    <ClCompile Include="src\bip.cpp" />
+    <ClCompile Include="src\panel\bip.cpp" />
     <ClCompile Include="src\action\sw.cpp" />
     <ClCompile Include="src\action\swOn.cpp" />
     <ClCompile Include="src\action\swOff.cpp" />
@@ -57,7 +57,7 @@
     <ClCompile Include="src\action\swset.cpp" />
     <ClCompile Include="src\action\swdec.cpp" />
     <ClCompile Include="src\action\swrun.cpp" />
-    <ClCompile Include="src\swith.cpp" />
+    <ClCompile Include="src\panel\swith.cpp" />
     <ClCompile Include="src\radio\mode.cpp" />
     <ClCompile Include="src\radio\modeAdd.cpp" />
     <ClCompile Include="src\radio\modeCommand.cpp" />
@@ -71,7 +71,7 @@
     <ClCompile Include="src\radio\modeHold.cpp" />
     <ClCompile Include="src\radio\modePush.cpp" />
     <ClCompile Include="src\radio\modeExec.cpp" />
-    <ClCompile Include="src\radio.cpp" />
+    <ClCompile Include="src\panel\radio.cpp" />
     <ClCompile Include="src\autopilot\ap.cpp" />
     <ClCompile Include="src\autopilot\apCmd.cpp" />
     <ClCompile Include="src\autopilot\apOff.cpp" />
@@ -81,10 +81,9 @@
     <ClCompile Include="src\autopilot\apRadio.cpp" />
     <ClCompile Include="src\autopilot\apQuad.cpp" />
     <ClCompile Include="src\autopilot\apDisplay.cpp" />
-    <ClCompile Include="src\multi.cpp" />
-    <ClCompile Include="src\init.cpp" />
-    <ClCompile Include="src\panel.cpp" />
-    <ClCompile Include="src\panels.cpp" />
+    <ClCompile Include="src\panel\multi.cpp" />
+    <ClCompile Include="src\panel\panel.cpp" />
+    <ClCompile Include="src\panel\panels.cpp" />
     <ClCompile Include="src\plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -187,7 +186,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>src/plugin.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\autopilot;src\swith;src\radio;src\color;src\source;src\range;src;X:\devel\SDK\CHeaders\XPLM;X:\devel\SDK\CHeaders\Wrappers;X:\devel\SDK\CHeaders\Widgets;X:\devel\SDK\Libraries\Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\panel;src\autopilot;src\swith;src\radio;src\color;src\source;src\range;src;X:\devel\SDK\CHeaders\XPLM;X:\devel\SDK\CHeaders\Wrappers;X:\devel\SDK\CHeaders\Widgets;X:\devel\SDK\Libraries\Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <StringPooling>true</StringPooling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -228,7 +227,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\reader;src\autopilot;src\action;src\radio;src\color;src\source;src\libs;src\range;src\display;src\loader;src\output;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\reader;src\autopilot;src\action;src\radio;src\color;src\source;src\libs;src\range;src\display;src\loader;src\panel;src\output;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <StringPooling>true</StringPooling>

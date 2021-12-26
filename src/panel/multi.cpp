@@ -47,9 +47,9 @@ MULTIPanel::~MULTIPanel()
 void MULTIPanel::Reload()
 {
     // PRE-CHECK
-    if (!this->panelIsLoader)
+    if (this->state == init)
         return;
-    if (!this->panelIsChecked)
+    if (this->state == loaded)
     {
         this->check();
         return;
@@ -80,9 +80,7 @@ void MULTIPanel::Reload()
 #if (defined XPLANE11PLUGIN || defined USB)
         hid_send_feature_report(this->panelUSBDevAddr, rawDisplay, sizeof(this->rawDisplay));
 #endif
-#ifdef DEBUG
-        debug("%s MULTI%i SET LED", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        debug("MULTI%i SET LED", this->panelNumber);
     }
 }
 
@@ -90,16 +88,17 @@ void MULTIPanel::check()
 {
     try
     {
-        debug("%s MULTI%i Verification requirements", PLUGIN_INFO, this->panelNumber);
+        info("MULTI%i Verification requirements", this->panelNumber);
         for (int item = 0; item < MULTI_MODE_COUNT; item++)
             this->mode[item]->Check();
-        this->panelIsChecked = true;
-        debug("%s MULTI%i Requirements good", PLUGIN_INFO, this->panelNumber);
+        this->state = run;
+        info("MULTI%i Requirements good", this->panelNumber);
     }
     catch (const std::exception &e)
     {
-        this->panelIsLoader = false;
-        debug("%s MULTI%i FATAL ERROR [%s]", PLUGIN_ERROR, this->panelNumber, e.what());
+        this->state = init;
+        warning("MULTI%i FATAL ERROR [%s]", this->panelNumber, e.what());
+
 #ifndef XPLANE11PLUGIN
         throw Exception(e.what());
 #endif
@@ -131,9 +130,7 @@ void MULTIPanel::swith()
         if (isSetMode)
             if (this->active != this->mode[item])
             {
-#ifdef DEBUG
-                debug("%s MULTI%i Activate %i", PLUGIN_DEBUG, this->panelNumber, item);
-#endif
+                info("MULTI%i Activate %i", this->panelNumber, item);
                 this->active = this->mode[item];
                 this->active->Activate();
                 this->activeDualMode = item < 2;
@@ -145,16 +142,12 @@ void MULTIPanel::rotate()
 {
     if (this->rawCommand[0] & 0x20)
     {
-#ifdef DEBUG
-        debug("%s MULTI%i ROTATE UP ", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        info("MULTI%i ROTATE UP ", this->panelNumber);
         this->active->RotateUp();
     }
     if (this->rawCommand[0] & 0x40)
     {
-#ifdef DEBUG
-        debug("%s MULTI%i ROTATE DOWN ", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        info("MULTI%i ROTATE DOWN ", this->panelNumber);
         this->active->RotateDown();
     }
 }
@@ -163,16 +156,12 @@ void MULTIPanel::trim()
 {
     if (this->rawCommand[2] & 0x04)
     {
-#ifdef DEBUG
-        debug("%s MULTI%i TRIM UP ", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        info("MULTI%i TRIM UP ", this->panelNumber);
         this->active->ButtonPush(MultiTRIM);
     }
     else if (this->rawCommand[2] & 0x08)
     {
-#ifdef DEBUG
-        debug("%s MULTI%i TRIM DOWN ", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        info("MULTI%i TRIM DOWN ", this->panelNumber);
         this->active->ButtonRelease(MultiTRIM);
     }
 }
@@ -185,17 +174,13 @@ void MULTIPanel::button()
         new_status = this->rawCommand[MULTIButttonBit[item][0]] & MULTIButttonBit[item][1];
         if ((new_status) && (this->buttonStatus[item]->GetState() != 1))
         {
-#ifdef DEBUG
-            debug("%s MULTI%i BUTTON[%i] PUSH ", PLUGIN_DEBUG, this->panelNumber, item);
-#endif
+            debug("MULTI%i BUTTON[%i] PUSH ", this->panelNumber, item);
             this->buttonStatus[item]->SetState(1);
             this->active->ButtonPush(item);
         }
         if ((!new_status) && (this->buttonStatus[item]->GetState() != 0))
         {
-#ifdef DEBUG
-            debug("%s MULTI%i BUTTON[%i] RELEASE ", PLUGIN_DEBUG, this->panelNumber, item);
-#endif
+            debug("MULTI%i BUTTON[%i] RELEASE ", this->panelNumber, item);
             this->buttonStatus[item]->SetState(0);
             this->active->ButtonRelease(item);
         }
@@ -216,21 +201,21 @@ void MULTIPanel::shutdown()
 
 void MULTIPanel::Load(FileContent *config)
 {
-    debug("%s MULTI%i Loading", PLUGIN_INFO, this->panelNumber);
+    info("MULTI%i Loading", this->panelNumber);
     FileContent *panelConfig = config->CreateConfigForPanel(
         "MULTI", this->panelNumber);
     for (int item = 0; item < MULTI_MODE_COUNT; item++)
         this->mode[item] = AP::New(panelConfig, MULTIModeName[item]);
     this->active = this->mode[0];
-    this->panelIsChecked = false;
-    this->panelIsLoader = true;
+    this->state = loaded;
     panelConfig->CheckALLUsage();
     delete panelConfig;
-    debug("%s MULTI%i Download completion", PLUGIN_INFO, this->panelNumber);
+    info("MULTI%i Download completion", this->panelNumber);
 }
 
 void MULTIPanel::Clear()
 {
+    this->state = init;
     for (int item = 0; item < MULTI_MODE_COUNT; item++)
         delete this->mode[item];
     for (int item = 0; item < MULTI_MODE_COUNT; item++)

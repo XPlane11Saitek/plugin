@@ -10,8 +10,8 @@
 CustomRef::CustomRef(const char *devName, int devID, const char *commandName)
 {
    this->state = -1;
-   sprintf(this->cmdName, "plugin/saitek/%s%i/button/%s", devName, devID, commandName);
-   debug("%s Registered %s", PLUGIN_INFO, this->cmdName);
+   snprintf(this->cmdName, STR_DATAREF_SIZE, "plugin/saitek/%s%i/button/%s", devName, devID, commandName);
+   info("Registered %s", this->cmdName);
 #ifdef XPLANE11PLUGIN
    this->cmd = XPLMRegisterDataAccessor(this->cmdName,
                                         xplmType_Int,             // The types we support

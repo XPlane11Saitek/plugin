@@ -6,10 +6,12 @@
 #include "XPLMUtilities.h"
 #endif
 
+#include "plugin.h"
+
 class CustomWrite
 {
 private:
-    char cmdName[64];
+    char cmdName[STR_DATAREF_SIZE];
 #ifdef XPLANE11PLUGIN
     XPLMDataRef cmd;
 #endif

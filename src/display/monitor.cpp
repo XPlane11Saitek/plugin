@@ -9,7 +9,7 @@ Monitor::Monitor(bool isDisplay)
 
 void Monitor::SetValue(STConvert *mode, const float data)
 {
-    //debug("%s display %f", PLUGIN_DEBUG, data);
+    //debug("display %f", data);
     int number[5] = {-1, -1, -1, -1, -1};
     bool point[5] = {false, false, false, false, false};
 

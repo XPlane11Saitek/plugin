@@ -10,8 +10,8 @@
 
 CustomWrite::CustomWrite(const char *devName, int devID, int row, int colum)
 {
-   sprintf(this->cmdName, "plugin/saitek/%s%i/led/row%i/colum%i", devName, devID, row, colum);
-   debug("%s Registered %s", PLUGIN_INFO, this->cmdName);
+   snprintf(this->cmdName, STR_DATAREF_SIZE, "plugin/saitek/%s%i/led/row%i/colum%i", devName, devID, row, colum);
+   info("Registered %s", this->cmdName);
 #ifdef XPLANE11PLUGIN
    this->cmd = XPLMRegisterDataAccessor(this->cmdName,
                                         xplmType_Int,                           // The types we support

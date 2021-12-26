@@ -15,7 +15,7 @@ SingleLED::~SingleLED()
 int SingleLED::RealState()
 {
     int res = this->GetNewState();
-    for (SaitekColor *row : this->content)
+    for (auto row : this->content)
     {
         int new_state = row->GetColor();
         switch (new_state)
@@ -44,13 +44,13 @@ void SingleLED::Load(const char *color, const char *line)
 
 void SingleLED::Clear()
 {
-    for (SaitekColor *row : this->content)
+    for (auto row : this->content)
         delete row;
     this->content.clear();
 }
 
 void SingleLED::Check()
 {
-    for (SaitekColor *row : this->content)
+    for (auto row : this->content)
         row->Check();
 }

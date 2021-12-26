@@ -5,10 +5,12 @@
 #include "XPLMUtilities.h"
 #endif
 
+#include "plugin.h"
+
 class XP11Command
 {
 private:
-    char line[512];
+    char line[STR_DATAREF_SIZE];
 #ifdef XPLANE11PLUGIN
     XPLMCommandRef cmd;
 #endif

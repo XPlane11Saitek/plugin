@@ -8,12 +8,12 @@ BIP::BIP(hid_device *usbdev, const wchar_t *sn, int number) : Panel(usbdev, sn, 
     for (int row = 0; row < BIP_CELL_ROW; row++)
         for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
             this->led[row][colum] = new SingleLED("bip", number, row, colum);
-            // BIP::connectUSB()
+
 #if (defined XPLANE11PLUGIN || defined USB)
     this->panelUSBDevBIP = hid_open(0x6a3, 0xb4e, this->panelSN);
     if (this->panelUSBDevBIP == NULL)
     {
-        debug("%s BIP%i Bad pointer to the address (BIP/connectUSB)", PLUGIN_ERROR, this->panelNumber);
+        debug("BIP%i Bad pointer to the address (BIP/connectUSB)", this->panelNumber);
         this->panelUSBDevBIP = usbdev;
     }
     hid_set_nonblocking(usbdev, 1);
@@ -49,8 +49,7 @@ void BIP::shutdown(int color)
 void BIP::Clear()
 {
     this->shutdown(CELL_ON_GREAN);
-    this->panelIsLoader = false;
-    this->panelIsChecked = false;
+    this->state = init;
     for (int row = 0; row < BIP_CELL_ROW; row++)
         for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
             this->led[row][colum]->Clear();
@@ -58,17 +57,15 @@ void BIP::Clear()
 
 void BIP::Load(FileContent *config)
 {
-    debug("%s BIP%i Loading", PLUGIN_INFO, this->panelNumber);
+    info("BIP%i Loading", this->panelNumber);
     FileContent *panelConfig = config->CreateConfigForPanel(
         "BIP", this->panelNumber);
     FileContent *ledConfig = panelConfig->CreateConfigForButton("-1:-1");
-    for (FileContentLine *cmd : *ledConfig)
+    for (auto cmd : *ledConfig)
         for (int row = 0; row < BIP_CELL_ROW; row++)
             for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
             {
-#ifdef DEBUG
-                debug("%s BIP%i LED ADD %i:%i[%s] %s", PLUGIN_DEBUG, this->panelNumber, row, colum, cmd->key, cmd->value);
-#endif
+                debug("BIP%i LED ADD %i:%i[%s] %s", this->panelNumber, row, colum, cmd->key, cmd->value);
                 cmd->usage = true;
                 this->led[row][colum]->Load(cmd->key, cmd->value);
             }
@@ -78,11 +75,9 @@ void BIP::Load(FileContent *config)
         {
             ledConfig = panelConfig->CreateConfigForButton(
                 (std::to_string(row) + ":" + std::to_string(colum)).c_str());
-            for (FileContentLine *cmd : *ledConfig)
+            for (auto cmd : *ledConfig)
             {
-#ifdef DEBUG
-                debug("%s BIP%i ADD %i:%i[%s] %s", PLUGIN_DEBUG, this->panelNumber, row, colum, cmd->key, cmd->value);
-#endif
+                debug("BIP%i ADD %i:%i[%s] %s", this->panelNumber, row, colum, cmd->key, cmd->value);
                 cmd->usage = true;
                 this->led[row][colum]->Load(cmd->key, cmd->value);
             }
@@ -91,30 +86,29 @@ void BIP::Load(FileContent *config)
         }
     panelConfig->CheckALLUsage();
     delete panelConfig;
-    this->panelIsLoader = true;
-    this->panelIsChecked = false;
+    this->state = loaded;
 #ifdef LOWPERFORMANCE
-    this->step = LOWPERFORMANCE_SKIP_STEP + 1;
+    this->step = LOWPERFORMANCE + 1;
 #endif
     this->shutdown(CELL_OFF);
-    debug("%s BIP%i Download completion", PLUGIN_INFO, this->panelNumber);
+    info("BIP%i Download completion", this->panelNumber);
 }
 
 void BIP::check()
 {
-    debug("%s BIP%i Verification requirements", PLUGIN_INFO, this->panelNumber);
+    info("BIP%i Verification requirements", this->panelNumber);
     try
     {
         for (int row = 0; row < BIP_CELL_ROW; row++)
             for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
                 this->led[row][colum]->Check();
-        debug("%s BIP%i Requirements good", PLUGIN_INFO, this->panelNumber);
-        this->panelIsChecked = true;
+        info("BIP%i Requirements good", this->panelNumber);
+        this->state = run;
     }
     catch (const std::exception &e)
     {
-        this->panelIsLoader = false;
-        debug("%s BIP%i FATAL ERROR[%s]", PLUGIN_ERROR, this->panelNumber, e.what());
+        this->state = init;
+        warning("BIP%i FATAL ERROR[%s]", this->panelNumber, e.what());
         this->shutdown(CELL_ON_RED);
 #ifndef XPLANE11PLUGIN
         throw Exception(e.what());
@@ -124,15 +118,15 @@ void BIP::check()
 
 void BIP::Reload()
 {
-    if (!this->panelIsLoader)
+    if (this->state == init)
         return;
-    if (!this->panelIsChecked)
+    if (this->state == loaded)
     {
         this->check();
         return;
     }
 #ifdef LOWPERFORMANCE
-    if (this->step++ < LOWPERFORMANCE_SKIP_STEP)
+    if (this->step++ < LOWPERFORMANCE)
         return;
     this->step = 0;
 #endif
@@ -147,9 +141,7 @@ void BIP::Reload()
 #if (defined XPLANE11PLUGIN || defined USB)
         hid_send_feature_report(this->panelUSBDevBIP, this->rawDisplay, sizeof(this->rawDisplay));
 #endif
-#ifdef DEBUG
-        debug("%s BIP%i SET LED", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        debug("BIP%i SET LED", this->panelNumber);
         this->saveState(new_state);
     }
 }

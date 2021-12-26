@@ -5,7 +5,7 @@
 #include "spec.h"
 #include "customRef.h"
 
-class RadioPanel : public Panel
+class Radio : public Panel
 {
 private: // USB PANEL DEV
     RADIOGetFeature rawCommand;
@@ -36,8 +36,8 @@ private: //Read USB
     void show(int);
 
 public:
-    RadioPanel(hid_device *, const wchar_t *, int);
-    ~RadioPanel();
+    Radio(hid_device *, const wchar_t *, int);
+    ~Radio();
 
 public:
     void Reload();

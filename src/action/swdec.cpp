@@ -17,7 +17,7 @@ SWDecIncValue::SWDecIncValue(const char *line)
         value = std::atof(query[6].str().c_str());
         return;
     }
-    throw Exception("%s SWDecIncValue incorrect/unexpected line [%s]", PLUGIN_ERROR, line);
+    throw Exception("SWDecIncValue incorrect/unexpected line [%s]", line);
 }
 
 SWDecIncValue::~SWDecIncValue()

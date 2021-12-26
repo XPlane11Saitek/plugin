@@ -1,4 +1,4 @@
-MULTI -1 com1 MODE if(dataref(sim/cockpit2/radios/actuators/com1_power){1:1})
+MULTI -1 com1 MODE  if(dataref(sim/cockpit/electrical/battery_on){1:1})
 ;--------------- ON --------------------
 MULTI -1 com1[T] MODE dual(2)
 MULTI -1 com1[T][0] MODE next(com1-freq)
@@ -8,7 +8,7 @@ MULTI -1 com1[T][1][1] MODE next(altitude)
 ;--------------- OFF --------------------
 MULTI -1 com1[F] MODE off()
 
-MULTI -1 com2 MODE if(dataref(sim/cockpit2/radios/actuators/com2_power){1:1})
+MULTI -1 com2 MODE  if(dataref(sim/cockpit/electrical/battery_on){1:1})
 MULTI -1 com2[T] MODE dual(2)
 MULTI -1 com2[T][0] MODE next(com2-freq)
 MULTI -1 com2[T][1] MODE add()
@@ -17,7 +17,7 @@ MULTI -1 com2[T][1][1] MODE next(com2-minim)
 ;--------------- OFF --------------------
 MULTI -1 com2[F] MODE off()
 
-MULTI -1 nav1 MODE if(dataref(sim/cockpit2/radios/actuators/nav1_power){1:1})
+MULTI -1 nav1 MODE  if(dataref(sim/cockpit/electrical/battery_on){1:1})
 MULTI -1 nav1[T] MODE dual(2)
 MULTI -1 nav1[T][0] MODE timeout(7)
 MULTI -1 nav1[T][0][0] MODE next(nav1-freq)
@@ -33,7 +33,7 @@ MULTI -1 nav1[T][1][0] MODE next(nav1-mag)
 MULTI -1 nav1[T][1][1] MODE next(nav1-obs)
 MULTI -1 nav1[F] MODE off()
 
-MULTI -1 nav2 MODE if(dataref(sim/cockpit2/radios/actuators/nav2_power){1:1})
+MULTI -1 nav2 MODE  if(dataref(sim/cockpit/electrical/battery_on){1:1})
 MULTI -1 nav2[T] MODE dual(2)
 MULTI -1 nav2[T][0] MODE timeout(7)
 MULTI -1 nav2[T][0][0] MODE next(nav2-freq)
@@ -50,7 +50,7 @@ MULTI -1 nav2[T][1][1] MODE next(nav2-obs)
 MULTI -1 nav2[F] MODE off()
 
 MULTI -1 adf MODE dual(2)
-MULTI -1 adf[0] MODE if(dataref(sim/cockpit2/radios/actuators/adf1_power){1:1})
+MULTI -1 adf[0] MODE  if(dataref(sim/cockpit/electrical/battery_on){1:1})
 MULTI -1 adf[0][T] MODE timeout(7)
 MULTI -1 adf[0][T][0] MODE next(adf1-freq)
 MULTI -1 adf[0][T][1] MODE if(dataref(sim/cockpit2/radios/indicators/adf1_dme_distance_nm){0:1})

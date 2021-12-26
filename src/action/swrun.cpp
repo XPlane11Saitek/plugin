@@ -15,7 +15,7 @@ SWRunIF::SWRunIF(const char *line)
         this->value = LoadRange(query[4].str().c_str());
         return;
     }
-    throw Exception("%s RUNIF incorrect/unexpected line [%s]", PLUGIN_ERROR, line);
+    throw Exception("RUNIF incorrect/unexpected line [%s]", line);
 }
 
 SWRunIF::~SWRunIF()

@@ -15,7 +15,7 @@ RadioModeTimeout::RadioModeTimeout(RadioMode *a, RadioMode *b, const char *param
         this->idleTimeout = std::atof(query[0].str().c_str());
         return;
     }
-    throw Exception("%s Radio dual(\\d) incorrect/unexpected [%s]", PLUGIN_ERROR, param);
+    throw Exception("Radio dual(\\d) incorrect/unexpected [%s]", param);
 }
 
 RadioModeTimeout::~RadioModeTimeout()
@@ -34,9 +34,7 @@ void RadioModeTimeout::Show(Monitor *b[2])
 {
     if ((this->mode == 0) && (difftime(time(0), this->lastUpdate) > this->idleTimeout))
     {
-#ifdef DEBUG
-        debug("%s RADIO TIMEOUT DETECT", PLUGIN_DEBUG);
-#endif
+        debug("RADIO TIMEOUT DETECT");
         this->mode = 1;
         this->a[this->mode]->Activated();
         this->lastUpdate = time(0);

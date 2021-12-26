@@ -1,5 +1,6 @@
 
 #include <value.h>
+#include "plugin.h"
 
 #ifdef XPLANE11PLUGIN
 #include "XPLMDataAccess.h"
@@ -8,7 +9,7 @@
 class XP11ArrayValue : public XP11Value
 {
 private:
-    char line[512];
+    char line[STR_DATAREF_SIZE];
 #ifdef XPLANE11PLUGIN
     XPLMDataRef command;
     XPLMDataTypeID commandType;

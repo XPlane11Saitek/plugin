@@ -13,7 +13,7 @@ XP11Value::~XP11Value() {}
 
 float XP11Value::GetValue()
 {
-    throw Exception("%s DEVELOPER ERROR", PLUGIN_ERROR);
+    throw Exception("DEVELOPER ERROR");
 }
 
 void XP11Value::SetValue(float) {}
@@ -33,7 +33,7 @@ XP11Value *XP11Value::New(const char *line)
             return new XP11Constant(query[2].str().c_str());
         if (!strcmp(query[1].str().c_str(), "array"))
             return new XP11ArrayValue(query[2].str().c_str());
-        throw Exception("%s XP11Value incorrect/unexpected value [%s]in[%s]", PLUGIN_ERROR, line, query[1].str().c_str());
+        throw Exception("XP11Value incorrect/unexpected value [%s]in[%s]", line, query[1].str().c_str());
     };
-    throw Exception("%s XP11Value incorrect/unexpected value [%s]", PLUGIN_ERROR, line);
+    throw Exception("XP11Value incorrect/unexpected value [%s]", line);
 }

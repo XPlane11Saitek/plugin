@@ -97,3 +97,28 @@ MULTI -1 xpdr-freq BIGUP sim/transponder/transponder_12_up
 ;----------- mode -----------
 MULTI -1 xpdr-mode MODE value(1,1,0,4,LIMIT,INT)
 MULTI -1 xpdr-mode VALUE dataref(sim/cockpit/radios/transponder_mode)
+;----------- AH -----------
+MULTI -1 ah MODE command(INT)
+MULTI -1 ah VALUE dataref(sim/cockpit/misc/ah_adjust)
+MULTI -1 ah UP sim/instruments/ah_ref_up
+MULTI -1 ah DOWN sim/instruments/ah_ref_down
+;----------- DG -----------
+MULTI -1 dg MODE command(INT)
+MULTI -1 dg VALUE dataref(sim/cockpit/gyros/dg_drift_vac_deg)
+MULTI -1 dg UP sim/instruments/DG_sync_up
+MULTI -1 dg DOWN sim/instruments/DG_sync_down
+;----------- volume com1 -----------
+MULTI -1 volume-com1 MODE value(0.01,0.01,0,1,LIMIT,FLOAT)
+MULTI -1 volume-com1 VALUE dataref(sim/cockpit2/radios/actuators/audio_volume_com1)
+;----------- volume com2 -----------
+MULTI -1 volume-com2 MODE value(0.01,0.01,0,1,LIMIT,FLOAT)
+MULTI -1 volume-com2 VALUE dataref(sim/cockpit2/radios/actuators/audio_volume_com2)
+;----------- volume nav1 -----------
+MULTI -1 volume-nav1 MODE value(0.01,0.01,0,1,LIMIT,FLOAT)
+MULTI -1 volume-nav1 VALUE dataref(sim/cockpit2/radios/actuators/audio_volume_nav1)
+;----------- volume nav2 -----------
+MULTI -1 volume-nav2 MODE value(0.01,0.01,0,1,LIMIT,FLOAT)
+MULTI -1 volume-nav2 VALUE dataref(sim/cockpit2/radios/actuators/audio_volume_nav2)
+;----------- volume adf -----------
+MULTI -1 volume-adf1 MODE value(0.01,0.01,0,1,LIMIT,FLOAT)
+MULTI -1 volume-adf1 VALUE dataref(sim/cockpit2/radios/actuators/audio_volume_adf1)
