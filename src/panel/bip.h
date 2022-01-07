@@ -11,22 +11,16 @@ protected: // usb
     hid_device *panelUSBDevBIP;
     void shutdown(int);
     void check();
-
-protected: // LED
     SingleLED *led[BIP_CELL_ROW][BIP_CELL_COLUM];
     BIPSetFeature rawDisplay;
-
-protected: // State
     void getState(BIPState &);
     bool needUpdate(BIPState);
     void saveState(BIPState);
 
 public:
     BIP(hid_device *, const wchar_t *, int);
-    void Reload();
     ~BIP();
-
-public: //Loader
+    void Reload();
     void Clear();
     void Load(FileContent *);
 };

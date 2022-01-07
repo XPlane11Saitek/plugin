@@ -15,7 +15,7 @@ SaitekColor::SaitekColor(const char *color, const char *line)
     else if (!strcmp("RED", color))
         this->color = CELL_ON_RED;
     else
-        throw Exception("%s SaitekColor incorrect/unexpected color [%s]", PLUGIN_ERROR, color);
+        throw Exception("SaitekColor incorrect/unexpected color [%s]", color);
     this->value = LoadRange(line);
 }
 

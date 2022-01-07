@@ -4,7 +4,7 @@ project(saitek CXX C)
 if(DEFINED XPVERSION)
   message("XPVERSION=" ${XPVERSION})
 else()
-  set(XPVERSION, "0.2.1")
+  set(XPVERSION, "0.2.2")
   message("XPVERSION=" ${XPVERSION})
 endif()
 add_compile_definitions(XPVERSION="${XPVERSION}")
@@ -42,6 +42,8 @@ set(DIR
   src/libs/
   src/radio/
   src/autopilot/
+  src/panel/
+  tests/
   ${HID_PATH}/hidapi/
 )
 if(DEFINED XPLANE11PLUGIN)
@@ -54,8 +56,8 @@ endif()
 
 
 set(CODE 
-  src/spec.cpp
-  src/debug.cpp
+  src/libs/spec.cpp
+  src/libs/debug.cpp
   src/libs/line.cpp
 
   src/loader/content.cpp
@@ -88,7 +90,6 @@ set(CODE
 
   src/color/cell.cpp
   src/color/color.cpp
-  src/bip.cpp
 
   src/action/sw.cpp
   src/action/swoff.cpp
@@ -98,7 +99,6 @@ set(CODE
   src/action/swset.cpp
   src/action/swdec.cpp
   src/action/swrun.cpp
-  src/swith.cpp
 
   src/radio/mode.cpp
   src/radio/modeOff.cpp
@@ -113,7 +113,6 @@ set(CODE
   src/radio/modeHold.cpp
   src/radio/modeExec.cpp
   src/radio/modePush.cpp
-  src/radio.cpp
 
   src/autopilot/ap.cpp
   src/autopilot/apCmd.cpp
@@ -125,15 +124,17 @@ set(CODE
   src/autopilot/apDisplay.cpp
   src/autopilot/apQuad.cpp
 
-  src/multi.cpp
-  src/init.cpp
-  src/panel.cpp
-  src/panels.cpp
+  src/panel/panel.cpp
+  src/panel/bip.cpp
+  src/panel/swith.cpp
+  src/panel/radio.cpp
+  src/panel/multi.cpp
+  src/panel/panels.cpp
   src/plugin.cpp
 )
 if(NOT DEFINED XPLANE11PLUGIN)
   set(CODE "${CODE}"
-    src/main.cpp
+    tests/main.cpp
   )
 endif()
 

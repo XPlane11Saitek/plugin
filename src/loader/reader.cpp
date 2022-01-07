@@ -12,7 +12,7 @@ FileReader::FileReader(std::string filename)
 
 void FileReader::loadFileName(std::string filename)
 {
-    debug("%s Loading file %s", PLUGIN_INFO, filename.c_str());
+    info("Loading file %s", filename.c_str());
     std::ifstream file(PLUGIN_CONFIG_PATH + filename + ".txt");
     std::string line;
     unsigned int pos = 0;
@@ -26,7 +26,7 @@ void FileReader::loadFileName(std::string filename)
         else if (this->loadData(line, filename, pos))
             /* Loader Data*/;
         else
-            throw Exception("%s LoadFile incorrect/unexpected line [%s][%s][%d]", PLUGIN_ERROR, line.c_str(), filename.c_str(), pos);
+            throw Exception("LoadFile incorrect/unexpected line [%s][%s][%d]", line.c_str(), filename.c_str(), pos);
     }
 }
 

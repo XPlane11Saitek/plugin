@@ -23,7 +23,7 @@ RadioModeValue::RadioModeValue(const char *dataref, const char *param)
         this->displayMode = STConvert::New(query[6].str().c_str());
         return;
     }
-    throw Exception("%s Radio value incorrect/unexpected line [%s]", PLUGIN_ERROR, param);
+    throw Exception("Radio value incorrect/unexpected line [%s]", param);
 }
 
 float RadioModeValue::load(const char *param)
@@ -32,7 +32,7 @@ float RadioModeValue::load(const char *param)
     std::regex regex("(\\s+)?(-?\\d+(\\.\\d+)?)(\\s+)?");
     if (std::regex_search(param, query, regex))
         return std::atof(query[2].str().c_str());
-    throw Exception("%s Radio value/float incorrect/unexpected line [%s]", PLUGIN_ERROR, param);
+    throw Exception("Radio value/float incorrect/unexpected line [%s]", param);
 }
 
 RadioModeValue::~RadioModeValue()

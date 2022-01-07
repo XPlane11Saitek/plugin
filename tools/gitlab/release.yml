@@ -1,11 +1,29 @@
 
-release:tags:
+release:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
-  rules:
-    - if: $CI_COMMIT_TAG
   script:
     - echo "Running the release job."
   release:
-    name: 'Release $CI_COMMIT_TAG'
-    description: 'Release created using the release-cli.'
+    tag_name: 'v$PLUGIN_VERSION($CI_COMMIT_SHORT_SHA)'
+    name: 'Release $PLUGIN_VERSION($CI_COMMIT_SHORT_SHA)'
+    description: '$PLUGIN_VERSION($CI_COMMIT_SHORT_SHA) : $EXTRA_DESCRIPTION'
+    ref: '$CI_COMMIT_SHA'
+    assets:
+      links:
+        - name: 'mac.xpl'
+          url: '${CI_JOB_URL}/file/mac.xpl?job=mac'
+        - name: 'lin.xpl'
+          url: '${CI_JOB_URL}/file/lin.xpl?job=linux'
+        - name: 'win.xpl'
+          url: '${CI_JOB_URL}/file/win.xpl?job=win'
+  needs:
+    - job: build:linux
+      artifacts: true
+    - job: build:mac
+      artifacts: true
+    - job: build:windows
+      artifacts: true
+  only:
+    - master
+    

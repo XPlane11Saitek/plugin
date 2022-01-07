@@ -5,7 +5,7 @@
 #include "modeOff.h"
 #include <cstring>
 
-RadioPanel::RadioPanel(hid_device *usbdev, const wchar_t *sn, int uids) : Panel(usbdev, sn, uids)
+Radio::Radio(hid_device *usbdev, const wchar_t *sn, int uids) : Panel(usbdev, sn, uids)
 {
     //RadioPanel::createRadioElement()
     for (int i = 0; i < 4; i++)
@@ -37,7 +37,7 @@ RadioPanel::RadioPanel(hid_device *usbdev, const wchar_t *sn, int uids) : Panel(
 #endif
 }
 
-void RadioPanel::show(int)
+void Radio::show(int)
 {
     memcpy(this->rawCommand, ZeroRADIOGetFeature, sizeof(ZeroRADIOGetFeature));
     memcpy(this->rawDisplay, ZeroRADIOSetFeature, sizeof(ZeroRADIOSetFeature));
@@ -54,7 +54,7 @@ void RadioPanel::show(int)
 #endif
 }
 
-RadioPanel::~RadioPanel()
+Radio::~Radio()
 {
     this->shutdown();
     for (int item = 0; item < RADIO_MODE_COUNT; item++)
@@ -67,22 +67,22 @@ RadioPanel::~RadioPanel()
     delete this->downPush;
 }
 
-void RadioPanel::check()
+void Radio::check()
 {
     try
     {
-        debug("%s RADIO%i Verification requirements", PLUGIN_INFO, this->panelNumber);
+        info("RADIO%i Verification requirements", this->panelNumber);
         for (int item = 0; item < RADIO_MODE_COUNT; item++)
             upMode[item]->Check();
         for (int item = 0; item < RADIO_MODE_COUNT; item++)
             downMode[item]->Check();
-        debug("%s RADIO%i Requirements good", PLUGIN_INFO, this->panelNumber);
-        this->panelIsChecked = true;
+        info("RADIO%i Requirements good", this->panelNumber);
+        this->state = run;
     }
     catch (const std::exception &e)
     {
-        this->panelIsLoader = false;
-        debug("%s RADIO%i FATAL ERROR [%s]", PLUGIN_ERROR, this->panelNumber, e.what());
+        this->state = init;
+        warning("RADIO%i FATAL ERROR [%s]", this->panelNumber, e.what());
         this->show(33);
 #ifndef XPLANE11PLUGIN
         throw Exception(e.what());
@@ -90,11 +90,11 @@ void RadioPanel::check()
     }
 }
 
-void RadioPanel::Reload()
+void Radio::Reload()
 {
-    if (!this->panelIsLoader)
+    if (this->state == init)
         return;
-    if (!this->panelIsChecked)
+    if (this->state == loaded)
     {
         this->check();
         return;
@@ -113,13 +113,11 @@ void RadioPanel::Reload()
 #if (defined XPLANE11PLUGIN || defined USB)
         hid_send_feature_report(this->panelUSBDevAddr, rawDisplay, sizeof(this->rawDisplay));
 #endif
-#ifdef DEBUG
-        debug("%s RADIO%i SET LED", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        debug("RADIO%i SET LED", this->panelNumber);
     }
 }
 
-void RadioPanel::readUSBData()
+void Radio::readUSBData()
 {
     int status;
     do
@@ -135,7 +133,7 @@ void RadioPanel::readUSBData()
     } while (status > 0);
 }
 
-void RadioPanel::changePos()
+void Radio::changePos()
 {
     bool new_status;
     for (int item = 0; item < RADIO_MODE_COUNT; item++)
@@ -153,7 +151,7 @@ void RadioPanel::changePos()
     }
 }
 
-void RadioPanel::rotate()
+void Radio::rotate()
 {
     //01| TOP small Rotary Encoder clockwise
     if ((this->rawCommand[2] & 0x01))
@@ -181,43 +179,35 @@ void RadioPanel::rotate()
         this->downPanel->BigDown();
 }
 
-void RadioPanel::changeUpPos(int newPos)
+void Radio::changeUpPos(int newPos)
 {
-#ifdef DEBUG
-    debug("%s RADIO%i UP Activated", PLUGIN_DEBUG, this->panelNumber);
-#endif
+    info("RADIO%i UP Activated", this->panelNumber);
     this->upPanel = this->upMode[newPos];
     this->upPanel->Activated();
 }
 
-void RadioPanel::changeDownPos(int newPos)
+void Radio::changeDownPos(int newPos)
 {
-#ifdef DEBUG
-    debug("%s RADIO%i DOWN Activated", PLUGIN_DEBUG, this->panelNumber);
-#endif
+    info("RADIO%i DOWN Activated", this->panelNumber);
     this->downPanel = this->downMode[newPos];
     this->downPanel->Activated();
 }
 
-void RadioPanel::changeMode()
+void Radio::changeMode()
 {
     // TOP ACT/STBY                    1           6           1       0x00 40 00
     if (this->rawCommand[1] & 0x40)
     {
         if (this->upPush->GetState() != 1)
         {
-#ifdef DEBUG
-            debug("%s RADIO%i UP PUSH", PLUGIN_DEBUG, this->panelNumber);
-#endif
+            info("RADIO%i UP PUSH", this->panelNumber);
             this->upPanel->Push();
             this->upPush->SetState(1);
         }
     }
     else if (this->upPush->GetState() != 0)
     {
-#ifdef DEBUG
-        debug("%s RADIO%i UP RELEASE", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        info("RADIO%i UP RELEASE", this->panelNumber);
         this->upPanel->Release();
         this->upPush->SetState(0);
     }
@@ -226,26 +216,22 @@ void RadioPanel::changeMode()
     {
         if (this->downPush->GetState() != 1)
         {
-#ifdef DEBUG
-            debug("%s RADIO%i DOWN PUSH", PLUGIN_DEBUG, this->panelNumber);
-#endif
+            info("RADIO%i DOWN PUSH", this->panelNumber);
             this->downPanel->Push();
             this->downPush->SetState(1);
         }
     }
     else if (this->downPush->GetState() != 0)
     {
-#ifdef DEBUG
-        debug("%s RADIO%i DOWN RELEASE", PLUGIN_DEBUG, this->panelNumber);
-#endif
+        info("RADIO%i DOWN RELEASE", this->panelNumber);
         this->downPanel->Release();
         this->downPush->SetState(0);
     }
 }
 
-void RadioPanel::Load(FileContent *config)
+void Radio::Load(FileContent *config)
 {
-    debug("%s RADIO%i Loading", PLUGIN_INFO, this->panelNumber);
+    info("RADIO%i Loading", this->panelNumber);
     FileContent *panelConfig = config->CreateConfigForPanel(
         "RADIO", this->panelNumber);
     for (int item = 0; item < RADIO_MODE_COUNT; item++)
@@ -254,14 +240,13 @@ void RadioPanel::Load(FileContent *config)
     for (int item = 0; item < RADIO_MODE_COUNT; item++)
         this->downMode[item] = RadioMode::New(panelConfig, RadioButtonName[item]);
     this->downPanel = this->downMode[0];
-    this->panelIsLoader = true;
-    this->panelIsChecked = false;
+    this->state = loaded;
     panelConfig->CheckALLUsage();
     delete panelConfig;
-    debug("%s RADIO%i Download completion", PLUGIN_INFO, this->panelNumber);
+    info("RADIO%i Download completion", this->panelNumber);
 }
 
-void RadioPanel::shutdown()
+void Radio::shutdown()
 {
     for (int i = 0; i < 4; i++)
         this->monitor[i / 2][i % 2]->SetOff();
@@ -272,8 +257,9 @@ void RadioPanel::shutdown()
 #endif
 }
 
-void RadioPanel::Clear()
+void Radio::Clear()
 {
+    this->state = init;
     for (int item = 0; item < RADIO_MODE_COUNT; item++)
         delete this->upMode[item];
     for (int item = 0; item < RADIO_MODE_COUNT; item++)

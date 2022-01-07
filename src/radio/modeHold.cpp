@@ -16,7 +16,7 @@ RadioModeHold::RadioModeHold(RadioMode *obj, const char *line)
         this->presTimeout = std::atof(query[2].str().c_str());
         return;
     }
-    throw Exception("%s Radio value incorrect/unexpected line [%s]", PLUGIN_ERROR, line);
+    throw Exception("Radio value incorrect/unexpected line [%s]");
 }
 
 RadioModeHold::~RadioModeHold()
@@ -35,9 +35,7 @@ void RadioModeHold::Show(Monitor *a[2])
 {
     if ((this->isPush) && (this->isPressLong()) && (!this->isPushLong))
     {
-#ifdef DEBUG
-        debug("%s RADIO LONG PRESS DETECT", PLUGIN_DEBUG);
-#endif
+        debug("RADIO LONG PRESS DETECT");
         this->cmd->Once();
         this->isPushLong = true;
     };

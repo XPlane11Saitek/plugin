@@ -23,7 +23,7 @@ XPlaneRange *LoadSingleRange(const char *line)
                                 std::atof(query[2].str().c_str()),
                                 std::atof(query[4].str().c_str()));
     }
-    throw Exception("%s LoadRange incorrect/unexpected incorrect range [%s]", PLUGIN_ERROR, line);
+    throw Exception("LoadRange incorrect/unexpected incorrect range [%s]", line);
 }
 
 XPlaneRange *LoadRange(const char *line)
@@ -45,7 +45,7 @@ XPlaneRange *LoadRange(const char *line)
             delete obj;
             return new XPRangeAND(leftObj, rightObj);
         }
-        throw Exception("%s LoadRange incorrect/unexpected line/mode [%s][%s]", PLUGIN_ERROR, line, mode);
+        throw Exception("LoadRange incorrect/unexpected line/mode [%s][%s]", line, mode);
     }
     delete obj;
     return LoadSingleRange(line);

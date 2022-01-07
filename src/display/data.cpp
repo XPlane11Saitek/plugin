@@ -36,5 +36,5 @@ STConvert *STConvert::New(const char *mode)
         return new STDiv(STConvert::New(
                              query[1].str().c_str()),
                          std::atoi(query[2].str().c_str()));
-    throw Exception("%s DISPLAY MODE incorrect/unexpected [%s]", PLUGIN_ERROR, mode);
+    throw Exception("DISPLAY MODE incorrect/unexpected [%s]", mode);
 }

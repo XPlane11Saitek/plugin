@@ -39,9 +39,7 @@ AP *createAP(FileContent *config, std::string button, std::string postfix)
 AP *AP::New(FileContent *config, const char *button)
 {
     const char *mode = config->GetParam(button, "MODE");
-#ifdef DEBUG
-    debug("%s AP::New %s", PLUGIN_DEBUG, button);
-#endif
+    debug("AP::New %s", button);
     std::cmatch query;
     std::regex regex("(\\w+)(\\((.*)\\))?");
     if (std::regex_match(mode, query, regex))
@@ -76,11 +74,9 @@ AP *AP::New(FileContent *config, const char *button)
             {
                 FileContent *param = config->CreateConfigForButton(
                     (button + std::string(MULTIButttonLoader[pos])).c_str());
-                for (FileContentLine *row : *param)
+                for (auto row : *param)
                 {
-#ifdef DEBUG
-                    debug("%s CMD ADD %s button %s key %s value %s", PLUGIN_DEBUG, button, MULTIButttonLoader[pos], row->key, row->value);
-#endif
+                    debug("CMD ADD %s button %s key %s value %s", button, MULTIButttonLoader[pos], row->key, row->value);
                     row->usage = true;
                     cmd->Loader(pos, SWAction::New(row->key, row->value));
                 }
@@ -96,20 +92,16 @@ AP *AP::New(FileContent *config, const char *button)
                 std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
                 if (config->IsParam(newButton.c_str(), "LED"))
                     dsp->LoaderRange(pos, LoadRange(config->GetParam(newButton.c_str(), "LED")));
-#ifdef DEBUG
                 else
-                    debug("%s SKIP MULTI PANEL LED %s", PLUGIN_DEBUG, newButton.c_str());
-#endif
+                    debug("SKIP MULTI PANEL LED %s", newButton.c_str());
             }
             for (int pos = 0; pos < MULTI_BUTTON_LOADER; pos++)
             {
                 std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
                 if (config->IsParam(newButton.c_str(), "MODE"))
                     dsp->LoaderMode(pos, RadioMode::New(config, newButton.c_str()));
-#ifdef DEBUG
                 else
-                    debug("%s SKIP MULTI PANEL %s", PLUGIN_DEBUG, newButton.c_str());
-#endif
+                    debug("SKIP MULTI PANEL %s", newButton.c_str());
             }
             return dsp;
         }
@@ -121,14 +113,12 @@ AP *AP::New(FileContent *config, const char *button)
                 std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
                 if (config->IsParam(newButton.c_str(), "MODE"))
                     rdo->Loader(pos, RadioMode::New(config, newButton.c_str()));
-#ifdef DEBUG
                 else
-                    debug("%s SKIP MULTI PANEL %s", PLUGIN_DEBUG, newButton.c_str());
-#endif
+                    debug("SKIP MULTI PANEL %s", newButton.c_str());
             }
             return rdo;
         }
     }
 
-    throw Exception("%s MULTI LOADERD [%s] AND MODE [%s] NOT FOUND", PLUGIN_ERROR, button, mode);
+    throw Exception("MULTI LOADERD [%s] AND MODE [%s] NOT FOUND", button, mode);
 }

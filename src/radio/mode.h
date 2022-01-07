@@ -11,20 +11,18 @@
 class RadioMode
 {
 public:
-    virtual ~RadioMode();
     static RadioMode *New(FileContent *, const char *);
 
 public:
-    virtual void Check();
-    virtual void Show(Monitor *[2]);
-    virtual void Activated();
-
-public:
-    virtual void Push();
-    virtual void Release();
-    virtual void BigUp();
-    virtual void BigDown();
-    virtual void SmallUp();
-    virtual void SmallDown();
+    virtual ~RadioMode(){};
+    virtual void Check(){};
+    virtual void Show(Monitor *[2]){};
+    virtual void Activated(){};
+    virtual void Push(){};
+    virtual void Release(){};
+    virtual void BigUp(){};
+    virtual void BigDown(){};
+    virtual void SmallUp(){};
+    virtual void SmallDown(){};
 };
 #endif

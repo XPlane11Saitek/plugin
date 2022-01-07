@@ -10,11 +10,11 @@ stages:
   - release
 
 include:
-  - /.gitlab-ci-test.yml
-  - /.gitlab-ci-build.yml
-  - /.gitlab-ci-deploy.yml
-  - /.gitlab-ci-qa.yml
-  - /.gitlab-ci-release.yml
+  - /tools/gitlab/test.yml
+  - /tools/gitlab/build.yml
+  - /tools/gitlab/deploy.yml
+  - /tools/gitlab/qa.yml
+  - /tools/gitlab/release.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
   # TODO BUG  FIXED / Remove Code Quality LONG  

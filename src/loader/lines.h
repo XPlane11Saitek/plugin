@@ -1,15 +1,17 @@
 
+#include "plugin.h"
+
 struct FileContentLine
 {
-    char line[512];
-    char filename[512];
+    char line[STR_FILELINE_SIZE];
+    char filename[STR_FILENAME_SIZE];
     int lineNumber;
     //
-    char panelName[64];
+    char panelName[STR_PANELNAME_SIZE];
     int panelNumber;
-    char button[64];
-    char key[64];
-    char value[512];
+    char button[STR_BUTTONNAME_SIZE];
+    char key[STR_BUTTONNAME_SIZE];
+    char value[STR_FILELINE_SIZE];
     //
     bool usage;
 };

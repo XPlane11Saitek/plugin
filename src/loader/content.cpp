@@ -6,7 +6,7 @@
 
 const char *FileContent::getParamDefault(const char *button, const char *key, const char *defaults)
 {
-    for (FileContentLine *row : this->content)
+    for (auto row : this->content)
         if ((!strcmp(button, row->button)) && (!strcmp(key, row->key)))
         {
             row->usage = true;
@@ -25,7 +25,7 @@ const char *FileContent::GetParam(const char *button, const char *key)
     const char *value = this->getParamDefault(button, key, NULL);
     if (value != NULL)
         return value;
-    throw Exception("%s %s %s Mode incorrect/unexpected NULL", PLUGIN_ERROR, button, key);
+    throw Exception("%s %s Mode incorrect/unexpected NULL", button, key);
 }
 
 float FileContent::GetParamFloat(const char *button, const char *key)
@@ -46,7 +46,7 @@ std::list<FileContentLine *>::iterator FileContent::end()
 FileContent *FileContent::CreateConfigForPanel(const char *pname, int number)
 {
     FileContent *res = new FileContent();
-    for (FileContentLine *row : this->content)
+    for (auto row : this->content)
         if (!strcmp(row->panelName, pname))
             if ((row->panelNumber == -1) || (row->panelNumber == number))
                 res->content.insert(res->content.begin(), 1, row);
@@ -56,7 +56,7 @@ FileContent *FileContent::CreateConfigForPanel(const char *pname, int number)
 FileContent *FileContent::CreateConfigForButton(const char *button)
 {
     FileContent *res = new FileContent();
-    for (FileContentLine *row : this->content)
+    for (auto row : this->content)
         if (!strcmp(row->button, button))
             res->content.insert(res->content.begin(), 1, row);
     return res;
@@ -64,7 +64,7 @@ FileContent *FileContent::CreateConfigForButton(const char *button)
 
 void FileContent::CheckALLUsage()
 {
-    for (FileContentLine *row : this->content)
+    for (auto row : this->content)
         if (!row->usage)
-            debug("%s Load in %s:%i [%s]", PLUGIN_WARNING, row->filename, row->lineNumber, row->line);
+            warning("Load in %s:%i [%s]", PLUGIN_WARNING, row->filename, row->lineNumber, row->line);
 }

@@ -5,16 +5,14 @@
 
 XP11Constant::XP11Constant(const char *data)
 {
-#ifdef DEBUG
-    debug("%s Const attach [%s]", PLUGIN_DEBUG, data);
-#endif
+    debug("Const attach [%s]", data);
     std::regex regex("\\-?\\d+(\\.\\d+)?");
     if (std::regex_match(data, regex))
     {
         this->content = std::atof(data);
         return;
     }
-    throw Exception("%s Const incorrect/unexpected [%s]", PLUGIN_ERROR, data);
+    throw Exception("Const incorrect/unexpected [%s]", data);
 }
 
 XP11Constant::~XP11Constant() {}
@@ -26,11 +24,7 @@ float XP11Constant::GetValue()
 
 void XP11Constant::SetValue(float newValue)
 {
-#ifdef DEBUG
-    debug("%s Ignore [%f]", PLUGIN_DEBUG, newValue);
-#else
-    (void)newValue;
-#endif
+    debug("Ignore [%f]", newValue);
 }
 
 void XP11Constant::Check() {}

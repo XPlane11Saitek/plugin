@@ -12,9 +12,7 @@
 
 XP11ArrayValue::XP11ArrayValue(const char *line)
 {
-#ifdef DEBUG
-    debug("%s XP11Array attach [%s]", PLUGIN_DEBUG, line);
-#endif
+    debug("XP11Array attach [%s]", line);
 #ifdef XPLANE11PLUGIN
     this->command = NULL;
 #endif
@@ -23,13 +21,13 @@ XP11ArrayValue::XP11ArrayValue(const char *line)
     if (std::regex_match(line, query, regex))
     {
 #ifndef XPLANE11PLUGIN
-        FindInFile("DataRefs.txt", query[1].str().c_str());
+        FindInFile(&SupportDatarefList, query[1].str().c_str());
 #endif
         this->item = std::atof(query[3].str().c_str());
-        strcpy(this->line, query[1].str().c_str());
+        strncpy(this->line, query[1].str().c_str(), STR_DATAREF_SIZE);
         return;
     }
-    throw Exception("%s XP11Array attach incorrect/unexpected name [%s]", PLUGIN_ERROR, line);
+    throw Exception("XP11Array attach incorrect name [%s]", line);
 }
 
 XP11ArrayValue::~XP11ArrayValue() {}
@@ -39,7 +37,7 @@ void XP11ArrayValue::Check()
 #ifdef XPLANE11PLUGIN
     this->command = XPLMFindDataRef(this->line);
     if (this->command == NULL)
-        throw Exception("%s XP11ArrayValue::Check/XPLMFindDataRef incorrect/unexpected NULL or not found [%s]", PLUGIN_ERROR, line);
+        throw Exception("XP11ArrayValue::Check/XPLMFindDataRef incorrect/unexpected NULL or not found [%s]", line);
     this->commandType = XPLMGetDataRefTypes(this->command);
 #endif
     this->GetValue();
@@ -66,7 +64,7 @@ float XP11ArrayValue::GetValue()
     }
     break;
     }
-    throw Exception("%s XP11ArrayValue::GetValue incorrect/unexpected xplmType [%s][%i]",
+    throw Exception("XP11ArrayValue::GetValue incorrect/unexpected xplmType [%s][%i]",
                     PLUGIN_ERROR, line, this->commandType);
 #else
     return 0;
@@ -75,9 +73,7 @@ float XP11ArrayValue::GetValue()
 
 void XP11ArrayValue::SetValue(float newValue)
 {
-#ifdef DEBUG
-    debug("%s SET [%s][%f]", PLUGIN_DEBUG, this->line, newValue);
-#endif
+    debug("SET [%s][%f]", this->line, newValue);
 #ifdef XPLANE11PLUGIN
     switch (this->commandType)
     {
@@ -96,7 +92,7 @@ void XP11ArrayValue::SetValue(float newValue)
     }
     break;
     }
-    throw Exception("%s XP11ArrayValue::SetValue incorrect/unexpected xplmType [%s][%i]",
+    throw Exception("XP11ArrayValue::SetValue incorrect/unexpected xplmType [%s][%i]",
                     PLUGIN_ERROR, line, this->commandType);
 #endif
 }

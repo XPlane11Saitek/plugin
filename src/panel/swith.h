@@ -5,7 +5,7 @@
 #include "spec.h"
 #include "customRef.h"
 
-class SWPanel : public Panel
+class SW : public Panel
 {
 private: // USB PANEL DEV
     SWGetFeature rawCommand;
@@ -26,9 +26,9 @@ private:
     void readDecode();
 
 public:
-    SWPanel(hid_device *, const wchar_t *, int);
+    SW(hid_device *, const wchar_t *, int);
     void Reload();
-    ~SWPanel();
+    ~SW();
 
 public:
     void Clear();

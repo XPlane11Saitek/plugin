@@ -2,11 +2,7 @@
 #include "range.h"
 #include "debug.h"
 
-XPlaneRange::~XPlaneRange() {}
-
 bool XPlaneRange::IsValueInRange()
 {
-    throw Exception("%s DEVELOPER ERROR", PLUGIN_ERROR);
+    throw Exception("DEVELOPER ERROR");
 }
-
-void XPlaneRange::Check() {}

@@ -28,9 +28,17 @@ MULTI -1 audio[0][01][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
 MULTI -1 audio[0][01][HDG] MODE next(com2-baro1)
 MULTI -1 audio[0][01][NAV] MODE next(com2-baro2)
 MULTI -1 audio[0][01][IAS] MODE next(com2-minim)
-MULTI -1 audio[0][01][ALT] MODE next(xpdr-mode)
-MULTI -1 audio[0][01][VS] MODE next(xpdr-freq)
+MULTI -1 audio[0][01][ALT] MODE next(ah)
+MULTI -1 audio[0][01][VS] MODE next(dg)
 
 MULTI -1 audio[0][10] MODE display
+MULTI -1 audio[0][10][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
+MULTI -1 audio[0][10][HDG] MODE next(volume-com1)
+MULTI -1 audio[0][10][NAV] MODE next(volume-com2)
+MULTI -1 audio[0][10][IAS] MODE next(volume-nav1)
+MULTI -1 audio[0][10][ALT] MODE next(volume-nav2)
+MULTI -1 audio[0][10][VS] MODE next(volume-adf1)
+
 MULTI -1 audio[0][11] MODE display
+MULTI -1 audio[0][11][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
 

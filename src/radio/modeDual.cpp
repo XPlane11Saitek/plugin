@@ -15,7 +15,7 @@ RadioModeDUAL::RadioModeDUAL(RadioMode *a, RadioMode *c, const char *param)
         this->presTimeout = std::atof(query[0].str().c_str());
         return;
     }
-    throw Exception("%s Radio dual(\\d) incorrect/unexpected [%s]", PLUGIN_ERROR, param);
+    throw Exception("Radio dual(\\d) incorrect/unexpected [%s]", param);
 }
 
 RadioModeDUAL::~RadioModeDUAL()
@@ -51,17 +51,13 @@ void RadioModeDUAL::Show(Monitor *b[2])
 {
     if ((this->mode == 0) && (this->isPush) && (this->isPressLong()) && (!this->isPushLong))
     {
-#ifdef DEBUG
-        debug("%s RADIO LONG PRESS DETECT", PLUGIN_DEBUG);
-#endif
+        debug("RADIO LONG PRESS DETECT");
         this->isPushLong = true;
         this->switchTo(1);
     }
     if ((this->mode == 1) && (this->isPush) && (this->isPressLong()) && (!this->isPushLong))
     {
-#ifdef DEBUG
-        debug("%s RADIO LONG PRESS DETECT", PLUGIN_DEBUG);
-#endif
+        debug("RADIO LONG PRESS DETECT");
         this->isPushLong = true;
         this->switchTo(0);
     }

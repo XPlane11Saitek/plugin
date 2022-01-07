@@ -1,8 +1,5 @@
 
 .code: &code
-  before_script:
-    - cp -r /SDK ./
-    - cp -r /hidapi ./
   artifacts:
     expire_in: 1 week
     name: "Plugin"
@@ -10,28 +7,31 @@
       - lin.xpl
       - mac.xpl
       - win.xpl
+  before_script:
+    - cp -r ~/SDK ./
+    - cp -r ~/hidapi ./
 
-mac:
-  <<: *code
-  stage: build
-  script:
-    - cmake CMakeLists.txt
-    - make
-  tags: [shared-macos-amd64]
-
-win:
-  <<: *code
-  stage: build
-  script:
-    - cmake CMakeLists.txt
-    - make
-  tags: [shared-windows]
-
-linux:
+build:linux:
   <<: *code
   stage: build
   image: tarasmal/saitek:cmake
   script:
-    - cmake CMakeLists.txt
+    - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" -DXPLANE11PLUGIN=true
     - make
- tags: [linux]
+  tags: [linux]
+
+build:mac:
+  <<: *code
+  stage: build
+  script:
+    - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" -DXPLANE11PLUGIN=true
+    - make
+  tags: [mac]
+
+build:windows:
+  <<: *code
+  stage: build
+  script:
+    - msbuild saitek.sln /p:Configuration=Release
+    - cp Release\plugins\saitek\64\win.xpl ./
+  tags: [win10]
