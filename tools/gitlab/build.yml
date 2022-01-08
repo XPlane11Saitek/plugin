@@ -7,30 +7,52 @@
       - lin.xpl
       - mac.xpl
       - win.xpl
+      - check_mac64_intel
+      - check_lin64_amd64
+      - check.exe
   before_script:
     - cp -r ~/SDK ./
     - cp -r ~/hidapi ./
-
-build:linux:
-  <<: *code
+  only:
+    - merge_requests
+    - branches	
+    - tags
+  except:
+    - master
   stage: build
+
+build:plugin:linux:
+  <<: *code
   image: tarasmal/saitek:cmake
   script:
     - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" -DXPLANE11PLUGIN=true
     - make
   tags: [linux]
 
-build:mac:
+build:check:linux:
   <<: *code
-  stage: build
+  image: tarasmal/saitek:cmake
+  script:
+    - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" 
+    - make
+  tags: [linux]
+
+build:plugin:mac:
+  <<: *code
   script:
     - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" -DXPLANE11PLUGIN=true
     - make
   tags: [mac]
 
+build:check:mac:
+  <<: *code
+  script:
+    - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}"
+    - make
+  tags: [mac]
+
 build:windows:
   <<: *code
-  stage: build
   script:
     - msbuild saitek.sln /p:Configuration=Release
     - cp Release\plugins\saitek\64\win.xpl ./

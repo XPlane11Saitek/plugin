@@ -6,6 +6,8 @@
   needs:
     - job: deploy:mac
   tags: [mac]
+  only:
+    - merge_requests
 
 # SW
 qa:mac:c172g1000-sw:

@@ -1,20 +1,22 @@
 variables:
-  PLUGIN_VERSION: "0.2.0"
+  PLUGIN_VERSION: "0.3.0"
 
 stages:
   - test
   - check
   - build
+  - package
+  - release
   - deploy
   - qa
-  - release
 
 include:
   - /tools/gitlab/test.yml
   - /tools/gitlab/build.yml
+  - /tools/gitlab/package.yml
+  - /tools/gitlab/release.yml
   - /tools/gitlab/deploy.yml
   - /tools/gitlab/qa.yml
-  - /tools/gitlab/release.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
   # TODO BUG  FIXED / Remove Code Quality LONG  
@@ -24,3 +26,15 @@ include:
 
 sast:
   stage: test
+
+secret_detection:
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+
+
+flawfinder-sast:
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+

@@ -5,7 +5,12 @@ test:check:
     - cp -r ~/hidapi ./
   stage: check
   script:
-    - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}"
+    - cmake CMakeLists.txt
     - make
-    - ./saitek
+    - ./check_mac64_intel
   tags: [mac]
+  only:
+    - merge_requests
+    - branches	
+  except:
+    - master

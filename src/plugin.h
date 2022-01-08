@@ -22,7 +22,7 @@
  * 
  */
 #ifndef XPVERSION
-#define XPVERSION "0.2.2"
+#define XPVERSION "0.3.0"
 #endif
 
 /** Ukraine:
@@ -90,9 +90,6 @@ PLUGIN_API int XPluginEnable(void);
 #define DXPLM200 1
 #define DXPLM210 1
 #define DXPLM300 1
-#define DXPLM301 1
-#define DXPLM302 1
-#define DXPLM303 1
 
 /** Ukraine:
  * Технічні парамети для виділення памяті.

@@ -11,3 +11,6 @@ lin.xpl
 /Release/
 /x64/
 /64/
+check_mac64_intel
+check_lin64_amd64
+check.exe
