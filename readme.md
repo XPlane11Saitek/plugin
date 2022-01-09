@@ -1,3 +1,6 @@
+# Demonstarion
+demo - https://www.youtube.com/watch?v=P-q9Ev7aooU
+
 # Plugin for Saitek device for XPlane 11
 
 ## Support 
@@ -167,23 +170,12 @@ Support buttons
 
 
 ### MODE and ACTION
-* `PUSH`
-```
-SWITCH <ID> <BUTTON> PUSH <XPLANE-COMMAND-REF>
-```
-* `ON` or `OFF`
-```
-SWITCH <ID> <BUTTON> [ON|OFF] <XPLANE-COMMAND-REF>
-```
-* `SET_ON` or `SET_OFF`
-```
-SWITCH <ID> <BUTTON> [SET_ON|SET_OFF] dataref(<XPLANE-DATAREF>):=<VALUE>
-SWITCH <ID> <BUTTON> [SET_ON|SET_OFF] array(<XPLANE-DATAREF>[<ITEM>]):=<VALUE>
-```
-* `IF_ON` or `IF_OFF` (Add version 4.3.0)
-```
-SWITCH <ID> <BUTTON> [IF_ON|IF_OFF] RUN <XPLANE-COMMAND-REF> IF <VALUE>
-```
+mode `ON` or `OFF` OR `CMD` - when executed command
+* `ON` - exec only when push on button
+* `OFF` - exec only when release on button
+* `CMD` - exec when push and release button
+
+action `command` `set` `push` `on` `off`
 
 ### Exmaple
 

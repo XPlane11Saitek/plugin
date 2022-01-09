@@ -19,6 +19,7 @@
     - tags
   except:
     - master
+    - schedules
   stage: build
 
 build:plugin:linux:

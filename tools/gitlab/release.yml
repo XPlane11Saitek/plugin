@@ -9,5 +9,17 @@ release:
     name: 'Release $PLUGIN_VERSION($CI_COMMIT_SHORT_SHA)'
     description: '$PLUGIN_VERSION($CI_COMMIT_SHORT_SHA) : $EXTRA_DESCRIPTION'
     ref: '$CI_COMMIT_SHA'
+    assets: # Optional, multiple asset links
+      links:
+        - name: 'plugin.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/plugin.zip"
+        - name: 'win10.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/win10.zip"
+        - name: 'lin.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/lin.zip"
+        - name: 'mac.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/mac.zip"
   only:
     - master
+  except:
+    - schedules

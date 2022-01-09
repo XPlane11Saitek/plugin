@@ -11,4 +11,6 @@ deploy:mac:
   only:
     - merge_requests
     - master
+  except:
+    - schedules
   when: manual

@@ -1,0 +1,14 @@
+
+upload:
+  stage: upload
+  image: curlimages/curl:latest
+  script:
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file plugin.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/plugin.zip"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file win10.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/win10.zip"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file lin.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/lin.zip"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file mac.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/mac.zip"'
+  dependencies:
+    - package
+  only:
+    - tags
+  tags: [mac]

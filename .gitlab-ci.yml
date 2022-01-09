@@ -5,18 +5,25 @@ stages:
   - test
   - check
   - build
-  - package
   - release
+  - package
+  - upload
   - deploy
   - qa
 
 include:
+  # BRANCH
   - /tools/gitlab/test.yml
   - /tools/gitlab/build.yml
-  - /tools/gitlab/package.yml
+  # MASTER
   - /tools/gitlab/release.yml
+  # TAGS
+  - /tools/gitlab/package.yml
+  - /tools/gitlab/upload.yml
+  # MR
   - /tools/gitlab/deploy.yml
   - /tools/gitlab/qa.yml
+  # SHED && MR
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
   # TODO BUG  FIXED / Remove Code Quality LONG  

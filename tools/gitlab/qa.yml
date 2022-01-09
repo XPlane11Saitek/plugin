@@ -8,6 +8,8 @@
   tags: [mac]
   only:
     - merge_requests
+  except:
+    - schedules
 
 # SW
 qa:mac:c172g1000-sw:

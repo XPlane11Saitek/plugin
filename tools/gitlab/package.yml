@@ -11,14 +11,17 @@ package:
   stage: package
   image: tarasmal/saitek:cmake
   script:
-    - mkdir -p 64
-    - cp win.xpl 64/win.xpl
-    - cp mac.xpl 64/mac.xpl
-    - cp lin.xpl 64/lin.xpl
-    - zip  plugin.zip -r config/ 64/ check*
-    - zip  win10.zip -r config/ 64/win.xpl
-    - zip  lin.zip -r config/ 64/lin.xpl check_lin64_amd64
-    - zip  mac.zip -r config/ 64/mac.xpl check_mac64_intel
+    - mkdir -p saitek/64
+    - cp win.xpl saitek/64/win.xpl
+    - cp mac.xpl saitek/64/mac.xpl
+    - cp lin.xpl saitek/64/lin.xpl
+    - cp check_lin64_amd64 saitek/check_lin64_amd64
+    - cp check_mac64_intel saitek/check_mac64_intel
+    - cp -r config/ saitek/config/
+    - zip plugin.zip -r saitek/
+    - zip win10.zip -r saitek/config/ saitek/64/win.xpl
+    - zip lin.zip -r saitek/config/ saitek/64/lin.xpl saitek/check_lin64_amd64
+    - zip mac.zip -r saitek/config/ saitek/64/mac.xpl saitek/check_mac64_intel
   dependencies:
     - build:plugin:linux
     - build:check:linux
@@ -27,3 +30,4 @@ package:
     - build:windows
   only:
     - tags
+  tags: [mac]
