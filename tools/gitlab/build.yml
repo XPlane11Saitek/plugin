@@ -43,6 +43,7 @@ build:plugin:mac:
     - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" -DXPLANE11PLUGIN=true
     - make
   tags: [mac]
+  except: []
 
 build:check:mac:
   <<: *code
