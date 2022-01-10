@@ -17,6 +17,9 @@ MULTI -1 g1000n1[00][NAV] VALUE const(2)
 MULTI -1 g1000n1[00][NAV] UP sim/GPS/g1000n1_fms_outer_up
 MULTI -1 g1000n1[00][NAV] DOWN sim/GPS/g1000n1_fms_outer_down
 
+MULTI -1 g1000n1[00][VS] MODE exec(sim/GPS/g1000n1_ent)
+MULTI -1 g1000n1[00][VS][0] MODE off()
+
 MULTI -1 g1000n1[01] MODE command()
 ;-----------------------------------------------------------
 MULTI -1 g1000n1[01][AP] ON command(sim/GPS/g1000n1_direct)
