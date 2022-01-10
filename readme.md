@@ -1,5 +1,6 @@
-# Demonstarion
-demo - https://www.youtube.com/watch?v=P-q9Ev7aooU
+# Demonstration
+Demonstration youtube
+https://www.youtube.com/watch?v=P-q9Ev7aooU
 
 # Plugin for Saitek device for XPlane 11
 
