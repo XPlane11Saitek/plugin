@@ -17,7 +17,7 @@ XP11ArrayValue::XP11ArrayValue(const char *line)
     this->command = NULL;
 #endif
     std::cmatch query;
-    std::regex regex("((sim|laminar|plugin)\\/(\\w\\/?)+)\\[(\\d)\\]");
+    std::regex regex("((\\w+)\\/(\\w\\/?)+)\\[(\\d)\\]");
     if (std::regex_match(line, query, regex))
     {
 #ifndef XPLANE11PLUGIN

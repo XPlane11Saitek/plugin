@@ -16,7 +16,7 @@ XP11Command::XP11Command(const char *name)
 #ifdef XPLANE11PLUGIN
     this->cmd = NULL;
 #endif
-    std::regex regex("(sim|laminar|plugin)\\/(\\w\\/?)+");
+    std::regex regex("(\\w+)\\/(\\w\\/?)+");
     if (std::regex_match(name, regex))
     {
 #ifndef XPLANE11PLUGIN
