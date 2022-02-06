@@ -23,7 +23,7 @@ XP11ArrayValue::XP11ArrayValue(const char *line)
 #ifndef XPLANE11PLUGIN
         FindInFile(&SupportDatarefList, query[1].str().c_str());
 #endif
-        this->item = std::atof(query[3].str().c_str());
+        this->item = std::atof(query[4].str().c_str());
         strncpy(this->line, query[1].str().c_str(), STR_DATAREF_SIZE);
         return;
     }
