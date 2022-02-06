@@ -4,10 +4,10 @@ package:
     expire_in: 1 week
     name: "Plugin"
     paths:
-      - plugin.zip
-      - win10.zip
-      - lin.zip
-      - mac.zip
+      - v${PLUGIN_VERSION}-plugin.zip
+      - v${PLUGIN_VERSION}-win10.zip
+      - v${PLUGIN_VERSION}-lin.zip
+      - v${PLUGIN_VERSION}-mac.zip
   stage: package
   image: tarasmal/saitek:cmake
   script:
@@ -18,10 +18,10 @@ package:
     - cp check_lin64_amd64 saitek/check_lin64_amd64
     - cp check_mac64_intel saitek/check_mac64_intel
     - cp -r config/ saitek/config/
-    - zip plugin.zip -r saitek/
-    - zip win10.zip -r saitek/config/ saitek/64/win.xpl
-    - zip lin.zip -r saitek/config/ saitek/64/lin.xpl saitek/check_lin64_amd64
-    - zip mac.zip -r saitek/config/ saitek/64/mac.xpl saitek/check_mac64_intel
+    - zip v${PLUGIN_VERSION}-plugin.zip -r saitek/
+    - zip v${PLUGIN_VERSION}-win10.zip -r saitek/config/ saitek/64/win.xpl
+    - zip v${PLUGIN_VERSION}-lin.zip -r saitek/config/ saitek/64/lin.xpl saitek/check_lin64_amd64
+    - zip v${PLUGIN_VERSION}-mac.zip -r saitek/config/ saitek/64/mac.xpl saitek/check_mac64_intel
   dependencies:
     - build:plugin:linux
     - build:check:linux
