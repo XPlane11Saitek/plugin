@@ -22,7 +22,7 @@
  * 
  */
 #ifndef XPVERSION
-#define XPVERSION "0.3.3"
+#define XPVERSION "0.3.4"
 #endif
 
 /** Ukraine:
