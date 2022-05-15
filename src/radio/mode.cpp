@@ -14,6 +14,7 @@
 #include "modeHold.h"
 #include "modePush.h"
 #include "modeExec.h"
+#include "modeList.h"
 
 #include <string>
 #include <cstring>
@@ -97,7 +98,7 @@ RadioMode *RadioMode::New(FileContent *config, const char *button)
             return new RadioModeHold(
                 createRadio(config, button, "[0]"),
                 query[3].str().c_str());
-        if (!strcmp("PUSH", query[1].str().c_str()))
+        if (!strcmp("push", query[1].str().c_str()))
             return new RadioModePush(
                 createRadio(config, button, "[0]"),
                 query[3].str().c_str());
@@ -105,6 +106,8 @@ RadioMode *RadioMode::New(FileContent *config, const char *button)
             return new RadioModeExec(
                 createRadio(config, button, "[0]"),
                 query[3].str().c_str());
+        if (!strcmp("list", query[1].str().c_str()))
+            return RadioModeList::New(config, button);
     }
     throw Exception("RADIO [%s][%s] ERROR", button, mode);
 }

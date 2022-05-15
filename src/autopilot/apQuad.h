@@ -9,6 +9,7 @@ protected:
     bool modeA;
     bool modeB;
     AP *active;
+    apCaption *caption;
 
 protected: //mode
     int getMode();
@@ -16,7 +17,7 @@ protected: //mode
 
 public:
     void Check();
-    void Activate();
+    void Activate(apCaption *);
     void Show(Monitor *[2], unsigned char &);
 
 public: // Method

@@ -22,7 +22,7 @@
  * 
  */
 #ifndef XPVERSION
-#define XPVERSION "0.3.4"
+#define XPVERSION "0.4.0RC"
 #endif
 
 /** Ukraine:
@@ -90,6 +90,8 @@ PLUGIN_API int XPluginEnable(void);
 #define DXPLM200 1
 #define DXPLM210 1
 #define DXPLM300 1
+#define DXPLM301 1
+#define DXPLM303 1
 
 /** Ukraine:
  * Технічні парамети для виділення памяті.
@@ -103,3 +105,4 @@ PLUGIN_API int XPluginEnable(void);
 #define STR_DATAREF_SIZE 64 + 16
 #define STR_MESSAGE_SIZE STR_FILENAME_SIZE + STR_FILELINE_SIZE + 64
 #define STR_LINE_SIZE STR_MESSAGE_SIZE + 64
+#define STR_CAPTION_SIZE 32

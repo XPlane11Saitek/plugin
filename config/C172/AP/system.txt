@@ -1,0 +1,27 @@
+MULTI -1 system MODE display
+MULTI -1 system NAME system conf
+
+MULTI -1 system[HDG] MODE next(com2-baro1)
+MULTI -1 system[HDG] NAME BARO ALT 1
+MULTI -1 system[NAV] MODE next(com2-baro2)
+MULTI -1 system[NAV] NAME BARO ALT 2
+MULTI -1 system[IAS] MODE next(com2-minim)
+MULTI -1 system[IAS] NAME Minimum
+MULTI -1 system[ALT] MODE next(ah)
+MULTI -1 system[ALT] NAME AIM/SET
+MULTI -1 system[VS] MODE next(dg)
+MULTI -1 system[VS] NAME COMPAS/SET
+
+;----------- AH -----------
+MULTI -1 ah MODE command(INT)
+MULTI -1 ah VALUE dataref(sim/cockpit/misc/ah_adjust)
+MULTI -1 ah UP sim/instruments/ah_ref_up
+MULTI -1 ah DOWN sim/instruments/ah_ref_down
+;----------- DG -----------
+MULTI -1 dg MODE command(INT)
+MULTI -1 dg VALUE dataref(sim/cockpit/gyros/dg_drift_vac_deg)
+MULTI -1 dg UP sim/instruments/DG_sync_up
+MULTI -1 dg DOWN sim/instruments/DG_sync_down
+;----------- baro2 -----------
+MULTI -1 com2-baro2 MODE value(0.01,0.1,0,40,LIMIT,FLOAT)
+MULTI -1 com2-baro2 VALUE dataref(sim/cockpit2/gauges/actuators/barometer_setting_in_hg_copilot)

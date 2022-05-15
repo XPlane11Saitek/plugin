@@ -1,5 +1,4 @@
 
-
 MULTI -1 g430 MODE copy
 MULTI -1 g430[1] MODE command
 MULTI -1 g430[1][FLAP_UP] ON command(sim/flight_controls/flaps_up)
@@ -15,38 +14,55 @@ MULTI -1 g430[0][T] MODE next(g430n2)
 MULTI -1 g430n1 MODE quad()
 ;---------------------------
 MULTI -1 g430n1[00] MODE display(INT)
+MULTI -1 g430n1[00] NAME main panel
+
+MULTI -1 g430n1[00][AP] NAME Zoom
 MULTI -1 g430n1[00][AP] MODE command(INT)
 MULTI -1 g430n1[00][AP] VALUE const(0)
 MULTI -1 g430n1[00][AP] UP sim/GPS/g430n1_zoom_out
 MULTI -1 g430n1[00][AP] DOWN sim/GPS/g430n1_zoom_in
 ;---------------------------
+MULTI -1 g430n1[00][HDG] NAME Chapter
 MULTI -1 g430n1[00][HDG] MODE command(INT)
 MULTI -1 g430n1[00][HDG] VALUE const(1)
 MULTI -1 g430n1[00][HDG] UP sim/GPS/g430n1_chapter_up
 MULTI -1 g430n1[00][HDG] DOWN sim/GPS/g430n1_chapter_dn
 ;---------------------------
+MULTI -1 g430n1[00][NAV] NAME Page
 MULTI -1 g430n1[00][NAV] MODE command(INT)
 MULTI -1 g430n1[00][NAV] VALUE const(2)
 MULTI -1 g430n1[00][NAV] UP sim/GPS/g430n1_page_up
 MULTI -1 g430n1[00][NAV] DOWN sim/GPS/g430n1_page_dn
 
 MULTI -1 g430n1[01] MODE command()
+MULTI -1 g430n1[01] NAME GButton
 ;---------------------------
 MULTI -1 g430n1[01][AP] ON command(sim/GPS/g430n1_direct)
+MULTI -1 g430n1[01][AP] NAME direct
 MULTI -1 g430n1[01][HDG] ON command(sim/GPS/g430n1_menu)
+MULTI -1 g430n1[01][HDG] NAME menu
 MULTI -1 g430n1[01][NAV] ON command(sim/GPS/g430n1_cursor)
+MULTI -1 g430n1[01][NAV] NAME cursor
 MULTI -1 g430n1[01][ALT] ON command(sim/GPS/g430n1_proc)
+MULTI -1 g430n1[01][ALT] NAME proc
 MULTI -1 g430n1[01][VS] ON command(sim/GPS/g430n1_clr)
+MULTI -1 g430n1[01][VS] NAME CLR
 MULTI -1 g430n1[01][IAS] ON command(sim/GPS/g430n1_ent)
+MULTI -1 g430n1[01][IAS] NAME ENT
 
 MULTI -1 g430n1[10] MODE command()
+MULTI -1 g430n1[10] NAME Low button
 ;---------------------------
 MULTI -1 g430n1[10][HDG] ON command(sim/GPS/g430n1_chapter_up)
+MULTI -1 g430n1[10][HDG] NAME chapter
 MULTI -1 g430n1[10][NAV] ON command(sim/GPS/g430n1_obs)
+MULTI -1 g430n1[10][NAV] NAME obs
 MULTI -1 g430n1[10][IAS] ON command(sim/GPS/g430n1_msg)
+MULTI -1 g430n1[10][IAS] NAME msg
 MULTI -1 g430n1[10][ALT] ON command(sim/GPS/g430n1_fpl)
+MULTI -1 g430n1[10][ALT] NAME fpl
 MULTI -1 g430n1[10][VS] ON command(sim/GPS/g430n1_vnav)
-
+MULTI -1 g430n1[10][VS] NAME vnav
 
 MULTI -1 g430n1[11] MODE off()
 
@@ -54,35 +70,52 @@ MULTI -1 g430n1[11] MODE off()
 MULTI -1 g430n2 MODE quad()
 ;---------------------------
 MULTI -1 g430n2[00] MODE display()
+MULTI -1 g430n2[00] NAME main panel (LO)
+
+MULTI -1 g430n2[00][AP] NAME Zoom (LO)
 MULTI -1 g430n2[00][AP] MODE command(INT)
 MULTI -1 g430n2[00][AP] VALUE const(0)
 MULTI -1 g430n2[00][AP] UP sim/GPS/g430n2_zoom_out
 MULTI -1 g430n2[00][AP] DOWN sim/GPS/g430n2_zoom_in
 ;---------------------------
+MULTI -1 g430n2[00][HDG] NAME Chapter (LO)
 MULTI -1 g430n2[00][HDG] MODE command(INT)
 MULTI -1 g430n2[00][HDG] VALUE const(1)
 MULTI -1 g430n2[00][HDG] UP sim/GPS/g430n2_chapter_up
 MULTI -1 g430n2[00][HDG] DOWN sim/GPS/g430n2_chapter_dn
 ;---------------------------
+MULTI -1 g430n2[00][NAV] NAME Page (LO)
 MULTI -1 g430n2[00][NAV] MODE command(INT)
 MULTI -1 g430n2[00][NAV] VALUE const(2)
 MULTI -1 g430n2[00][NAV] UP sim/GPS/g430n2_page_up
 MULTI -1 g430n2[00][NAV] DOWN sim/GPS/g430n2_page_dn
 
 MULTI -1 g430n2[01] MODE command()
+MULTI -1 g430n2[01] NAME Button (LO)
 ;---------------------------
 MULTI -1 g430n2[01][AP] ON command(sim/GPS/g430n2_direct)
+MULTI -1 g430n2[01][AP] NAME direct (LO)
 MULTI -1 g430n2[01][HDG] ON command(sim/GPS/g430n2_menu)
+MULTI -1 g430n2[01][HDG] NAME menu (LO)
 MULTI -1 g430n2[01][NAV] ON command(sim/GPS/g430n2_cursor)
+MULTI -1 g430n2[01][NAV] NAME cursor (LO)
 MULTI -1 g430n2[01][VS] ON command(sim/GPS/g430n2_clr)
+MULTI -1 g430n2[01][VS] NAME clr (LO)
 MULTI -1 g430n2[01][IAS] ON command(sim/GPS/g430n2_ent)
+MULTI -1 g430n2[01][IAS] NAME ent (LO)
 
 MULTI -1 g430n2[10] MODE command()
+MULTI -1 g430n2[10] NAME Low button (LO)
 ;---------------------------
 MULTI -1 g430n2[10][HDG] ON command(sim/GPS/g430n2_chapter_up)
+MULTI -1 g430n2[10][HDG] NAME chapter up
 MULTI -1 g430n2[10][NAV] ON command(sim/GPS/g430n2_obs)
+MULTI -1 g430n2[10][NAV] NAME obs
 MULTI -1 g430n2[10][IAS] ON command(sim/GPS/g430n2_msg)
+MULTI -1 g430n2[10][IAS] NAME msg
 MULTI -1 g430n2[10][ALT] ON command(sim/GPS/g430n2_fpl)
+MULTI -1 g430n2[10][ALT] NAME fpl
 MULTI -1 g430n2[10][VS] ON command(sim/GPS/g430n2_vnav)
+MULTI -1 g430n2[10][VS] NAME vnav
 
 MULTI -1 g430n2[11] MODE off

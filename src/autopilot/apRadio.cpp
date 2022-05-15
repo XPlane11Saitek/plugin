@@ -1,5 +1,10 @@
 
 #include "apRadio.h"
+#include "debug.h"
+
+#include <string>
+#include <cstring>
+#include <regex>
 
 APModeRadio::APModeRadio()
 {
@@ -34,10 +39,13 @@ void APModeRadio::swithto(int new_mode)
     }
 }
 
-void APModeRadio::Activate()
+void APModeRadio::Activate(apCaption *naming)
 {
     this->active = NULL;
     this->swithto(0);
+    naming->SetName(this->name);
+    for (int cell = 0; cell < MULTI_LED_COUNT; cell++)
+        naming->SetLEDName(cell, ledName[cell]);
 }
 
 void APModeRadio::Show(Monitor *a[2], unsigned char &b)
@@ -119,4 +127,22 @@ void APModeRadio::RotateDown()
 void APModeRadio::Loader(int button, RadioMode *obj)
 {
     this->modes[button - 1] = obj;
+}
+
+AP *APModeRadio::New(FileContent *config, const char *button)
+{
+    APModeRadio *rdo = new APModeRadio();
+    if (config->IsParam(button, "NAME"))
+        rdo->SetName(config->GetParam(button, "NAME"));
+    for (int pos = 1; pos < AP_RADIO_MODE_COUNT + 1; pos++)
+    {
+        std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
+        if (config->IsParam(newButton.c_str(), "NAME"))
+            rdo->SetLedName(pos, config->GetParam(newButton.c_str(), "NAME"));
+        if (config->IsParam(newButton.c_str(), "MODE"))
+            rdo->Loader(pos, RadioMode::New(config, newButton.c_str()));
+        else
+            debug("SKIP MULTI PANEL %s", newButton.c_str());
+    }
+    return rdo;
 }

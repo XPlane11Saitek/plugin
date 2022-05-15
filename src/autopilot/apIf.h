@@ -8,6 +8,7 @@ protected:
     AP *left[2];
     int mode;
     XPlaneRange *cmd;
+    apCaption *caption;
 
 protected: //mode
     int getMode();
@@ -15,7 +16,7 @@ protected: //mode
 
 public:
     void Check();
-    void Activate();
+    void Activate(apCaption *);
     void Show(Monitor *[2], unsigned char &);
 
 public:

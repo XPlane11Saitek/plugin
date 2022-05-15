@@ -12,7 +12,7 @@
 ;- PITOT - Pitot heat 
 ;
 ;- PANEL - ????
-;- BEACO - BECO
+;- BEACO - ????
 ;- NAV   - NAV
 ;- STROB - STROB
 ;- TAXI  - TAXI
@@ -21,20 +21,29 @@
 ;- GEAR  - PARK 
 ;
 SWITCH 0 MAG_OFF ON command(laminar/SF50/ignition_down)
+SWITCH 0 MAG_OFF NAME ENG OFF
 SWITCH 0 MAG_RIGHT ON command(laminar/SF50/ignition_down)
+SWITCH 0 MAG_RIGHT NAME ENG OFF
 SWITCH 0 MAG_LEFT ON command(laminar/SF50/ignition_down)
+SWITCH 0 MAG_LEFT NAME ENG OFF
 SWITCH 0 MAG_BOTH ON command(laminar/SF50/ignition_down)
+SWITCH 0 MAG_BOTH NAME ENG OFF
 SWITCH 0 ENG_START ON command(laminar/SF50/ignition_up)
+SWITCH 0 ENG_START NAME ENG ON
 
 SWITCH 0 MASTER_BATTERY ON command(sim/electrical/battery_1_on)
 SWITCH 0 MASTER_BATTERY OFF command(sim/electrical/battery_1_off)
+SWITCH 0 MASTER_BATTERY NAME BAT 1
 SWITCH 0 MASTER_ALTENATOR ON command(sim/electrical/generator_1_on)
 SWITCH 0 MASTER_ALTENATOR OFF command(sim/electrical/generator_1_off)
+SWITCH 0 MASTER_ALTENATOR NAME GEN 1
 
 SWITCH 0 AVIONICS_POWER ON command(sim/ice/window_heat_on)
 SWITCH 0 AVIONICS_POWER OFF command(sim/ice/window_heat_off)
+SWITCH 0 AVIONICS_POWER NAME WIN HEAT
 SWITCH 0 FUEL_PUMP ON command(sim/ice/inlet_heat0_on)
 SWITCH 0 FUEL_PUMP OFF command(sim/ice/inlet_heat0_off)
+SWITCH 0 FUEL_PUMP NAME INLET HEAT
 
 SWITCH 0 DE_ICE ON command(sim/ice/surf_boot_on)
 SWITCH 0 DE_ICE ON command(sim/ice/surf_heat_on)
@@ -42,37 +51,47 @@ SWITCH 0 DE_ICE ON command(sim/ice/wing_heat0_on)
 SWITCH 0 DE_ICE OFF command(sim/ice/surf_boot_off)
 SWITCH 0 DE_ICE OFF command(sim/ice/surf_heat_off)
 SWITCH 0 DE_ICE OFF command(sim/ice/wing_heat0_off)
+SWITCH 0 DE_ICE NAME WIN/SURT HEAT
 
 SWITCH 0 PITOT_HEAT ON command(sim/ice/pitot_heat0_on)
 SWITCH 0 PITOT_HEAT OFF command(sim/ice/pitot_heat0_off)
+SWITCH 0 PITOT_HEAT NAME PITOT HEAT
 
 SWITCH 0 COWL_FLAPS OFF command(sim/flight_controls/door_open_1)
 SWITCH 0 COWL_FLAPS ON command(sim/flight_controls/door_close_1)
+SWITCH 0 COWL_FLAPS NAME DOOR
 
-SWITCH 0 BEACON_LIGHTS ON command(sim/lights/beacon_lights_on)
-SWITCH 0 BEACON_LIGHTS OFF command(sim/lights/beacon_lights_off)
+; TODO LOW BUTTON NOT USE PANEL_LIGHTS
+; TODO LOW BUTTON NOT USE BEACON_LIGHTS
 SWITCH 0 NAV_LIGHTS ON command(sim/lights/nav_lights_on)
 SWITCH 0 NAV_LIGHTS OFF command(sim/lights/nav_lights_off)
+SWITCH 0 NAV_LIGHTS NAME NAV LIGHTS
 SWITCH 0 STROBE_LIGHTS ON command(sim/lights/strobe_lights_on)
 SWITCH 0 STROBE_LIGHTS OFF command(sim/lights/strobe_lights_off)
-SWITCH 0 TAXI_LIGHTS ON command(sim/lights/taxi_lights_on)
-SWITCH 0 TAXI_LIGHTS OFF command(sim/lights/taxi_lights_off)
+SWITCH 0 STROBE_LIGHTS NAME STROBE LIGHTS
+; TODO LOW BUTTON NOT USE TAXI_LIGHTS
 SWITCH 0 LANDING_LIGHTS ON command(sim/lights/landing_lights_on)
 SWITCH 0 LANDING_LIGHTS OFF command(sim/lights/landing_lights_off)
+SWITCH 0 LANDING_LIGHTS NAME LANDING LIGHTS
 
 SWITCH 0 LEFT RED array(sim/cockpit2/fuel/fuel_quantity[0]){0:6.80389}
 SWITCH 0 LEFT YELLOW array(sim/cockpit2/fuel/fuel_quantity[0]){0:20.18486}
 SWITCH 0 LEFT GREEN array(sim/cockpit2/fuel/fuel_quantity[0]){0:40.1429}
+SWITCH 0 LEFT NAME FUEL
 
 SWITCH 0 CENTER RED dataref(sim/cockpit2/annunciators/fuel_quantity){1:1}
 SWITCH 0 CENTER YELLOW array(sim/cockpit2/fuel/fuel_quantity[0]){0:80.2858}
 SWITCH 0 CENTER YELLOW array(sim/cockpit2/fuel/fuel_quantity[1]){0:80.2858}
 SWITCH 0 CENTER GREEN array(sim/cockpit2/fuel/fuel_quantity[0]){0:120.429}
 SWITCH 0 CENTER GREEN array(sim/cockpit2/fuel/fuel_quantity[1]){0:120.429}
+SWITCH 0 CENTER NAME FUEL
 
 SWITCH 0 RIGHT RED array(sim/cockpit2/fuel/fuel_quantity[1]){0:6.80389}
 SWITCH 0 RIGHT YELLOW array(sim/cockpit2/fuel/fuel_quantity[1]){0:20.18486}
 SWITCH 0 RIGHT GREEN array(sim/cockpit2/fuel/fuel_quantity[1]){0:40.1429}
+SWITCH 0 RIGHT NAME FUEL
 
 SWITCH 0 GEAR_SWITCH_UP ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=0.000000)
+SWITCH 0 GEAR_SWITCH_UP NAME PARK BREAKE
 SWITCH 0 GEAR_SWITCH_DOWN ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=1.000000)
+SWITCH 0 GEAR_SWITCH_DOWN NAME PARK BREAKE

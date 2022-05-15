@@ -1,0 +1,55 @@
+
+BIP 2 0:0 RED dataref(laminar/B738/annunciator/yaw_damp){0.1:1.0}
+BIP 2 0:0 NAME YAW DAMPER
+BIP 2 1:0 GREEN dataref(laminar/B738/annunciator/eng1_valve_closed){0.1:1.0}
+BIP 2 1:0 NAME FUEL VALVE ENG 1
+BIP 2 2:0 RED dataref(laminar/B738/annunciator/bypass_filter_1){0.1:1.0}
+BIP 2 2:0 NAME ENG 1 FILTER
+
+; TODO 0:1 CRICAL
+BIP 2 1:1 GREEN dataref(laminar/B738/annunciator/eng2_valve_closed){0.1:1.0}
+BIP 2 1:1 NAME FUEL VALVE ENG 2
+BIP 2 2:1 RED dataref(laminar/B738/annunciator/bypass_filter_2){0.1:1.0}
+BIP 2 2:1 NAME ENG 2 FILTER
+
+BIP 2 0:2 RED dataref(laminar/B738/annunciator/low_fuel_press_c1){0.1:1.0}
+BIP 2 0:2 NAME LOW FUEL C1
+BIP 2 1:2 RED dataref(laminar/B738/annunciator/low_fuel_press_l1){0.1:1.0}
+BIP 2 1:2 NAME LOW FUEL L1
+BIP 2 2:2 RED dataref(laminar/B738/annunciator/low_fuel_press_l2){0.1:1.0}
+BIP 2 2:2 NAME LOW FUEL L2
+
+BIP 2 0:3 RED dataref(laminar/B738/annunciator/low_fuel_press_c2){0.1:1.0}
+BIP 2 0:3 NAME LOW FUEL C2
+BIP 2 1:3 RED dataref(laminar/B738/annunciator/low_fuel_press_r1){0.1:1.0}
+BIP 2 1:3 NAME LOW FUEL R1
+BIP 2 2:3 RED dataref(laminar/B738/annunciator/low_fuel_press_r2){0.1:1.0}
+BIP 2 2:3 NAME LOW FUEL R2
+
+BIP 2 0:4 RED dataref(laminar/B738/annunciator/bat_discharge){0.1:1.0}
+BIP 2 0:4 NAME BATT DISCHARG
+BIP 2 1:4 RED dataref(laminar/B738/annunciator/drive1){0.1:1.0}
+BIP 2 1:4 NAME GEN DRIVE 1
+BIP 2 2:4 RED dataref(laminar/B738/annunciator/drive2){0.1:1.0}
+BIP 2 2:4 NAME GEN DRIVE 2
+
+BIP 2 0:5 RED dataref(laminar/B738/annunciator/standby_pwr_off){0.1:1.0}
+BIP 2 0:5 NAME STANDBY POWER
+BIP 2 1:5 GREEN dataref(laminar/B738/annunciator/ground_power_avail){0.1:1.0}
+BIP 2 1:5 NAME GROUND POWER
+BIP 2 2:5 GREEN dataref(laminar/B738/annunciator/apu_gen_off_bus){0.1:1.0}
+BIP 2 2:5 NAME APU GEN
+
+BIP 2 0:6 RED dataref(laminar/B738/annunciator/trans_bus_off1){0.1:1.0}
+BIP 2 0:6 NAME TRANS BUS 1
+BIP 2 1:6 RED dataref(laminar/B738/annunciator/source_off1){0.1:1.0}
+BIP 2 1:6 NAME SOURCE BUS 1
+BIP 2 2:6 GREEN dataref(laminar/B738/annunciator/gen_off_bus1){0.1:1.0}
+BIP 2 2:6 NAME GEN BUS 1
+
+BIP 2 0:7 RED dataref(laminar/B738/annunciator/trans_bus_off2){0.1:1.0}
+BIP 2 0:7 NAME TRANS BUS 2
+BIP 2 1:7 RED dataref(laminar/B738/annunciator/source_off2){0.1:1.0}
+BIP 2 1:7 NAME SOURCE BUS 2
+BIP 2 2:7 GREEN dataref(laminar/B738/annunciator/gen_off_bus2){0.1:1.0}
+BIP 2 2:7 NAME GEN BUS 2

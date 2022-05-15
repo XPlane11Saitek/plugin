@@ -1,19 +1,26 @@
 MULTI -1 electricity MODE display()
+MULTI -1 electricity NAME ELECTIC
 
 MULTI -1 electricity[AP] MODE show(SHORT)
 MULTI -1 electricity[AP] VALUE array(sim/cockpit2/electrical/bus_volts[0])
+MULTI -1 electricity[AP] NAME BUS 1 VOLT
 
 MULTI -1 electricity[HDG] MODE show(SHORT)
 MULTI -1 electricity[HDG] VALUE array(sim/cockpit2/electrical/battery_amps[0])
+MULTI -1 electricity[HDG] NAME BAT AMPS
 
 MULTI -1 electricity[NAV] MODE show(SHORT)
 MULTI -1 electricity[NAV] VALUE array(sim/cockpit2/electrical/generator_amps[0])
+MULTI -1 electricity[NAV] NAME GEN AMPS
 
 MULTI -1 electricity[IAS] MODE show(FLOAT/1000)
 MULTI -1 electricity[IAS] VALUE array(sim/cockpit2/electrical/bus_volts[1])
+MULTI -1 electricity[IAS] NAME BUS 2 VOLT
 
 MULTI -1 electricity[ALT] MODE show(SHORT)
 MULTI -1 electricity[ALT] VALUE array(sim/cockpit2/electrical/battery_amps[1])
+MULTI -1 electricity[ALT] NAME BAT 2 AMPS
 
 MULTI -1 electricity[VS] MODE show(SHORT)
 MULTI -1 electricity[VS] VALUE array(sim/cockpit/electrical/battery_charge_watt_hr[0])
+MULTI -1 electricity[VS] NAME BAT CHARGE

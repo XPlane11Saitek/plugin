@@ -1,5 +1,5 @@
 variables:
-  PLUGIN_VERSION: "0.3.4"
+  PLUGIN_VERSION: "0.4.0RC"
 
 stages:
   - test
@@ -26,7 +26,7 @@ include:
   # SHED && MR
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
-  # TODO BUG  FIXED / Remove Code Quality LONG  
+  # TODO LOW / New features / Remove Code Quality / TOO LONG  
   #- template: Code-Quality.gitlab-ci.yml
   #- template: Security/Container-Scanning.gitlab-ci.yml
   #- template: DAST.gitlab-ci.yml

@@ -4,33 +4,58 @@
 #include "spec.h"
 #include "panel.h"
 #include "customRef.h"
+#include "APForm.h"
 
-class MULTIPanel : public Panel
+class MULTIPanel : public Panel, public APForm
 {
 private: // USB PANEL DEV
     MULTIGetFeature rawCommand;
     MULTISetFeature rawDisplay;
-    Monitor *monitor[2];
     AP *mode[MULTI_MODE_COUNT];
     AP *active;
+    Monitor *monitor[2];
+    Monitor *monitorRevese[2];
     bool activeDualMode;
     CustomRef *buttonStatus[MULTI_BUTTON_COUNT];
 
 protected:
-    void shutdown();
+    void set();
     void check();
 
-private:
-    void readUSBData();
-    void swith();
-    void rotate();
-    void trim();
-    void button();
-
 public: // Конструктор
+    /**
+     * @brief Construct a new MULTIPanel object
+     * 
+     */
     MULTIPanel(hid_device *, const wchar_t *, int);
+
+    /**
+     * @brief Destroy the MULTIPanel object
+     * 
+     */
     ~MULTIPanel();
+
+    /**
+     * @brief 
+     * 
+     */
     void Reload();
+
+    /**
+     * @brief 
+     * 
+     */
     void Clear();
+
+    /**
+     * @brief 
+     * 
+     */
     void Load(FileContent *);
+
+    /**
+     * @brief 
+     * 
+     */
+    int GetPanelID(char *);
 };

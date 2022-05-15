@@ -17,6 +17,7 @@
 #include "spec.h"
 #include "content.h"
 #include "hidapi.h"
+#include "form.h"
 
 #ifdef XPLANE11PLUGIN
 #include "XPLMDefs.h"
@@ -35,7 +36,7 @@ enum State
  * Всі панелі повинні наслідувати даний клас.
  * Драйвер почергово опрацює всі панелі.
  */
-class Panel
+class Panel : public virtual PanelForm
 {
 protected:
     hid_device *panelUSBDevAddr;         // USB ADDRESS
@@ -110,6 +111,12 @@ public:
      * 
      */
     virtual void Load(FileContent *){};
+
+    /**
+     * @brief 
+     * 
+     */
+    virtual int GetPanelID(char *);
 };
 
 /** Ukraine:

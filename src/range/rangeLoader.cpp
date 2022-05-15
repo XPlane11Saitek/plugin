@@ -28,7 +28,7 @@ XPlaneRange *LoadSingleRange(const char *line)
 
 XPlaneRange *LoadRange(const char *line)
 {
-    // TODO REWRITE TO REGEXP
+    // TODO HIGH REWRITE TO REGEXP
     SplitLine *obj = new SplitLine(line);
     if (*obj)
     {

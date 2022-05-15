@@ -18,6 +18,7 @@ public:
 public:
     void SetAll();
     void SetOff();
+    void SetCode(int);
     void SetValue(STConvert *, const float);
 };
 

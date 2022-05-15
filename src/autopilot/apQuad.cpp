@@ -2,6 +2,7 @@
 #include "apQuad.h"
 #include "rangeLoader.h"
 #include "spec.h"
+#include "debug.h"
 
 APModeQUAD::APModeQUAD(AP *leftsA, AP *leftsB, AP *rightA, AP *rightB)
 {
@@ -11,6 +12,7 @@ APModeQUAD::APModeQUAD(AP *leftsA, AP *leftsB, AP *rightA, AP *rightB)
     this->left[3] = rightB;
     this->modeA = false;
     this->modeB = false;
+    this->caption = NULL;
 }
 
 APModeQUAD::~APModeQUAD()
@@ -41,11 +43,15 @@ void APModeQUAD::swithTo()
     else
         mode = 3;
     this->active = this->left[mode];
-    this->active->Activate();
+    if (this->caption != NULL)
+        this->active->Activate(this->caption);
+    else
+        warning("FAIL CAPTION NULL");
 }
 
-void APModeQUAD::Activate()
+void APModeQUAD::Activate(apCaption *naming)
 {
+    this->caption = naming;
     this->modeA = false;
     this->modeB = false;
     this->swithTo();

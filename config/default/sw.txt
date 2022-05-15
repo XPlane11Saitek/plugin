@@ -15,13 +15,13 @@ SWITCH 0 AVIONICS_POWER OFF command(sim/systems/avionics_off)
 SWITCH 0 FUEL_PUMP ON command(sim/fuel/fuel_pump_1_on)
 SWITCH 0 FUEL_PUMP OFF command(sim/fuel/fuel_pump_1_off)
 
-; TODO FIXED THIS
+; TODO LOW / features / NOT SUPPORT 
 ;SWITCH 0 DE_ICE
 
 SWITCH 0 PITOT_HEAT ON command(sim/ice/pitot_heat0_on)
 SWITCH 0 PITOT_HEAT OFF command(sim/ice/pitot_heat0_off)
 
-; TODO FIXED THIS
+; TODO LOW / features / NOT SUPPORT 
 ;SWITCH 0 COWL_FLAPS
 
 SWITCH 0 PANEL_LIGHTS CMD push(sim/annunciator/test_all_annunciators)

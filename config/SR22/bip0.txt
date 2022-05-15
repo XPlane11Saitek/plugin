@@ -1,0 +1,1 @@
+BIP -1 -1:-1 GREEN dataref(sim/cockpit/warnings/annunciator_test_pressed){1:1}

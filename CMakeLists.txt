@@ -4,14 +4,15 @@ project(saitek CXX C)
 if(DEFINED XPVERSION)
   message("XPVERSION=" ${XPVERSION})
 else()
-  set(XPVERSION, "0.3.4")
+  set(XPVERSION, "0.4.0RC")
   message("XPVERSION=" ${XPVERSION})
 endif()
 add_compile_definitions(XPVERSION="${XPVERSION}")
 
 # SETS
-#set(XPLANE11PLUGIN true)
-#set(USB true)
+# set(XPLANE11PLUGIN true)
+# set(PERFORMANCE true)
+# set(USB true)
 #set(DEBUG true)
 
 set(SDK_PATH  "SDK")
@@ -25,7 +26,7 @@ if(APPLE)
 elseif(UNIX)
 	set(HIDAPI ${HID_PATH}/linux/hid.c)
 elseif(WIN32)
-  # TODO BUG THIS
+  # TODO LOW / features / NOT SUPPORT
   # WINDOWS NOT SUPPORT
   # USE VISUAL CODE
 	set(HIDAPI ${HID_PATH}/windows/hid.c)
@@ -46,6 +47,7 @@ set(DIR
   src/radio/
   src/autopilot/
   src/panel/
+  src/form/
   tests/
   ${HID_PATH}/hidapi/
 )
@@ -116,6 +118,7 @@ set(CODE
   src/radio/modeHold.cpp
   src/radio/modeExec.cpp
   src/radio/modePush.cpp
+  src/radio/modeList.cpp
 
   src/autopilot/ap.cpp
   src/autopilot/apCmd.cpp
@@ -126,6 +129,16 @@ set(CODE
   src/autopilot/apRadio.cpp
   src/autopilot/apDisplay.cpp
   src/autopilot/apQuad.cpp
+  src/autopilot/apList.cpp
+
+  src/form/form.cpp
+  src/form/APForm.cpp
+  src/form/RadioForm.cpp
+  src/form/SWForm.cpp
+  src/form/BIPForm.cpp
+
+  src/form/item.cpp
+  src/form/apCaption.cpp
 
   src/panel/panel.cpp
   src/panel/bip.cpp
@@ -155,7 +168,7 @@ elseif(UNIX)
     add_executable(saitek ${ALL})
   endif()
 elseif(WIN32)
-  # TODO BUG THIS
+  # TODO LOW / features / NOT SUPPORT
   # WINDOWS NOT SUPPORT
   # USE VISUAL CODE
 	add_library(saitek MODULE ${ALL})
@@ -182,7 +195,7 @@ elseif(UNIX)
     set(SUFFIX "")
   endif()
 elseif(WIN32)
-  # TODO BUG THIS
+  # TODO LOW / features / NOT SUPPORT
   # WINDOWS NOT SUPPORT
   # USE VISUAL CODE
   if(DEFINED XPLANE11PLUGIN)
@@ -198,7 +211,7 @@ set_target_properties(saitek PROPERTIES SUFFIX "${SUFFIX}")
 set_target_properties(saitek PROPERTIES OUTPUT_NAME "${OUTPUT_NAME}")
 
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DXPLM200=1 -DXPLM210=1 -DXPLM300=1 ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1 -DXPLM303")
 if(DEFINED XPLANE11PLUGIN)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DXPLANE11PLUGIN=true")
 endif()
@@ -207,6 +220,9 @@ if(DEFINED DEBUG)
 endif()
 if(DEFINED USB)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSB=true")
+endif()
+if(DEFINED PERFORMANCE)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPERFORMANCE=true")
 endif()
 if(APPLE)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-deprecated")
@@ -255,14 +271,13 @@ if(APPLE)
   	SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden -framework Cocoa -framework IOKit")
   endif()
 elseif(WIN32)
-  # TODO 
+  # TODO LOW / features / NOT SUPPORT
 elseif(UNIX)
   #LIBS += `pkg-config libudev --libs`
   if(DEFINED XPLANE11PLUGIN)
   	SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden ")
   else()
     SET_TARGET_PROPERTIES(saitek PROPERTIES LINK_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}  -fPIC -fvisibility=hidden  ")
-  endif()
-  # TOOD 
+  endif() 
   # -shared -rdynamic -nodefaultlibs -undefined_warning
 endif()

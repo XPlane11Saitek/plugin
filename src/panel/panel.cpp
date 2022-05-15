@@ -13,6 +13,7 @@
 
 #include "panel.h"
 #include "debug.h"
+#include <cstdio>
 
 // PANEL
 #include "bip.h"
@@ -94,4 +95,13 @@ Panel *Panel::createPanelMULTI(hid_device *usbAddr, const wchar_t *sn, int uid)
 Panel *Panel::createPanelRadio(hid_device *usbAddr, const wchar_t *sn, int uid)
 {
     return new Radio(usbAddr, sn, uid);
+}
+
+/**
+ * @brief 
+ * @return int 
+ */
+int Panel::GetPanelID(char *)
+{
+    throw Exception("This is virtual class");
 }

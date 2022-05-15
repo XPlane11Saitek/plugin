@@ -1,0 +1,81 @@
+
+SWITCH 0 MAG_OFF ON command(sim/magnetos/magnetos_off)
+SWITCH 0 MAG_OFF ON set(dataref(HMB/SR22/Internal/KeyActive):=0)
+SWITCH 0 MAG_OFF NAME ENG OFF
+
+SWITCH 0 MAG_RIGHT ON command(sim/magnetos/magnetos_right_1)
+SWITCH 0 MAG_RIGHT ON set(dataref(HMB/SR22/Internal/KeyActive):=1)
+SWITCH 0 MAG_RIGHT NAME ENG RIGHT
+
+SWITCH 0 MAG_LEFT ON command(sim/magnetos/magnetos_left_1)
+SWITCH 0 MAG_LEFT ON set(dataref(HMB/SR22/Internal/KeyActive):=1)
+SWITCH 0 MAG_LEFT NAME ENG LEFT
+
+SWITCH 0 MAG_BOTH ON command(sim/magnetos/magnetos_both_1)
+SWITCH 0 MAG_BOTH ON set(dataref(HMB/SR22/Internal/KeyActive):=1)
+SWITCH 0 MAG_BOTH NAME ENG BOTH
+
+SWITCH 0 ENG_START CMD push(sim/ignition/ignition_up_1)
+SWITCH 0 ENG_START ON set(dataref(HMB/SR22/Internal/KeyActive):=1)
+SWITCH 0 ENG_START NAME ENG START
+
+SWITCH 0 COWL_FLAPS ON set(dataref(HMB/SR22/ELT):=1)
+SWITCH 0 COWL_FLAPS OFF set(dataref(HMB/SR22/ELT):=0)
+SWITCH 0 COWL_FLAPS NAME AltAirStatic
+
+SWITCH 0 MASTER_BATTERY ON command(sim/electrical/battery_2_on)
+SWITCH 0 MASTER_BATTERY OFF command(sim/electrical/battery_2_off)
+SWITCH 0 MASTER_BATTERY NAME BAT 1
+SWITCH 0 MASTER_ALTENATOR ON command(sim/electrical/battery_1_on)
+SWITCH 0 MASTER_ALTENATOR OFF command(sim/electrical/battery_1_off)
+SWITCH 0 MASTER_ALTENATOR NAME BAT 2
+
+SWITCH 0 AVIONICS_POWER ON command(sim/systems/avionics_on)
+SWITCH 0 AVIONICS_POWER OFF command(sim/systems/avionics_off)
+SWITCH 0 AVIONICS_POWER NAME AVIONICS
+
+SWITCH 0 FUEL_PUMP ON runif(command(sim/ice/anti_ice_toggle)?dataref(sim/cockpit/switches/anti_ice_AOA_heat){0.0:0.00})
+SWITCH 0 FUEL_PUMP OFF runif(command(sim/ice/anti_ice_toggle)?dataref(sim/cockpit/switches/anti_ice_AOA_heat){1.0:1.00})
+SWITCH 0 FUEL_PUMP NAME ICE PROTECT
+
+SWITCH 0 DE_ICE ON command(sim/ice/prop_heat_on)
+SWITCH 0 DE_ICE OFF command(sim/ice/prop_heat_off)
+SWITCH 0 DE_ICE NAME DE ICE LEVEL
+
+SWITCH 0 PITOT_HEAT ON command(sim/ice/pitot_heat0_on)
+SWITCH 0 PITOT_HEAT OFF command(sim/ice/pitot_heat0_off)
+SWITCH 0 PITOT_HEAT NAME PITOT HEAT
+
+SWITCH 0 PANEL_LIGHTS ON set(dataref(HMB/SR22/InstrumentBrightness):=1)
+SWITCH 0 PANEL_LIGHTS OFF set(dataref(HMB/SR22/InstrumentBrightness):=0)
+SWITCH 0 PANEL_LIGHTS NAME PANEL LIGHTS
+
+SWITCH 0 BEACON_LIGHTS ON set(dataref(HMB/SR22/Lights/DisplayDim):=0)
+SWITCH 0 BEACON_LIGHTS OFF set(dataref(HMB/SR22/Lights/DisplayDim):=1)
+SWITCH 0 BEACON_LIGHTS NAME G1000
+
+SWITCH 0 NAV_LIGHTS ON command(sim/lights/nav_lights_on)
+SWITCH 0 NAV_LIGHTS OFF command(sim/lights/nav_lights_off)
+SWITCH 0 NAV_LIGHTS NAME NAV LIGHTS
+
+SWITCH 0 STROBE_LIGHTS ON command(sim/lights/strobe_lights_on)
+SWITCH 0 STROBE_LIGHTS OFF command(sim/lights/strobe_lights_off)
+SWITCH 0 STROBE_LIGHTS NAME STROBE LIGHTS
+
+SWITCH 0 TAXI_LIGHTS ON set(array(sim/cockpit2/switches/landing_lights_switch[1]):=1)
+SWITCH 0 TAXI_LIGHTS OFF set(array(sim/cockpit2/switches/landing_lights_switch[1]):=0)
+SWITCH 0 TAXI_LIGHTS NAME AICE
+
+SWITCH 0 LANDING_LIGHTS ON set(dataref(sim/cockpit2/switches/landing_lights_on):=1)
+SWITCH 0 LANDING_LIGHTS OFF set(dataref(sim/cockpit2/switches/landing_lights_on):=0)
+SWITCH 0 LANDING_LIGHTS NAME LAND LIGHTS
+
+; TODO CRTITICAL
+SWITCH 0 LEFT NAME GEAR
+SWITCH 0 CENTER NAME GEAR
+SWITCH 0 RIGHT NAME GEAR
+
+SWITCH 0 GEAR_SWITCH_UP ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=0.000000)
+SWITCH 0 GEAR_SWITCH_UP NAME PARK BREAK
+SWITCH 0 GEAR_SWITCH_DOWN ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=1.000000)
+SWITCH 0 GEAR_SWITCH_DOWN NAME PARK BREAK

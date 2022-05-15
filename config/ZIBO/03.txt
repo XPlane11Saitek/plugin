@@ -1,0 +1,68 @@
+
+BIP 3 0:0 GREEN dataref(laminar/B738/annunciator/window_heat_l_side){0.1:1.0}
+BIP 3 0:0 RED dataref(laminar/B738/annunciator/window_heat_ovht_ls){0.1:1.0}
+BIP 3 0:0 NAME WIN HEAT L/S
+BIP 3 1:0 RED dataref(laminar/B738/annunciator/capt_pitot_off){0.1:1.0}
+BIP 3 1:0 NAME CAPTAIN PITOT
+BIP 3 2:0 RED dataref(laminar/B738/annunciator/capt_aoa_off){0.1:1.0}
+BIP 3 2:0 NAME CAPTAIN AOA
+
+BIP 3 0:1 GREEN dataref(laminar/B738/annunciator/window_heat_l_fwd){0.1:1.0}
+BIP 3 0:1 RED dataref(laminar/B738/annunciator/window_heat_ovht_lf){0.1:1.0}
+BIP 3 0:1 NAME WIN HEAT L/F
+BIP 3 1:1 RED dataref(laminar/B738/annunciator/fo_pitot_off){0.1:1.0}
+BIP 3 1:1 NAME F/O PITOT
+BIP 3 2:1 RED dataref(laminar/B738/annunciator/fo_aoa_off){0.1:1.0}
+BIP 3 2:1 NAME F/O AOA
+
+BIP 3 0:2 GREEN dataref(laminar/B738/annunciator/window_heat_r_fwd){0.1:1.0}
+BIP 3 0:2 RED dataref(laminar/B738/annunciator/window_heat_ovht_rf){0.1:1.0}
+BIP 3 0:2 NAME WIN HEAT R/F
+BIP 3 1:2 GREEN dataref(laminar/B738/annunciator/cowl_ice_0){0.1:1.0}
+BIP 3 1:2 GREEN dataref(laminar/B738/annunciator/cowl_ice_on_0){0.1:1.0}
+BIP 3 1:2 NAME COWL/ICE ENG 1
+BIP 3 2:2 GREEN dataref(laminar/B738/annunciator/wing_ice_on_L){0.1:1.0}
+BIP 3 2:2 NAME WING/ICE L
+
+BIP 3 0:3 GREEN dataref(laminar/B738/annunciator/window_heat_r_side){0.1:1.0}
+BIP 3 0:3 RED dataref(laminar/B738/annunciator/window_heat_ovht_rs){0.1:1.0}
+BIP 3 0:3 NAME WIN HEAT R/S
+BIP 3 1:3 GREEN dataref(laminar/B738/annunciator/cowl_ice_1){0.1:1.0}
+BIP 3 1:3 GREEN dataref(laminar/B738/annunciator/cowl_ice_on_1){0.1:1.0}
+BIP 3 1:3 NAME COWL/ICE ENG 2
+BIP 3 2:3 GREEN dataref(laminar/B738/annunciator/wing_ice_on_R){0.1:1.0}
+BIP 3 2:3 NAME WING/ICE R
+
+BIP 3 0:4 RED dataref(laminar/B738/annunciator/hyd_press_a){0.1:1.0}
+BIP 3 0:4 NAME HYD SYS A
+BIP 3 1:4 RED dataref(laminar/B738/annunciator/hyd_el_press_a){0.1:1.0}
+BIP 3 1:4 NAME ELEC HYD A
+BIP 3 2:4 RED dataref(laminar/B738/annunciator/equip_door){0.1:1.0}
+BIP 3 2:4 NAME DOOR EQUIP
+
+BIP 3 0:5 RED dataref(laminar/B738/annunciator/hyd_press_b){0.1:1.0}
+BIP 3 0:5 NAME HYD SYS B
+BIP 3 1:5 RED dataref(laminar/B738/annunciator/hyd_el_press_b){0.1:1.0}
+BIP 3 1:5 NAME ELEC HYD B
+BIP 3 2:5 RED dataref(laminar/B738/annunciator/left_fwd_overwing){0.1:1.0}
+BIP 3 2:5 RED dataref(laminar/B738/annunciator/left_aft_overwing){0.1:1.0}
+BIP 3 2:5 RED dataref(laminar/B738/annunciator/right_fwd_overwing){0.1:1.0}
+BIP 3 2:5 RED dataref(laminar/B738/annunciator/right_aft_overwing){0.1:1.0}
+BIP 3 2:5 NAME DOOR WIND
+
+BIP 3 0:6 RED dataref(laminar/B738/annunciator/fwd_entry){0.1:1.0}
+BIP 3 0:6 RED dataref(laminar/B738/annunciator/aft_entry){0.1:1.0}
+BIP 3 0:6 NAME DOOR ENTRY
+BIP 3 1:6 RED dataref(laminar/B738/annunciator/fwd_service){0.1:1.0}
+BIP 3 1:6 RED dataref(laminar/B738/annunciator/aft_service){0.1:1.0}
+BIP 3 1:6 NAME DOOR SERVICE
+BIP 3 2:6 RED dataref(laminar/B738/annunciator/fwd_cargo){0.1:1.0}
+BIP 3 2:6 RED dataref(laminar/B738/annunciator/aft_cargo){0.1:1.0}
+BIP 3 2:6 NAME DOOR CARGO
+
+; TODO CRICAL 
+BIP 3 1:7 RED dataref(laminar/B738/annunciator/dual_bleed){0.1:1.0}
+BIP 3 1:7 NAME DUAL BLEED
+BIP 3 2:7 RED dataref(laminar/B738/annunciator/bleed_trip_1){0.1:1.0}
+BIP 3 2:7 RED dataref(laminar/B738/annunciator/bleed_trip_2){0.1:1.0}
+BIP 3 2:7 NAME BLEED TRIP

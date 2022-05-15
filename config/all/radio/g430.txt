@@ -1,0 +1,23 @@
+
+RADIO -1 g430-fmc MODE if(dataref(plugin/saitek/multi0/button/arm){1:1})
+RADIO -1 g430-fmc[F] MODE next(g430-fmc1)
+RADIO -1 g430-fmc[T] MODE next(g430-fmc2)
+
+; ---------- item g430-fmc1 ----------
+RADIO -1 g430-fmc1 MODE default(INT)
+RADIO -1 g430-fmc1 VALUE1 const(1)
+RADIO -1 g430-fmc1 VALUE2 const(430)
+RADIO -1 g430-fmc1 SMALLDOWN sim/GPS/g430n1_chapter_dn
+RADIO -1 g430-fmc1 SMALLUP sim/GPS/g430n1_chapter_up
+RADIO -1 g430-fmc1 BIGDOWN sim/GPS/g430n1_page_dn
+RADIO -1 g430-fmc1 BIGUP sim/GPS/g430n1_page_up
+RADIO -1 g430-fmc1 ACT sim/GPS/g430n1_ent
+; ---------- item g430-fmc2 ----------
+RADIO -1 g430-fmc2 MODE default(INT)
+RADIO -1 g430-fmc2 VALUE1 const(2)
+RADIO -1 g430-fmc2 VALUE2 const(430)
+RADIO -1 g430-fmc2 SMALLDOWN sim/GPS/g430n2_chapter_dn
+RADIO -1 g430-fmc2 SMALLUP sim/GPS/g430n2_chapter_up
+RADIO -1 g430-fmc2 BIGDOWN sim/GPS/g430n2_page_dn
+RADIO -1 g430-fmc2 BIGUP sim/GPS/g430n2_page_up
+RADIO -1 g430-fmc2 ACT sim/GPS/g430n2_ent

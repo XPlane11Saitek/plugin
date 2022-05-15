@@ -1,96 +1,111 @@
-
+// -*- lsst-c++ -*-
+/** Ukraine:
+ * Реалізаця класу підтримки BIP .
+ *
+ * @file bip.h
+ * @brief BIP Header file
+ * @defgroup PackageName XPlane11Saitek
+ * @defgroup Game XPlane11
+ * @author Taras Malanyuk
+ * Contact: tarasmal@gmail.com
+ * @license: GNU General Public License v3.0
+ */
 #include "bip.h"
 #include "debug.h"
 #include <string>
+#include <cstdio>
 
-BIP::BIP(hid_device *usbdev, const wchar_t *sn, int number) : Panel(usbdev, sn, number)
+BIP::BIP(hid_device *usbdev, const wchar_t *sn, int number) : Panel(usbdev, sn, number), BIPForm(usbdev, sn, number)
 {
-    for (int row = 0; row < BIP_CELL_ROW; row++)
-        for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-            this->led[row][colum] = new SingleLED("bip", number, row, colum);
+    for (int item = 0; item < BIP_CELL_COUNT; item++)
+        this->led[item] = new SingleLED("bip", number, item);
 
-#if (defined XPLANE11PLUGIN || defined USB)
-    this->panelUSBDevBIP = hid_open(0x6a3, 0xb4e, this->panelSN);
-    if (this->panelUSBDevBIP == NULL)
+#if (defined XPLANE11PLUGIN)
+    if (usbdev != NULL)
     {
-        debug("BIP%i Bad pointer to the address (BIP/connectUSB)", this->panelNumber);
-        this->panelUSBDevBIP = usbdev;
+        this->panelUSBDevAddr = hid_open(0x6a3, 0xb4e, this->panelSN);
+        if (this->panelUSBDevAddr == NULL)
+        {
+            debug("BIP%i Bad pointer to the address (BIP/connectUSB)", this->panelNumber);
+            this->panelUSBDevAddr = usbdev;
+        }
+        hid_set_nonblocking(usbdev, 1);
     }
-    hid_set_nonblocking(usbdev, 1);
-#else
-    (void)panelUSBDevBIP;
+    else
+        warning("BIP%i is Virtual panel", number);
 #endif
-    this->shutdown(CELL_ON_GREAN);
+    this->set(CELL_ON_GREAN);
 }
 
 BIP::~BIP()
-{ //Destroy Menu
-    for (int row = 0; row < BIP_CELL_ROW; row++)
-        for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-            delete this->led[row][colum];
-    this->shutdown(CELL_OFF);
+{
+    this->set(CELL_OFF);
+    for (int item = 0; item < BIP_CELL_COUNT; item++)
+        delete this->led[item];
 }
 
-void BIP::shutdown(int color)
+void BIP::set(int color)
 {
     memcpy(this->rawDisplay, ZeroBIPSetFeatureInit, sizeof(ZeroBIPSetFeatureInit));
-#if (defined XPLANE11PLUGIN || defined USB)
-    hid_send_feature_report(this->panelUSBDevBIP, this->rawDisplay, sizeof(this->rawDisplay));
+#if (defined XPLANE11PLUGIN)
+    if (this->panelUSBDevAddr != NULL)
+        hid_send_feature_report(this->panelUSBDevAddr, this->rawDisplay, sizeof(this->rawDisplay));
 #endif
     memcpy(this->rawDisplay, ZeroBIPSetFeatureShow, sizeof(ZeroBIPSetFeatureShow));
-    for (int row = 0; row < BIP_CELL_ROW; row++)
-        for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-            BIPSetCollorBit(row, colum, color, this->rawDisplay);
-#if (defined XPLANE11PLUGIN || defined USB)
-    hid_send_feature_report(this->panelUSBDevBIP, this->rawDisplay, sizeof(this->rawDisplay));
+    for (int item = 0; item < BIP_CELL_COUNT; item++)
+        BIPSetCollorBit(item, color, this->rawDisplay);
+#if (defined XPLANE11PLUGIN)
+    if (this->panelUSBDevAddr != NULL)
+        hid_send_feature_report(this->panelUSBDevAddr, this->rawDisplay, sizeof(this->rawDisplay));
 #endif
 }
 
 void BIP::Clear()
 {
-    this->shutdown(CELL_ON_GREAN);
+    this->set(CELL_ON_GREAN);
     this->state = init;
-    for (int row = 0; row < BIP_CELL_ROW; row++)
-        for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-            this->led[row][colum]->Clear();
+    for (int item = 0; item < BIP_CELL_COUNT; item++)
+        this->led[item]->Clear();
+    for (int item = 0; item < BIP_CELL_COUNT; item++)
+        this->SetFormName(item, "");
 }
 
 void BIP::Load(FileContent *config)
 {
     info("BIP%i Loading", this->panelNumber);
-    FileContent *panelConfig = config->CreateConfigForPanel(
-        "BIP", this->panelNumber);
-    FileContent *ledConfig = panelConfig->CreateConfigForButton("-1:-1");
+    this->set(CELL_ON_YELLOW);
+    FileContent *ledConfig = config->CreateConfigForButton("-1:-1");
     for (auto cmd : *ledConfig)
         for (int row = 0; row < BIP_CELL_ROW; row++)
             for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
             {
                 debug("BIP%i LED ADD %i:%i[%s] %s", this->panelNumber, row, colum, cmd->key, cmd->value);
                 cmd->usage = true;
-                this->led[row][colum]->Load(cmd->key, cmd->value);
+                this->led[row * BIP_CELL_COLUM + colum]->Load(cmd->key, cmd->value);
             }
     delete ledConfig;
     for (int row = 0; row < BIP_CELL_ROW; row++)
         for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
         {
-            ledConfig = panelConfig->CreateConfigForButton(
+            ledConfig = config->CreateConfigForButton(
                 (std::to_string(row) + ":" + std::to_string(colum)).c_str());
             for (auto cmd : *ledConfig)
             {
                 debug("BIP%i ADD %i:%i[%s] %s", this->panelNumber, row, colum, cmd->key, cmd->value);
                 cmd->usage = true;
-                this->led[row][colum]->Load(cmd->key, cmd->value);
+                if (!strcmp("NAME", cmd->key))
+                    this->SetFormName(row * BIP_CELL_COLUM + colum, cmd->value);
+                else
+                    this->led[row * BIP_CELL_COLUM + colum]->Load(cmd->key, cmd->value);
             }
-            this->led[row][colum]->SetState(-1);
+            this->led[row * BIP_CELL_COLUM + colum]->SetState(-1);
             delete ledConfig;
         }
-    panelConfig->CheckALLUsage();
-    delete panelConfig;
     this->state = loaded;
 #ifdef LOWPERFORMANCE
     this->step = LOWPERFORMANCE + 1;
 #endif
-    this->shutdown(CELL_OFF);
+    this->set(CELL_OFF);
     info("BIP%i Download completion", this->panelNumber);
 }
 
@@ -99,9 +114,8 @@ void BIP::check()
     info("BIP%i Verification requirements", this->panelNumber);
     try
     {
-        for (int row = 0; row < BIP_CELL_ROW; row++)
-            for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-                this->led[row][colum]->Check();
+        for (int item = 0; item < BIP_CELL_COUNT; item++)
+            this->led[item]->Check();
         info("BIP%i Requirements good", this->panelNumber);
         this->state = run;
     }
@@ -109,7 +123,7 @@ void BIP::check()
     {
         this->state = init;
         warning("BIP%i FATAL ERROR[%s]", this->panelNumber, e.what());
-        this->shutdown(CELL_ON_RED);
+        this->set(CELL_ON_RED);
 #ifndef XPLANE11PLUGIN
         throw Exception(e.what());
 #endif
@@ -130,41 +144,35 @@ void BIP::Reload()
         return;
     this->step = 0;
 #endif
+
     BIPState new_state;
-    this->getState(new_state);
-    if (this->needUpdate(new_state))
+    for (int item = 0; item < BIP_CELL_COUNT; item++)
+        new_state[item] = this->led[item]->RealState();
+
+    bool flag = false;
+    for (int item = 0; item < BIP_CELL_COUNT; item++)
+        if (new_state[item] != this->led[item]->GetState())
+            flag = true;
+
+    if (flag)
     {
         memcpy(this->rawDisplay, ZeroBIPSetFeatureShow, sizeof(ZeroBIPSetFeatureShow));
-        for (int row = 0; row < BIP_CELL_ROW; row++)
-            for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-                BIPSetCollorBit(row, colum, new_state[row][colum], this->rawDisplay);
-#if (defined XPLANE11PLUGIN || defined USB)
-        hid_send_feature_report(this->panelUSBDevBIP, this->rawDisplay, sizeof(this->rawDisplay));
+        for (int item = 0; item < BIP_CELL_COUNT; item++)
+            BIPSetCollorBit(item, new_state[item], this->rawDisplay);
+#if (defined XPLANE11PLUGIN)
+        if (this->panelUSBDevAddr != NULL)
+            hid_send_feature_report(this->panelUSBDevAddr, this->rawDisplay, sizeof(this->rawDisplay));
 #endif
         debug("BIP%i SET LED", this->panelNumber);
-        this->saveState(new_state);
+        for (int item = 0; item < BIP_CELL_COUNT; item++)
+            this->led[item]->SetState(new_state[item]);
+        for (int item = 0; item < BIP_CELL_COUNT; item++)
+            this->SetFormCollor(item, new_state[item]);
     }
 }
 
-void BIP::getState(BIPState &new_state)
+int BIP::GetPanelID(char *buffer)
 {
-    for (int row = 0; row < BIP_CELL_ROW; row++)
-        for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-            new_state[row][colum] = this->led[row][colum]->RealState();
-}
-
-bool BIP::needUpdate(BIPState new_state)
-{
-    for (int row = 0; row < BIP_CELL_ROW; row++)
-        for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-            if (new_state[row][colum] != this->led[row][colum]->GetState())
-                return true;
-    return false;
-}
-
-void BIP::saveState(BIPState new_state)
-{
-    for (int row = 0; row < BIP_CELL_ROW; row++)
-        for (int colum = 0; colum < BIP_CELL_COLUM; colum++)
-            this->led[row][colum]->SetState(new_state[row][colum]);
+    sprintf(buffer, "BIP");
+    return this->panelNumber;
 }

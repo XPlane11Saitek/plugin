@@ -16,7 +16,7 @@ private:
 #endif
     int item;
 
-protected:
+public:
     float GetValue();
     void SetValue(float);
     void Check();
@@ -24,5 +24,4 @@ protected:
 public:
     XP11ArrayValue(const char *line);
     ~XP11ArrayValue();
-    int GetCollor();
 };

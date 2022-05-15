@@ -7,8 +7,10 @@
 //             BIPanel
 // ================================================================
 
-void BIPSetCollorBit(const int row, const int colum, const int collor, BIPSetFeature &senderData)
+void BIPSetCollorBit(const int item, const int collor, BIPSetFeature &senderData)
 {
+    int row = item / BIP_CELL_COLUM;
+    int colum = item % BIP_CELL_COLUM;
     switch (collor)
     {
     case CELL_NULL:
@@ -111,6 +113,7 @@ void SWUpdateLED(int left, int nose, int right, SWSetFeature &buffer)
 }
 
 const SWSetFeature ZeroSWSetFeature = {0, 0};
+const SWGetFeature ZeroSWGetFeature = {0, 0, 0, 0};
 
 // ================================================================
 //             RadioPanel

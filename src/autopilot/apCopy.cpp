@@ -21,10 +21,10 @@ void APModeCOPY::Check()
     this->left[1]->Check();
 }
 
-void APModeCOPY::Activate()
+void APModeCOPY::Activate(apCaption *naming)
 {
-    this->left[0]->Activate();
-    this->left[1]->Activate();
+    this->left[0]->Activate(naming);
+    this->left[1]->Activate(&(this->faikCaption));
 }
 
 void APModeCOPY::Show(Monitor *a[2], unsigned char &b)

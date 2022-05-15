@@ -5,15 +5,24 @@ MULTI -1 ap[1][FLAP_DOWN] ON command(sim/flight_controls/flaps_down)
 MULTI -1 ap[1][TRIM] CMD  inc(dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01)
 
 MULTI -1 ap[0] MODE display
+MULTI -1 ap[0] NAME Autopilot panel
 
 MULTI -1 ap[0][AP] LED dataref(sim/cockpit/autopilot/autopilot_mode){2:2}
+MULTI -1 ap[0][AP] NAME Main CMD
 MULTI -1 ap[0][HDG] LED dataref(sim/cockpit2/autopilot/heading_status){2:2}
+MULTI -1 ap[0][HDG] NAME Mode HDG
 MULTI -1 ap[0][VS] LED dataref(sim/cockpit2/autopilot/vvi_status){2:2}
+MULTI -1 ap[0][VS]  NAME Mode VS
 MULTI -1 ap[0][IAS] LED dataref(sim/cockpit2/autopilot/speed_status){2:2}
+MULTI -1 ap[0][IAS] NAME Mode Speed
 MULTI -1 ap[0][NAV] LED dataref(sim/cockpit2/autopilot/nav_status){2:2}
+MULTI -1 ap[0][NAV] NAME Mode NAV/VOR
 MULTI -1 ap[0][ALT] LED dataref(sim/cockpit2/autopilot/altitude_hold_status){2:2}
+MULTI -1 ap[0][ALT] NAME Mode ALT hold
 MULTI -1 ap[0][REV] LED dataref(sim/cockpit2/autopilot/backcourse_status){2:2}
+MULTI -1 ap[0][REV] NAME Mode RC
 MULTI -1 ap[0][APR] LED dataref(sim/cockpit2/autopilot/approach_status){2:2}
+MULTI -1 ap[0][APR] NAME Approach
 
 MULTI -1 ap[0][AP] MODE hold(sim/autopilot/fdir_servos_toggle,3)
 MULTI -1 ap[0][AP][0] MODE exec(sim/autopilot/fdir_toggle)

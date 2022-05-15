@@ -4,41 +4,50 @@ MULTI -1 audio[1][FLAP_UP] ON command(sim/flight_controls/flaps_up)
 MULTI -1 audio[1][FLAP_DOWN] ON command(sim/flight_controls/flaps_down)
 MULTI -1 audio[1][TRIM] CMD  inc(dataref(sim/cockpit2/controls/elevator_trim){-1:1}/-0.01)
 ;-----------------------------
-MULTI -1 audio[0] MODE quad
-MULTI -1 audio[0][00] MODE copy
+MULTI -1 audio[0] MODE add()
+MULTI -1 audio[0][0] MODE copy
 ;-----------------------------
-MULTI -1 audio[0][00][1] MODE command
+MULTI -1 audio[0][0][1] MODE command
 ;-----------------------------
-MULTI -1 audio[0][00][1][HDG] ON command(sim/audio_panel/monitor_audio_com1)
-MULTI -1 audio[0][00][1][NAV] ON command(sim/audio_panel/monitor_audio_com2)
-MULTI -1 audio[0][00][1][IAS] ON command(sim/audio_panel/monitor_audio_nav1)
-MULTI -1 audio[0][00][1][ALT] ON command(sim/audio_panel/monitor_audio_nav2)
-MULTI -1 audio[0][00][1][VS] ON command(sim/audio_panel/monitor_audio_adf1)
+MULTI -1 audio[0][0][1][HDG] ON command(sim/audio_panel/monitor_audio_com1)
+MULTI -1 audio[0][0][1][NAV] ON command(sim/audio_panel/monitor_audio_com2)
+MULTI -1 audio[0][0][1][IAS] ON command(sim/audio_panel/monitor_audio_nav1)
+MULTI -1 audio[0][0][1][ALT] ON command(sim/audio_panel/monitor_audio_nav2)
+MULTI -1 audio[0][0][1][VS] ON command(sim/audio_panel/monitor_audio_adf1)
 ;-----------------------------
-MULTI -1 audio[0][00][0] MODE display
-MULTI -1 audio[0][00][0][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
-MULTI -1 audio[0][00][0][HDG] LED dataref(sim/cockpit2/radios/actuators/audio_selection_com1){1:1}
-MULTI -1 audio[0][00][0][NAV] LED dataref(sim/cockpit2/radios/actuators/audio_selection_com2){1:1}
-MULTI -1 audio[0][00][0][IAS] LED dataref(sim/cockpit2/radios/actuators/audio_selection_nav1){1:1}
-MULTI -1 audio[0][00][0][ALT] LED dataref(sim/cockpit2/radios/actuators/audio_selection_nav2){1:1}
-MULTI -1 audio[0][00][0][VS] LED dataref(sim/cockpit2/radios/actuators/audio_selection_adf1){1:1}
+MULTI -1 audio[0][0][0] MODE display
+MULTI -1 audio[0][0][0] NAME Audio ON/OFF
+MULTI -1 audio[0][0][0][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
+MULTI -1 audio[0][0][0][AP] NAME ATC CALL
+MULTI -1 audio[0][0][0][HDG] LED dataref(sim/cockpit2/radios/actuators/audio_selection_com1){1:1}
+MULTI -1 audio[0][0][0][HDG] NAME COM1
+MULTI -1 audio[0][0][0][NAV] LED dataref(sim/cockpit2/radios/actuators/audio_selection_com2){1:1}
+MULTI -1 audio[0][0][0][NAV] NAME COM2
+MULTI -1 audio[0][0][0][IAS] LED dataref(sim/cockpit2/radios/actuators/audio_selection_nav1){1:1}
+MULTI -1 audio[0][0][0][IAS] NAME NAV1
+MULTI -1 audio[0][0][0][ALT] LED dataref(sim/cockpit2/radios/actuators/audio_selection_nav2){1:1}
+MULTI -1 audio[0][0][0][ALT] NAME NAV2
+MULTI -1 audio[0][0][0][VS] LED dataref(sim/cockpit2/radios/actuators/audio_selection_adf1){1:1}
+MULTI -1 audio[0][0][0][VS] NAME ADF1
 
-MULTI -1 audio[0][01] MODE display
-MULTI -1 audio[0][01][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
-MULTI -1 audio[0][01][HDG] MODE next(com2-baro1)
-MULTI -1 audio[0][01][NAV] MODE next(com2-baro2)
-MULTI -1 audio[0][01][IAS] MODE next(com2-minim)
-MULTI -1 audio[0][01][ALT] MODE next(ah)
-MULTI -1 audio[0][01][VS] MODE next(dg)
 
-MULTI -1 audio[0][10] MODE display
-MULTI -1 audio[0][10][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
-MULTI -1 audio[0][10][HDG] MODE next(volume-com1)
-MULTI -1 audio[0][10][NAV] MODE next(volume-com2)
-MULTI -1 audio[0][10][IAS] MODE next(volume-nav1)
-MULTI -1 audio[0][10][ALT] MODE next(volume-nav2)
-MULTI -1 audio[0][10][VS] MODE next(volume-adf1)
-
-MULTI -1 audio[0][11] MODE display
-MULTI -1 audio[0][11][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
+MULTI -1 audio[0][1] MODE display
+MULTI -1 audio[0][1] NAME Audio volume
+MULTI -1 audio[0][1][AP] LED dataref(plugin/saitek/multi0/button/ap){1:1}
+MULTI -1 audio[0][1][AP] NAME ATC CALL
+MULTI -1 audio[0][1][HDG] LED dataref(sim/cockpit2/radios/actuators/audio_selection_com1){1:1}
+MULTI -1 audio[0][1][HDG] MODE next(volume-com1)
+MULTI -1 audio[0][1][HDG] NAME Volume COM1
+MULTI -1 audio[0][1][NAV] LED dataref(sim/cockpit2/radios/actuators/audio_selection_com2){1:1}
+MULTI -1 audio[0][1][NAV] MODE next(volume-com2)
+MULTI -1 audio[0][1][NAV] NAME Volume COM2
+MULTI -1 audio[0][1][IAS] LED dataref(sim/cockpit2/radios/actuators/audio_selection_nav1){1:1}
+MULTI -1 audio[0][1][IAS] MODE next(volume-nav1)
+MULTI -1 audio[0][1][IAS] NAME Volume NAV1
+MULTI -1 audio[0][1][ALT] LED dataref(sim/cockpit2/radios/actuators/audio_selection_nav2){1:1}
+MULTI -1 audio[0][1][ALT] MODE next(volume-nav2)
+MULTI -1 audio[0][1][ALT] NAME Volume NAV2
+MULTI -1 audio[0][1][VS] LED dataref(sim/cockpit2/radios/actuators/audio_selection_adf1){1:1}
+MULTI -1 audio[0][1][VS] MODE next(volume-adf1)
+MULTI -1 audio[0][1][VS] NAME Volume ADF1
 

@@ -15,15 +15,13 @@ protected:
 public:
     APModeDisplay();
     ~APModeDisplay();
+    static AP *New(FileContent *, const char *);
     void LoaderMode(int, RadioMode *);
     void LoaderRange(int, XPlaneRange *);
 
-public:
     void Check();
-    void Activate();
+    void Activate(apCaption *);
     void Show(Monitor *[2], unsigned char &);
-
-public: // Method
     void ButtonPush(int);
     void ButtonRelease(int);
     void RotateUp();

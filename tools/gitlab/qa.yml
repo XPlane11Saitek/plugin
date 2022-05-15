@@ -1,66 +1,77 @@
-.qa_mac: &qa_mac 
+.qa: &qa
   stage: qa
   script:
   - echo ok
   when: manual
-  needs:
-    - job: deploy:mac
-  tags: [mac]
+  tags: [win10]
   only:
     - merge_requests
   except:
     - schedules
 
 # SW
-qa:mac:c172g1000-sw:
-  <<: *qa_mac
+qa:win10:c172g1000-sw:
+  <<: *qa
 
-qa:mac:c172-sw:
-  <<: *qa_mac
+qa:win10:c172-sw:
+  <<: *qa
 
-qa:mac:be58-sw:
-  <<: *qa_mac
+qa:win10:be58-sw:
+  <<: *qa
 
-qa:mac:sf50-sw:
-  <<: *qa_mac
+qa:win10:sf50-sw:
+  <<: *qa
 
 # BIP
-qa:mac:c172g1000-bip:
-  <<: *qa_mac
+qa:win10:c172g1000-bip:
+  <<: *qa
 
-qa:mac:c172-bip:
-  <<: *qa_mac
+qa:win10:c172-bip:
+  <<: *qa
 
-qa:mac:be58-bip:
-  <<: *qa_mac
+qa:win10:be58-bip:
+  <<: *qa
 
-qa:mac:sf50-bip:
-  <<: *qa_mac
+qa:win10:sf50-bip:
+  <<: *qa
 
 # RADIO
-qa:mac:c172g1000-radio:
-  <<: *qa_mac
+qa:win10:c172g1000-radio:
+  <<: *qa
 
-qa:mac:c172-radio:
-  <<: *qa_mac
+qa:win10:c172-radio:
+  <<: *qa
 
-qa:mac:be58-radio:
-  <<: *qa_mac
+qa:win10:be58-radio:
+  <<: *qa
 
-qa:mac:sf50-radio:
-  <<: *qa_mac
+qa:win10:sf50-radio:
+  <<: *qa
 
 # MULTI
-qa:mac:c172g1000-ap:
-  <<: *qa_mac
+qa:win10:c172g1000-ap:
+  <<: *qa
 
-qa:mac:c172-ap:
-  <<: *qa_mac
+qa:win10:c172-ap:
+  <<: *qa
 
-qa:mac:be58-ap:
-  <<: *qa_mac
+qa:win10:be58-ap:
+  <<: *qa
 
-qa:mac:sf50-ap:
-  <<: *qa_mac
+qa:win10:sf50-ap:
+  <<: *qa
 
 
+#sr22
+
+qa:win10:sr22-bip:
+  <<: *qa
+
+qa:win10:sr22-sw:
+  <<: *qa
+
+qa:win10:sr22-radio:
+  <<: *qa
+
+qa:win10:sr22-ap:
+  <<: *qa

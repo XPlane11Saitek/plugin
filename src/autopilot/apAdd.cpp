@@ -2,12 +2,14 @@
 #include "apAdd.h"
 #include "rangeLoader.h"
 #include "spec.h"
+#include "debug.h"
 
 APModeAdd::APModeAdd(AP *lefts, AP *right)
 {
     this->left[0] = lefts;
     this->left[1] = right;
     this->mode = 0;
+    this->caption = NULL;
 }
 
 APModeAdd::~APModeAdd()
@@ -25,11 +27,15 @@ void APModeAdd::Check()
 void APModeAdd::swithTo(int newMode)
 {
     this->mode = newMode;
-    this->left[this->mode]->Activate();
+    if (this->caption != NULL)
+        this->left[this->mode]->Activate(this->caption);
+    else
+        warning("FAIL CAPTION NULL");
 }
 
-void APModeAdd::Activate()
+void APModeAdd::Activate(apCaption *naming)
 {
+    this->caption = naming;
     this->swithTo(0);
 }
 

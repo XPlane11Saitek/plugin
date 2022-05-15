@@ -1,0 +1,55 @@
+; TODO PROBLEM CRICAL
+BIP 1 0:0 GREEN dataref(laminar/B738/autopilot/autothrottle_status){0.1:1.0}
+BIP 1 0:0 NAME A/T arm
+BIP 1 1:0 GREEN dataref(laminar/B738/autopilot/master_capt_status){0.1:1.0}
+BIP 1 1:0 NAME MA captain
+; TODO PROBLEM CRICAL
+BIP 1 2:0 GREEN dataref(laminar/B738/switches/autopilot/fd_ca){0.1:1.0}
+BIP 1 2:0 NAME F/D captain
+
+BIP 1 0:1 GREEN dataref(laminar/B738/autopilot/n1_status){0.1:1.0}
+BIP 1 0:1 NAME N1
+BIP 1 1:1 GREEN dataref(laminar/B738/autopilot/speed_status1){0.1:1.0}
+BIP 1 1:1 NAME SPEED
+BIP 1 2:1 GREEN dataref(laminar/B738/switches/autopilot/fd_fo){0.1:1.0}
+BIP 1 2:1 NAME F/D FO
+
+BIP 1 0:2 GREEN dataref(laminar/B738/autopilot/vnav_status1){0.1:1.0}
+BIP 1 0:2 NAME VNAV
+BIP 1 1:2 GREEN dataref(laminar/B738/autopilot/lvl_chg_status){0.1:1.0}
+BIP 1 1:2 NAME LVL CHG
+BIP 1 2:2 GREEN dataref(laminar/B738/autopilot/hdg_sel_status){0.1:1.0}
+BIP 1 2:2 NAME HDG SEL
+
+BIP 1 0:3 GREEN dataref(laminar/B738/autopilot/lnav_status){0.1:1.0}
+BIP 1 0:3 NAME LNAV
+BIP 1 1:3 GREEN dataref(laminar/B738/autopilot/vorloc_status){0.1:1.0}
+BIP 1 1:3 NAME VOR LOC
+BIP 1 2:3 GREEN dataref(laminar/B738/autopilot/app_status){0.1:1.0}
+BIP 1 2:3 NAME APP
+
+BIP 1 0:4 GREEN dataref(laminar/B738/autopilot/cmd_a_status){0.1:1.0}
+BIP 1 0:4 NAME CMD A
+BIP 1 1:4 GREEN dataref(laminar/B738/autopilot/cws_a_status){0.1:1.0}
+BIP 1 1:4 NAME CWS A
+BIP 1 2:4 GREEN dataref(laminar/B738/autopilot/vs_status){0.1:1.0}
+BIP 1 2:4 NAME VS
+
+BIP 1 0:5 GREEN dataref(laminar/B738/autopilot/cmd_b_status){0.1:1.0}
+BIP 1 0:5 NAME CMD B
+BIP 1 1:5 GREEN dataref(laminar/B738/autopilot/cws_b_status){0.1:1.0}
+BIP 1 1:5 NAME CWS B
+BIP 1 2:5 GREEN dataref(laminar/B738/autopilot/alt_hld_status){0.1:1.0}
+BIP 1 2:5 NAME ALT HLD
+
+BIP 1 0:6 RED dataref(laminar/B738/annunciator/ap_disconnect1){0.1:1.0}
+BIP 1 0:6 NAME A/P DISC CAPT
+BIP 1 1:6 RED dataref(laminar/B738/annunciator/at_fms_disconnect1){0.1:1.0}
+BIP 1 1:6 NAME FMS DISC CAPT
+; TODO 2:6 CRICAL
+
+BIP 1 0:7 RED dataref(laminar/B738/annunciator/ap_disconnect2){0.1:1.0}
+BIP 1 0:7 NAME A/P DISC FO
+BIP 1 1:7 RED dataref(laminar/B738/annunciator/at_fms_disconnect2){0.1:1.0}
+BIP 1 1:7 NAME FMS DISC FO
+; TODO 2:7 CRICAL

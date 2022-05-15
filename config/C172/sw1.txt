@@ -7,16 +7,16 @@
 ;
 ;- AVION - BUS 2
 ;
-;- FUEL  - panel Bright
-;- DEICE - instrument bright
-;- PITOT - G1000
+;- FUEL  - ????
+;- DEICE - ????
+;- PITOT - ????
 ;
-;- PANEL - audio com1/com2
-;- BEACO - audio com1
-;- NAV   - audio com2
-;- STROB - audio nav1
-;- TAXI  - audio nav2
-;- LAND  - audio adf1
+;- PANEL - SW LIGHT
+;- BEACO - G1000 LIGHT
+;- NAV   - STANDBY INSTRUMENT
+;- STROB - LOW PANEL
+;- TAXI  - TOP LIGHT
+;- LAND  - SECOND TOP LIGHT
 ;
 ;- GEAR  - GEAR 
 ;
@@ -24,64 +24,91 @@ SWITCH 1 LEFT GREEN array(sim/aircraft/parts/acf_gear_deploy[1]){1:1}
 SWITCH 1 LEFT YELLOW array(sim/aircraft/parts/acf_gear_deploy[1]){0.001:0.999}
 SWITCH 1 LEFT OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0}
 SWITCH 1 LEFT OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+SWITCH 1 LEFT NAME GEAR 
 
 SWITCH 1 CENTER GREEN array(sim/aircraft/parts/acf_gear_deploy[0]){1:1}
 SWITCH 1 CENTER YELLOW array(sim/aircraft/parts/acf_gear_deploy[0]){0.001:0.999}
 SWITCH 1 CENTER OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0}
 SWITCH 1 CENTER OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+SWITCH 1 CENTER NAME GEAR
 
 SWITCH 1 RIGHT GREEN array(sim/aircraft/parts/acf_gear_deploy[2]){1:1}
 SWITCH 1 RIGHT YELLOW array(sim/aircraft/parts/acf_gear_deploy[2]){0.001:0.999}
 SWITCH 1 RIGHT OFF dataref(sim/aircraft/gear/acf_gear_retract){0:0}
 SWITCH 1 RIGHT OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+SWITCH 1 RIGHT NAME GEAR
 
 SWITCH 1 MAG_OFF ON set(dataref(sim/cockpit2/fuel/fuel_tank_selector):=0)
+SWITCH 1 MAG_OFF NAME FUEL SEL OFF
+
 SWITCH 1 MAG_RIGHT ON set(dataref(sim/cockpit2/fuel/fuel_tank_selector):=3)
+SWITCH 1 MAG_RIGHT NAME FUEL SEL RIGHT
+
 SWITCH 1 MAG_LEFT ON set(dataref(sim/cockpit2/fuel/fuel_tank_selector):=1)
+SWITCH 1 MAG_LEFT NAME FUEL SEL LEFT
+
 SWITCH 1 MAG_BOTH ON set(dataref(sim/cockpit2/fuel/fuel_tank_selector):=4)
+SWITCH 1 MAG_BOTH NAME FUEL SEL BOTH
 
 SWITCH 1 MASTER_BATTERY ON command(sim/flight_controls/door_open_1)
 SWITCH 1 MASTER_BATTERY OFF command(sim/flight_controls/door_close_1)
+SWITCH 1 MASTER_BATTERY NAME LEFT DOOR
 SWITCH 1 MASTER_ALTENATOR ON command(sim/flight_controls/door_open_2)
 SWITCH 1 MASTER_ALTENATOR OFF command(sim/flight_controls/door_close_2)
+SWITCH 1 MASTER_ALTENATOR NAME RIGHT DOOR
 
 SWITCH 1 AVIONICS_POWER ON command(sim/electrical/cross_tie_on)
 SWITCH 1 AVIONICS_POWER OFF command(sim/electrical/cross_tie_off)
+SWITCH 1 AVIONICS_POWER NAME ALT BUS
 
-SWITCH 1 FUEL_PUMP ON set(array(sim/cockpit2/switches/panel_brightness_ratio[0]):=1.0)
-SWITCH 1 FUEL_PUMP ON set(array(sim/cockpit2/switches/panel_brightness_ratio[1]):=1.0)
-SWITCH 1 FUEL_PUMP ON set(array(sim/cockpit2/switches/panel_brightness_ratio[2]):=1.0)
-SWITCH 1 FUEL_PUMP ON set(array(sim/cockpit2/switches/panel_brightness_ratio[3]):=1.0)
-SWITCH 1 FUEL_PUMP OFF set(array(sim/cockpit2/switches/panel_brightness_ratio[0]):=0.0)
-SWITCH 1 FUEL_PUMP OFF set(array(sim/cockpit2/switches/panel_brightness_ratio[1]):=0.0)
-SWITCH 1 FUEL_PUMP OFF set(array(sim/cockpit2/switches/panel_brightness_ratio[2]):=0.0)
-SWITCH 1 FUEL_PUMP OFF set(array(sim/cockpit2/switches/panel_brightness_ratio[3]):=0.0)
+; TODO LOW / features / NOT SUPPORT 
+; SWITCH 1 FUEL_PUMP ON 
+; SWITCH 1 FUEL_PUMP OFF 
+; SWITCH 1 FUEL_PUMP NAME 
 
-SWITCH 1 DE_ICE ON set(array(sim/cockpit2/switches/instrument_brightness_ratio[0]):=1.0)
-SWITCH 1 DE_ICE ON set(array(sim/cockpit2/switches/instrument_brightness_ratio[2]):=1.0)
-SWITCH 1 DE_ICE ON set(array(sim/cockpit2/switches/instrument_brightness_ratio[3]):=1.0)
-SWITCH 1 DE_ICE OFF set(array(sim/cockpit2/switches/instrument_brightness_ratio[0]):=0.0)
-SWITCH 1 DE_ICE OFF set(array(sim/cockpit2/switches/instrument_brightness_ratio[2]):=0.0)
-SWITCH 1 DE_ICE OFF set(array(sim/cockpit2/switches/instrument_brightness_ratio[3]):=0.0)
+; TODO LOW / features / NOT SUPPORT 
+; SWITCH 1 DE_ICE ON 
+; SWITCH 1 DE_ICE OFF 
+; SWITCH 1 DE_ICE NAME 
 
-SWITCH 1 PITOT_HEAT ON command(sim/GPS/G1000_display_reversion)
+; TODO LOW / features / NOT SUPPORT 
+;SWITCH 1 PITOT_HEAT ON 
+;SWITCH 1 PITOT_HEAT OFF 
+;SWITCH 1 PITOT_HEAT NAME 
 
 SWITCH 1 COWL_FLAPS ON runif(command(sim/starters/shut_down)?dataref(laminar/c172/fuel/fuel_cutoff_selector){1:1})
 SWITCH 1 COWL_FLAPS OFF runif(command(sim/starters/shut_down)?dataref(laminar/c172/fuel/fuel_cutoff_selector){0:0})
+SWITCH 1 COWL_FLAPS NAME FUEL CUTTOFF
 
-SWITCH 1 PANEL_LIGHTS ON command(sim/audio_panel/transmit_audio_com1)
-SWITCH 1 PANEL_LIGHTS OFF command(sim/audio_panel/transmit_audio_com2)
-SWITCH 1 BEACON_LIGHTS ON command(sim/audio_panel/monitor_audio_com1_on)
-SWITCH 1 BEACON_LIGHTS OFF command(sim/audio_panel/monitor_audio_com1_off)
-SWITCH 1 NAV_LIGHTS ON command(sim/audio_panel/monitor_audio_com2_on)
-SWITCH 1 NAV_LIGHTS OFF command(sim/audio_panel/monitor_audio_com2_off)
-SWITCH 1 STROBE_LIGHTS ON command(sim/audio_panel/monitor_audio_nav1_on)
-SWITCH 1 STROBE_LIGHTS OFF command(sim/audio_panel/monitor_audio_nav1_off)
-SWITCH 1 TAXI_LIGHTS ON command(sim/audio_panel/monitor_audio_nav2_on)
-SWITCH 1 TAXI_LIGHTS OFF command(sim/audio_panel/monitor_audio_nav2_off)
-SWITCH 1 LANDING_LIGHTS ON command(sim/audio_panel/monitor_audio_adf1_on)
-SWITCH 1 LANDING_LIGHTS OFF command(sim/audio_panel/monitor_audio_adf1_off)
+SWITCH 1 PANEL_LIGHTS ON set(array(sim/cockpit2/switches/instrument_brightness_ratio[0]):=1.00)
+SWITCH 1 PANEL_LIGHTS OFF set(array(sim/cockpit2/switches/instrument_brightness_ratio[0]):=0.00)
+SWITCH 1 PANEL_LIGHTS NAME PANEL SW
+
+SWITCH 1 BEACON_LIGHTS ON set(array(sim/cockpit2/switches/instrument_brightness_ratio[1]):=1.00)
+SWITCH 1 BEACON_LIGHTS OFF set(array(sim/cockpit2/switches/instrument_brightness_ratio[1]):=0.00)
+SWITCH 1 BEACON_LIGHTS NAME AVIONIC
+
+SWITCH 1 NAV_LIGHTS ON set(array(sim/cockpit2/switches/instrument_brightness_ratio[3]):=1.00)
+SWITCH 1 NAV_LIGHTS OFF set(array(sim/cockpit2/switches/instrument_brightness_ratio[3]):=0.00)
+SWITCH 1 NAV_LIGHTS NAME STANDBY INSTRUMENT
+
+SWITCH 1 STROBE_LIGHTS ON set(array(sim/cockpit2/switches/instrument_brightness_ratio[2]):=1.00)
+SWITCH 1 STROBE_LIGHTS OFF set(array(sim/cockpit2/switches/instrument_brightness_ratio[2]):=0.00)
+SWITCH 1 STROBE_LIGHTS NAME FULE SELECTOR
+
+SWITCH 1 TAXI_LIGHTS ON set(array(sim/cockpit2/switches/panel_brightness_ratio[0]):=1.00)
+SWITCH 1 TAXI_LIGHTS ON set(array(sim/cockpit2/switches/panel_brightness_ratio[1]):=1.00)
+SWITCH 1 TAXI_LIGHTS OFF set(array(sim/cockpit2/switches/panel_brightness_ratio[0]):=0.00)
+SWITCH 1 TAXI_LIGHTS OFF set(array(sim/cockpit2/switches/panel_brightness_ratio[1]):=0.00)
+SWITCH 1 TAXI_LIGHTS NAME CAPT BRIGHT
+
+SWITCH 1 LANDING_LIGHTS ON set(array(sim/cockpit2/switches/panel_brightness_ratio[2]):=1.00)
+SWITCH 1 LANDING_LIGHTS ON set(array(sim/cockpit2/switches/panel_brightness_ratio[3]):=1.00)
+SWITCH 1 LANDING_LIGHTS OFF set(array(sim/cockpit2/switches/panel_brightness_ratio[2]):=0.00)
+SWITCH 1 LANDING_LIGHTS OFF set(array(sim/cockpit2/switches/panel_brightness_ratio[3]):=0.00)
+SWITCH 1 LANDING_LIGHTS NAME FO BRIGHT
 
 SWITCH 1 GEAR_SWITCH_UP ON command(sim/flight_controls/landing_gear_up)
+SWITCH 1 GEAR_SWITCH_UP NAME GEAR UP
 SWITCH 1 GEAR_SWITCH_DOWN ON command(sim/flight_controls/landing_gear_down)
-
+SWITCH 1 GEAR_SWITCH_DOWN NAME GEER DOWN

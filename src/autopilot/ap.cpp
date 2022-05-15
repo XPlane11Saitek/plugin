@@ -9,17 +9,17 @@
 #include "apRadio.h"
 #include "apDisplay.h"
 #include "apQuad.h"
+#include "apList.h"
 
 #include <string>
 #include <cstring>
 #include <regex>
-#include "rangeLoader.h"
 
 AP::~AP() {}
 
 void AP::Check() {}
 
-void AP::Activate() {}
+void AP::Activate(apCaption *) {}
 
 void AP::Show(Monitor *[2], unsigned char &) {}
 
@@ -68,57 +68,23 @@ AP *AP::New(FileContent *config, const char *button)
                 createAP(config, button, "[10]"),
                 createAP(config, button, "[11]"));
         if (!strcmp("command", query[1].str().c_str()))
-        {
-            APModeCMD *cmd = new APModeCMD();
-            for (int pos = 0; pos < MULTI_BUTTON_LOADER; pos++)
-            {
-                FileContent *param = config->CreateConfigForButton(
-                    (button + std::string(MULTIButttonLoader[pos])).c_str());
-                for (auto row : *param)
-                {
-                    debug("CMD ADD %s button %s key %s value %s", button, MULTIButttonLoader[pos], row->key, row->value);
-                    row->usage = true;
-                    cmd->Loader(pos, SWAction::New(row->key, row->value));
-                }
-                delete param;
-            }
-            return cmd;
-        }
+            return APModeCMD::New(config, button);
         if (!strcmp("display", query[1].str().c_str()))
-        {
-            APModeDisplay *dsp = new APModeDisplay();
-            for (int pos = 0; pos < MULTI_LED_COUNT; pos++)
-            {
-                std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
-                if (config->IsParam(newButton.c_str(), "LED"))
-                    dsp->LoaderRange(pos, LoadRange(config->GetParam(newButton.c_str(), "LED")));
-                else
-                    debug("SKIP MULTI PANEL LED %s", newButton.c_str());
-            }
-            for (int pos = 0; pos < MULTI_BUTTON_LOADER; pos++)
-            {
-                std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
-                if (config->IsParam(newButton.c_str(), "MODE"))
-                    dsp->LoaderMode(pos, RadioMode::New(config, newButton.c_str()));
-                else
-                    debug("SKIP MULTI PANEL %s", newButton.c_str());
-            }
-            return dsp;
-        }
+            return APModeDisplay::New(config, button);
         if (!strcmp("radio", query[1].str().c_str()))
-        {
-            APModeRadio *rdo = new APModeRadio();
-            for (int pos = 1; pos < AP_RADIO_MODE_COUNT + 1; pos++)
-            {
-                std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
-                if (config->IsParam(newButton.c_str(), "MODE"))
-                    rdo->Loader(pos, RadioMode::New(config, newButton.c_str()));
-                else
-                    debug("SKIP MULTI PANEL %s", newButton.c_str());
-            }
-            return rdo;
-        }
+            return APModeRadio::New(config, button);
+        if (!strcmp("list", query[1].str().c_str()))
+            return APModeList::New(config, button);
     }
-
     throw Exception("MULTI LOADERD [%s] AND MODE [%s] NOT FOUND", button, mode);
+}
+
+void AP::SetName(const char *data)
+{
+    strcpy(this->name, data);
+}
+
+void AP::SetLedName(int cell, const char *data)
+{
+    strcpy(this->ledName[cell], data);
 }

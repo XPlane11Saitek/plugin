@@ -25,56 +25,79 @@ SWITCH 0 LEFT GREEN dataref(sim/cockpit2/fuel/fuel_tank_selector){1:1}
 SWITCH 0 LEFT RED dataref(sim/cockpit2/fuel/fuel_tank_selector){3:3}
 SWITCH 0 LEFT GREEN dataref(sim/cockpit2/fuel/fuel_tank_selector){4:4}
 SWITCH 0 LEFT OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+SWITCH 0 LEFT NAME FUEL SEL 
 
 SWITCH 0 CENTER RED dataref(sim/cockpit2/fuel/fuel_tank_selector){0:0}
 SWITCH 0 CENTER YELLOW dataref(sim/cockpit2/fuel/fuel_tank_selector){1:3}
 SWITCH 0 CENTER GREEN dataref(sim/cockpit2/fuel/fuel_tank_selector){4:4}
 SWITCH 0 CENTER OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+SWITCH 0 CENTER NAME FUEL SEL 
 
 SWITCH 0 RIGHT RED dataref(sim/cockpit2/fuel/fuel_tank_selector){0:1}
 SWITCH 0 RIGHT GREEN dataref(sim/cockpit2/fuel/fuel_tank_selector){3:4}
 SWITCH 0 RIGHT OFF dataref(sim/cockpit/electrical/battery_on){0:0}
+SWITCH 0 RIGHT NAME FUEL SEL 
 
 SWITCH 0 MAG_OFF ON command(sim/magnetos/magnetos_off)
+SWITCH 0 MAG_OFF NAME ENG OFF
 SWITCH 0 MAG_RIGHT ON command(sim/magnetos/magnetos_right_1)
+SWITCH 0 MAG_RIGHT NAME ENG RIGHT
 SWITCH 0 MAG_LEFT ON command(sim/magnetos/magnetos_left_1)
+SWITCH 0 MAG_LEFT NAME ENG LEFT
 SWITCH 0 MAG_BOTH ON command(sim/magnetos/magnetos_both_1)
+SWITCH 0 MAG_BOTH NAME ENG BOTH
 SWITCH 0 ENG_START CMD push(sim/ignition/ignition_up_1)
+SWITCH 0 ENG_START NAME ENG START
 
 SWITCH 0 MASTER_BATTERY ON command(sim/electrical/battery_1_on)
 SWITCH 0 MASTER_BATTERY OFF command(sim/electrical/battery_1_off)
+SWITCH 0 MASTER_BATTERY NAME BAT
 SWITCH 0 MASTER_ALTENATOR ON command(sim/electrical/generator_1_on)
 SWITCH 0 MASTER_ALTENATOR OFF command(sim/electrical/generator_1_off)
+SWITCH 0 MASTER_ALTENATOR NAME GEN
 
 SWITCH 0 AVIONICS_POWER ON command(sim/systems/avionics_on)
 SWITCH 0 AVIONICS_POWER OFF command(sim/systems/avionics_off)
+SWITCH 0 AVIONICS_POWER NAME AVIONICS
 
 SWITCH 0 FUEL_PUMP ON command(sim/fuel/fuel_pump_1_on)
 SWITCH 0 FUEL_PUMP OFF command(sim/fuel/fuel_pump_1_off)
+SWITCH 0 FUEL_PUMP NAME FUEL PUMP
 
 SWITCH 0 DE_ICE ON set(dataref(sim/cockpit2/switches/alternate_static_air_ratio):=1.0)
 SWITCH 0 DE_ICE OFF set(dataref(sim/cockpit2/switches/alternate_static_air_ratio):=0.0)
+SWITCH 0 DE_ICE NAME STATIC AIR
 
 SWITCH 0 PITOT_HEAT ON command(sim/ice/pitot_heat0_on)
 SWITCH 0 PITOT_HEAT OFF command(sim/ice/pitot_heat0_off)
 SWITCH 0 PITOT_HEAT ON command(sim/ice/pitot_heat1_on)
 SWITCH 0 PITOT_HEAT OFF command(sim/ice/pitot_heat1_off)
+SWITCH 0 PITOT_HEAT NAME PITOT HEAT
 
 SWITCH 0 COWL_FLAPS ON command(sim/electrical/battery_2_on)
 SWITCH 0 COWL_FLAPS OFF command(sim/electrical/battery_2_off)
+SWITCH 0 COWL_FLAPS NAME BAT G1000
 
 SWITCH 0 PANEL_LIGHTS CMD push(sim/annunciator/test_all_annunciators)
+SWITCH 0 PANEL_LIGHTS NAME TEST
 
 SWITCH 0 BEACON_LIGHTS ON command(sim/lights/beacon_lights_on)
 SWITCH 0 BEACON_LIGHTS OFF command(sim/lights/beacon_lights_off)
+SWITCH 0 BEACON_LIGHTS NAME BEACON
 SWITCH 0 NAV_LIGHTS ON command(sim/lights/nav_lights_on)
 SWITCH 0 NAV_LIGHTS OFF command(sim/lights/nav_lights_off)
+SWITCH 0 NAV_LIGHTS NAME NAV LIGHTS 
 SWITCH 0 STROBE_LIGHTS ON command(sim/lights/strobe_lights_on)
 SWITCH 0 STROBE_LIGHTS OFF command(sim/lights/strobe_lights_off)
+SWITCH 0 STROBE_LIGHTS NAME STROBE LIGHTS
 SWITCH 0 TAXI_LIGHTS ON command(sim/lights/taxi_lights_on)
 SWITCH 0 TAXI_LIGHTS OFF command(sim/lights/taxi_lights_off)
+SWITCH 0 TAXI_LIGHTS NAME TAXI LIGHTS
 SWITCH 0 LANDING_LIGHTS ON command(sim/lights/landing_lights_on)
 SWITCH 0 LANDING_LIGHTS OFF command(sim/lights/landing_lights_off)
+SWITCH 0 LANDING_LIGHTS NAME LANDING LIGHTS
 
 SWITCH 0 GEAR_SWITCH_UP ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=0.000000)
+SWITCH 0 GEAR_SWITCH_UP NAME PARK BREAK
 SWITCH 0 GEAR_SWITCH_DOWN ON set(dataref(sim/cockpit2/controls/parking_brake_ratio):=1.000000)
+SWITCH 0 GEAR_SWITCH_DOWN NAME PARK BREAK

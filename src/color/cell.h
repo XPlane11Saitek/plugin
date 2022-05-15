@@ -13,7 +13,7 @@ protected:
     Colors content;
 
 public:
-    SingleLED(const char *, int, int, int);
+    SingleLED(const char *, int, int);
     ~SingleLED();
 
 public: // Method

@@ -4,7 +4,7 @@ MULTI -1 com1[T] MODE dual(2)
 MULTI -1 com1[T][0] MODE next(com1-freq)
 MULTI -1 com1[T][1] MODE add()
 MULTI -1 com1[T][1][0] MODE next(heading)
-MULTI -1 com1[T][1][1] MODE next(altitude)
+MULTI -1 com1[T][1][1] MODE next(ap_altitude)
 ;--------------- OFF --------------------
 MULTI -1 com1[F] MODE off()
 

@@ -8,8 +8,8 @@ MULTI -1 com1-freq BIGDOWN sim/radios/stby_com1_coarse_down
 MULTI -1 com1-freq BIGUP sim/radios/stby_com1_coarse_up
 MULTI -1 com1-freq ACT sim/radios/com1_standy_flip
 ;-----------------------------
-MULTI -1 altitude MODE value(100,1000,1000,40000,LIMIT,INT)
-MULTI -1 altitude VALUE dataref(sim/cockpit/autopilot/altitude)
+MULTI -1 ap_altitude MODE value(100,1000,1000,40000,LIMIT,INT)
+MULTI -1 ap_altitude VALUE dataref(sim/cockpit/autopilot/altitude)
 ;-----------------------------
 MULTI -1 heading MODE value(1,10,0,360,ROUND,INT)
 MULTI -1 heading VALUE dataref(sim/cockpit/autopilot/heading_mag)
@@ -25,9 +25,6 @@ MULTI -1 com2-freq ACT sim/radios/com2_standy_flip
 ;----------- Baro1 -----------
 MULTI -1 com2-baro1 MODE value(0.01,0.1,0,40,LIMIT,FLOAT)
 MULTI -1 com2-baro1 VALUE dataref(sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot)
-;----------- Baro2 -----------
-MULTI -1 com2-baro2 MODE value(0.01,0.1,0,40,LIMIT,FLOAT)
-MULTI -1 com2-baro2 VALUE dataref(sim/cockpit2/gauges/actuators/barometer_setting_in_hg_copilot)
 ;----------- minim -----------
 MULTI -1 com2-minim MODE value(10,100,-1000,7000,LIMIT,INT)
 MULTI -1 com2-minim VALUE dataref(sim/cockpit2/gauges/actuators/baro_altimeter_bug_ft_pilot)
@@ -97,16 +94,6 @@ MULTI -1 xpdr-freq BIGUP sim/transponder/transponder_12_up
 ;----------- mode -----------
 MULTI -1 xpdr-mode MODE value(1,1,0,4,LIMIT,INT)
 MULTI -1 xpdr-mode VALUE dataref(sim/cockpit/radios/transponder_mode)
-;----------- AH -----------
-MULTI -1 ah MODE command(INT)
-MULTI -1 ah VALUE dataref(sim/cockpit/misc/ah_adjust)
-MULTI -1 ah UP sim/instruments/ah_ref_up
-MULTI -1 ah DOWN sim/instruments/ah_ref_down
-;----------- DG -----------
-MULTI -1 dg MODE command(INT)
-MULTI -1 dg VALUE dataref(sim/cockpit/gyros/dg_drift_vac_deg)
-MULTI -1 dg UP sim/instruments/DG_sync_up
-MULTI -1 dg DOWN sim/instruments/DG_sync_down
 ;----------- volume com1 -----------
 MULTI -1 volume-com1 MODE value(0.01,0.01,0,1,LIMIT,FLOAT)
 MULTI -1 volume-com1 VALUE dataref(sim/cockpit2/radios/actuators/audio_volume_com1)

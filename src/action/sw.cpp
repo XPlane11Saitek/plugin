@@ -15,6 +15,13 @@
 
 SWAction *SWAction::New(const char *param, const char *line)
 {
+    if (!strcmp("on", param))
+        return new SWOn(SWAction::New(line));
+    if (!strcmp("off", param))
+        return new SWOff(SWAction::New(line));
+    if (!strcmp("cmd", param))
+        return SWAction::New(line);
+    // next is deplicated
     if (!strcmp("ON", param))
         return new SWOn(SWAction::New(line));
     if (!strcmp("OFF", param))

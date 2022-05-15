@@ -1,0 +1,23 @@
+
+RADIO -1 g1000-fmc MODE if(dataref(plugin/saitek/multi0/button/arm){1:1})
+RADIO -1 g1000-fmc[F] MODE next(g1000-fmc1)
+RADIO -1 g1000-fmc[T] MODE next(g1000-fmc2)
+
+; ---------- item g1000-fmc1 ----------
+RADIO -1 g1000-fmc1 MODE default(INT)
+RADIO -1 g1000-fmc1 VALUE1 const(1)
+RADIO -1 g1000-fmc1 VALUE2 const(1000)
+RADIO -1 g1000-fmc1 SMALLDOWN sim/GPS/g1000n1_fms_inner_down
+RADIO -1 g1000-fmc1 SMALLUP sim/GPS/g1000n1_fms_inner_up
+RADIO -1 g1000-fmc1 BIGDOWN sim/GPS/g1000n1_fms_outer_down
+RADIO -1 g1000-fmc1 BIGUP sim/GPS/g1000n1_fms_outer_up
+RADIO -1 g1000-fmc1 ACT sim/GPS/g1000n1_ent
+; ---------- item g1000-fmc2 ----------
+RADIO -1 g1000-fmc2 MODE default(INT)
+RADIO -1 g1000-fmc2 VALUE1 const(2)
+RADIO -1 g1000-fmc2 VALUE2 const(1000)
+RADIO -1 g1000-fmc2 SMALLDOWN sim/GPS/g1000n3_fms_inner_down
+RADIO -1 g1000-fmc2 SMALLUP sim/GPS/g1000n3_fms_inner_up
+RADIO -1 g1000-fmc2 BIGDOWN sim/GPS/g1000n1_fms_outer_down
+RADIO -1 g1000-fmc2 BIGUP sim/GPS/g1000n1_fms_outer_up
+RADIO -1 g1000-fmc2 ACT sim/GPS/g1000n3_ent

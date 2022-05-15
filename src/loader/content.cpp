@@ -66,5 +66,5 @@ void FileContent::CheckALLUsage()
 {
     for (auto row : this->content)
         if (!row->usage)
-            warning("Load in %s:%i [%s]", PLUGIN_WARNING, row->filename, row->lineNumber, row->line);
+            warning("%s Load not use in %s:%i [%s]", PLUGIN_WARNING, row->filename, row->lineNumber, row->line);
 }

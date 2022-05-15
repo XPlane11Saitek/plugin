@@ -1,0 +1,56 @@
+
+BIP 4 0:0 GREEN dataref(laminar/B738/annunciator/irs_align_left){0.1:1.0}
+BIP 4 0:0 NAME ALIGN LEFT
+BIP 4 1:0 RED dataref(laminar/B738/annunciator/irs_align_fail_left){0.1:1.0}
+BIP 4 1:0 NAME ALIGN FAIL L
+BIP 4 2:0 RED dataref(laminar/B738/annunciator/gpws){0.1:1.0}
+BIP 4 2:0 NAME GPWS
+
+BIP 4 0:1 RED dataref(laminar/B738/annunciator/irs_on_dc_left){0.1:1.0}
+BIP 4 0:1 NAME DC ON LEFT
+BIP 4 1:1 RED dataref(laminar/B738/annunciator/irs_dc_fail_left){0.1:1.0}
+BIP 4 1:1 NAME DC FAIL L
+BIP 4 2:1 RED dataref(laminar/B738/annunciator/gps){0.1:1.0}
+BIP 4 2:1 NAME GPS FAIL
+
+BIP 4 0:2 GREEN dataref(laminar/B738/annunciator/irs_align_right){0.1:1.0}
+BIP 4 0:2 NAME ALIGN RIGHT
+BIP 4 1:2 RED dataref(laminar/B738/annunciator/irs_align_fail_right){0.1:1.0}
+BIP 4 1:2 NAME ALIGN FAIL R
+BIP 4 2:2 RED dataref(laminar/B738/annunciator/emer_exit){0.1:1.0}
+BIP 4 2:2 NAME EMERG EXIT
+
+BIP 4 0:3 RED dataref(laminar/B738/annunciator/irs_on_dc_right){0.1:1.0}
+BIP 4 0:3 NAME DC ON RIGHT
+BIP 4 1:3 RED dataref(laminar/B738/annunciator/irs_dc_fail_right){0.1:1.0}
+BIP 4 1:3 NAME DC FAIL R
+
+BIP 4 0:4 RED dataref(laminar/B738/annunciator/reverser_fail_0){0.1:1.0}
+BIP 4 0:4 NAME REV ENG 1
+BIP 4 1:4 RED dataref(laminar/B738/annunciator/fadec_fail_0){0.1:1.0}
+BIP 4 1:4 NAME FADEC ENG 1
+BIP 4 2:4 RED dataref(laminar/B738/annunciator/fadec1_off){0.1:1.0}
+BIP 4 2:4 NAME FADEC OFF 1
+
+BIP 4 0:5 RED dataref(laminar/B738/annunciator/reverser_fail_1){0.1:1.0}
+BIP 4 0:5 NAME REV ENG 2
+BIP 4 1:5 RED dataref(laminar/B738/annunciator/fadec_fail_1){0.1:1.0}
+BIP 4 1:5 NAME FADEC ENG 2
+BIP 4 2:5 RED dataref(laminar/B738/annunciator/fadec2_off){0.1:1.0}
+BIP 4 2:5 NAME FADEC OFF 2
+
+BIP 4 0:6 RED dataref(laminar/B738/toggle_switch/elt){0.1:1.0}
+BIP 4 0:6 NAME ELT	
+BIP 4 1:6 RED dataref(laminar/B738/annunciator/pax_oxy){0.1:1.0}
+BIP 4 1:6 NAME PAX OXY
+; TODO CRICAL 2:6
+
+BIP 4 0:7 RED dataref(laminar/B738/annunciator/nose_gear_transit){0.1:1.0}
+BIP 4 0:7 GREEN dataref(laminar/B738/annunciator/nose_gear_safe){0.1:1.0}
+BIP 4 0:7 NAME NOSE GEAR
+BIP 4 1:7 RED dataref(laminar/B738/annunciator/left_gear_transit){0.1:1.0}
+BIP 4 1:7 GREEN dataref(laminar/B738/annunciator/left_gear_safe){0.1:1.0}
+BIP 4 1:7 NAME LEFT GEAR
+BIP 4 2:7 RED dataref(laminar/B738/annunciator/right_gear_transit){0.1:1.0}
+BIP 4 2:7 GREEN dataref(laminar/B738/annunciator/right_gear_safe){0.1:1.0}
+BIP 4 2:7 NAME RIGHT GEAR

@@ -32,12 +32,12 @@ Panels device;
  */
 Panels::Panels() : Panel()
 {
-    this->findUSB(0x6a3, 0x0b4e, &Panels::createPanelBIP);
-    this->findUSB(0x6a3, 0x0d67, &Panels::createPanelSW);
-    this->findUSB(0x6a3, 0x0d05, &Panels::createPanelRadio);
-    this->findUSB(0x6a3, 0x0d06, &Panels::createPanelMULTI);
+    info("Plugin initiation");
+    this->countBIP = this->findUSB(0x6a3, 0x0b4e, &Panels::createPanelBIP);
+    this->countSW = this->findUSB(0x6a3, 0x0d67, &Panels::createPanelSW);
+    this->countRadio = this->findUSB(0x6a3, 0x0d05, &Panels::createPanelRadio);
+    this->countAP = this->findUSB(0x6a3, 0x0d06, &Panels::createPanelMULTI);
 }
-
 /** Ukraine:
  * Знищення панелей.
  * @brief Destrutor a exist Panels
@@ -47,6 +47,7 @@ Panels::~Panels()
     for (auto row : this->device)
         delete row;
     this->device.clear();
+    info("Plugin finalized");
 }
 
 /** Ukraine:
@@ -57,7 +58,7 @@ Panels::~Panels()
  * @brief Search usb devices
  * 
  */
-void Panels::findUSB(int vendorID, int deviceID, onFunction func)
+int Panels::findUSB(int vendorID, int deviceID, onFunction func)
 {
     int uid = 0;
     info("USB[%i:%i] The scan begins", vendorID, deviceID);
@@ -80,6 +81,7 @@ void Panels::findUSB(int vendorID, int deviceID, onFunction func)
     }
     hid_free_enumeration(devs);
     info("USB[%i:%i] Scan completed", vendorID, deviceID);
+    return uid;
 }
 
 /** Ukraine:
@@ -130,6 +132,32 @@ void Panels::Clean()
  */
 void Panels::Load(FileContent *config)
 {
-    for (auto row : this->device)
-        row->Load(config);
+    char name[STR_CAPTION_SIZE];
+    int id;
+    for (Panel *row : this->device)
+    {
+        id = row->GetPanelID(name);
+        FileContent *panelConfig = config->CreateConfigForPanel(
+            name, id);
+        try
+        {
+            info("Load device %s %d", name, id);
+            row->Load(panelConfig);
+            panelConfig->CheckALLUsage();
+            info("Load device %s %d done", name, id);
+        }
+        catch (const std::exception &e)
+        {
+            warning("LOAD ERROR DEVICE %s %d with message %s", name, id, e.what());
+        }
+        delete panelConfig;
+    }
+}
+
+Panel *Panels::CreateVirtualDevice()
+{
+    wchar_t serialNumber[MAX_USB_HEADER_STR] = {0};
+    Panel *dev = this->createPanelBIP(NULL, serialNumber, this->countBIP++);
+    this->device.insert(this->device.begin(), 1, dev);
+    return dev;
 }

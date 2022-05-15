@@ -46,7 +46,17 @@ protected:
      * @brief Search usb devices
      * 
      */
-    void findUSB(int, int, onFunction);
+    int findUSB(int, int, onFunction);
+
+    /** Ukraine:
+     * 
+     * @brief 
+     * 
+     */
+    int countBIP;
+    int countSW;
+    int countRadio;
+    int countAP;
 
 public:
     /** Ukraine:
@@ -82,6 +92,13 @@ public:
      * 
      */
     void Load(FileContent *);
+
+    /**
+     * @brief Create a Virtual Device object
+     * 
+     * @return Panel* 
+     */
+    Panel *CreateVirtualDevice();
 
 public:
     /** Ukraine:

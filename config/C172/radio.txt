@@ -1,10 +1,94 @@
 
 LOAD FROM FILE all/radio/item
 LOAD FROM FILE all/radio/mode
-RADIO -1 COM1 MODE next(com1)
-RADIO -1 COM2 MODE next(com2)
-RADIO -1 NAV1 MODE next(nav1)
-RADIO -1 NAV2 MODE next(nav2)
-RADIO -1 ADF MODE next(adf)
-RADIO -1 DME MODE next(dme)
-RADIO -1 XPDR MODE next(xpdr)
+LOAD FROM FILE all/radio/g430
+LOAD FROM FILE all/radio/g1000
+
+RADIO -1 COM1 MODE next(com1-battery)
+RADIO -1 com1-battery MODE if(dataref(sim/aircraft/electrical/num_batteries){2:2})
+; -----  G1000 MODEL ------
+RADIO -1 com1-battery[T] MODE if((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) OR (array(sim/cockpit/electrical/battery_array_on[1]){1:1}))
+RADIO -1 com1-battery[T][T] MODE next(com1-on)
+RADIO -1 com1-battery[T][F] MODE off()
+; -----  DEFAULT MODEL ------
+RADIO -1 com1-battery[F] MODE if((dataref(sim/cockpit/electrical/battery_on){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1}))
+RADIO -1 com1-battery[F][T] MODE next(com1-on)
+RADIO -1 com1-battery[F][F] MODE off()
+;---------------------------
+RADIO -1 com1-on MODE next(com1)
+
+RADIO -1 COM2 MODE next(com2-battery)
+;----------- battery -----------
+RADIO -1 com2-battery MODE if(dataref(sim/aircraft/electrical/num_batteries){2:2})
+; -----  G1000 MODEL ------
+RADIO -1 com2-battery[T] MODE if((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1}))
+RADIO -1 com2-battery[T][F] MODE off()
+RADIO -1 com2-battery[T][T] MODE next(com2-on)
+; -----  DEFAULT MODEL ------
+RADIO -1 com2-battery[F] MODE if((dataref(sim/cockpit/electrical/battery_on){1:1}) AND ((dataref(sim/cockpit/electrical/avionics_on){1:1}) AND (dataref(sim/cockpit2/electrical/cross_tie){1:1})))
+RADIO -1 com2-battery[F][F] MODE off()
+RADIO -1 com2-battery[F][T] MODE next(com2-on)
+;----------- CONFIG -----------
+RADIO -1 com2-on MODE next(com2)
+
+RADIO -1 NAV1 MODE next(nav1-battery)
+;----------- battery -----------
+RADIO -1 nav1-battery MODE if(dataref(sim/aircraft/electrical/num_batteries){2:2})
+; -----  G1000 MODEL ------
+RADIO -1 nav1-battery[T] MODE if((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) OR (array(sim/cockpit/electrical/battery_array_on[1]){1:1}))
+RADIO -1 nav1-battery[T][T] MODE next(nav1-on)
+RADIO -1 nav1-battery[T][F] MODE off()
+; -----  DEFAULT MODEL ------
+RADIO -1 nav1-battery[F] MODE if((dataref(sim/cockpit/electrical/battery_on){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1}))
+RADIO -1 nav1-battery[F][T] MODE next(nav1-on)
+RADIO -1 nav1-battery[F][F] MODE off()
+;----------- CONFIG -----------
+RADIO -1 nav1-on MODE next(nav1)
+
+RADIO -1 NAV2 MODE next(nav2-battery)
+;----------- battery -----------
+RADIO -1 nav2-battery MODE if(dataref(sim/aircraft/electrical/num_batteries){2:2})
+; -----  G1000 MODEL ------
+RADIO -1 nav2-battery[T] MODE if((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) OR (array(sim/cockpit/electrical/battery_array_on[1]){1:1}))
+RADIO -1 nav2-battery[T][T] MODE next(nav2-on)
+RADIO -1 nav2-battery[T][F] MODE off()
+; -----  DEFAULT MODEL ------
+RADIO -1 nav2-battery[F] MODE if((dataref(sim/cockpit/electrical/battery_on){1:1}) AND ((dataref(sim/cockpit/electrical/avionics_on){1:1}) AND (dataref(sim/cockpit2/electrical/cross_tie){1:1})))
+RADIO -1 nav2-battery[F][T] MODE next(nav2-on)
+RADIO -1 nav2-battery[F][F] MODE off()
+;----------- CONFIG -----------
+RADIO -1 nav2-on MODE next(nav2)
+
+RADIO -1 ADF MODE next(adf-battery)
+;----------- battery -----------
+RADIO -1 adf-battery MODE if(dataref(sim/aircraft/electrical/num_batteries){2:2})
+; -----  G1000 MODEL ------
+RADIO -1 adf-battery[T] MODE next(adf-g1000)
+; -----  DEFAULT MODEL ------
+RADIO -1 adf-battery[F] MODE if( (dataref(sim/cockpit/electrical/battery_on){1:1}) AND ((dataref(sim/cockpit/electrical/avionics_on){1:1}) AND (dataref(sim/cockpit2/electrical/cross_tie){1:1})))
+RADIO -1 adf-battery[F][F] MODE off()
+RADIO -1 adf-battery[F][T] MODE next(adf-on)
+;----------- CONFIG -----------
+RADIO -1 adf-on MODE next(adf)
+;----------- DEFAULT -----------
+RADIO -1 adf-g1000 MODE next(com2-baro2)
+
+RADIO -1 DME MODE next(dme-battery)
+;----------- battery -----------
+RADIO -1 dme-battery MODE if((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1}))
+RADIO -1 dme-battery[T] MODE next(dme-on)
+RADIO -1 dme-battery[F] MODE off()
+; -----  CONFIG ------
+RADIO -1 dme-on MODE next(dme)
+
+RADIO -1 XPDR MODE next(xpdr-battery)
+;----------- battery -----------
+RADIO -1 xpdr-battery MODE if((array(sim/cockpit/electrical/battery_array_on[0]){1:1}) AND (dataref(sim/cockpit/electrical/avionics_on){1:1}))
+RADIO -1 xpdr-battery[T] MODE next(xpdr-on)
+RADIO -1 xpdr-battery[F] MODE off()
+; -----  CONFIG ------
+RADIO -1 xpdr-on MODE next(xpdr)
+
+RADIO -1 FMC MODE if(dataref(sim/aircraft/electrical/num_batteries){2:2})
+RADIO -1 FMC[T] MODE next(g1000-fmc)
+RADIO -1 FMC[F] MODE next(g430-fmc)

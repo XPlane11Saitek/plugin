@@ -16,14 +16,11 @@ protected:
 public:
     APModeRadio();
     ~APModeRadio();
+    static AP *New(FileContent *, const char *);
     void Loader(int, RadioMode *);
-
-public:
     void Check();
-    void Activate();
+    void Activate(apCaption *);
     void Show(Monitor *[2], unsigned char &);
-
-public: // Method
     void ButtonPush(int);
     void ButtonRelease(int);
     void RotateUp();

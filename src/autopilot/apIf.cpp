@@ -1,6 +1,7 @@
 
 #include "apIf.h"
 #include "rangeLoader.h"
+#include "debug.h"
 
 APModeIF::APModeIF(AP *lefts, AP *right, const char *cmdRange)
 {
@@ -8,6 +9,7 @@ APModeIF::APModeIF(AP *lefts, AP *right, const char *cmdRange)
     this->left[1] = right;
     this->cmd = LoadRange(cmdRange);
     this->mode = 0;
+    this->caption = NULL;
 }
 
 APModeIF::~APModeIF()
@@ -27,7 +29,10 @@ void APModeIF::Check()
 void APModeIF::swithTo(int newMode)
 {
     this->mode = newMode;
-    this->left[this->mode]->Activate();
+    if (this->caption != NULL)
+        this->left[this->mode]->Activate(this->caption);
+    else
+        warning("FAIL CAPTION NULL");
 }
 
 int APModeIF::getMode()
@@ -37,12 +42,13 @@ int APModeIF::getMode()
     return 0;
 }
 
-void APModeIF::Activate()
+void APModeIF::Activate(apCaption *naming)
 {
+    this->caption = naming;
     int newMode = this->getMode();
     if (this->mode != newMode)
         this->swithTo(newMode);
-    this->left[this->mode]->Activate();
+    this->left[this->mode]->Activate(naming);
 }
 
 void APModeIF::Show(Monitor *a[2], unsigned char &b)

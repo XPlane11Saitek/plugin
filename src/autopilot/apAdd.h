@@ -11,19 +11,16 @@ protected:
 protected: //mode
     int getMode();
     void swithTo(int newMode);
+    apCaption *caption;
 
 public:
     void Check();
-    void Activate();
+    void Activate(apCaption *);
     void Show(Monitor *[2], unsigned char &);
-
-public: // Method
     void ButtonPush(int);
     void ButtonRelease(int);
     void RotateUp();
     void RotateDown();
-
-public:
     APModeAdd(AP *, AP *);
     ~APModeAdd();
 };

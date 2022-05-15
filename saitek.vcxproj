@@ -84,6 +84,15 @@
     <ClCompile Include="src\panel\multi.cpp" />
     <ClCompile Include="src\panel\panel.cpp" />
     <ClCompile Include="src\panel\panels.cpp" />
+    <ClCompile Include="src\radio\modeList.cpp" />
+    <ClCompile Include="src\autopilot\apList.cpp" />
+    <ClCompile Include="src\form\form.cpp" />
+    <ClCompile Include="src\form\APForm.cpp" />
+    <ClCompile Include="src\form\RadioForm.cpp" />
+    <ClCompile Include="src\form\SWForm.cpp" />
+    <ClCompile Include="src\form\BIPForm.cpp" />
+    <ClCompile Include="src\form\item.cpp" />
+    <ClCompile Include="src\form\apCaption.cpp" />
     <ClCompile Include="src\plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -100,26 +109,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -186,7 +195,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>src/plugin.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\panel;src\autopilot;src\swith;src\radio;src\color;src\source;src\range;src;X:\devel\SDK\CHeaders\XPLM;X:\devel\SDK\CHeaders\Wrappers;X:\devel\SDK\CHeaders\Widgets;X:\devel\SDK\Libraries\Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\panel;src\form;src\autopilot;src\swith;src\radio;src\color;src\source;src\range;src;X:\devel\SDK\CHeaders\XPLM;X:\devel\SDK\CHeaders\Wrappers;X:\devel\SDK\CHeaders\Widgets;X:\devel\SDK\Libraries\Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <StringPooling>true</StringPooling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -227,7 +236,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\reader;src\autopilot;src\action;src\radio;src\color;src\source;src\libs;src\range;src\display;src\loader;src\panel;src\output;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>hidapi\windows;hidapi\hidapi;SDK\CHeaders\XPLM;SDK\CHeaders\Wrappers;SDK\CHeaders\Widgets;src\reader;src\autopilot;src\action;src\radio;src\color;src\source;src\libs;src\range;src\display;src\loader;src\panel;src\form;src\output;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <StringPooling>true</StringPooling>

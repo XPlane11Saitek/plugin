@@ -8,8 +8,8 @@ RADIO -1 com1-freq BIGDOWN sim/radios/stby_com1_coarse_down
 RADIO -1 com1-freq BIGUP sim/radios/stby_com1_coarse_up
 RADIO -1 com1-freq ACT sim/radios/com1_standy_flip
 ;-----------------------------
-RADIO -1 altitude MODE value(100,1000,1000,40000,LIMIT,INT)
-RADIO -1 altitude VALUE dataref(sim/cockpit/autopilot/altitude)
+RADIO -1 ap_altitude MODE value(100,1000,1000,40000,LIMIT,INT)
+RADIO -1 ap_altitude VALUE dataref(sim/cockpit/autopilot/altitude)
 ;-----------------------------
 RADIO -1 heading MODE value(1,10,0,360,ROUND,INT)
 RADIO -1 heading VALUE dataref(sim/cockpit/autopilot/heading_mag)
@@ -111,3 +111,9 @@ RADIO -1 xpdr-freq BIGUP sim/transponder/transponder_12_up
 ;----------- mode -----------
 RADIO -1 xpdr-mode MODE value(1,1,0,4,LIMIT,INT)
 RADIO -1 xpdr-mode VALUE dataref(sim/cockpit/radios/transponder_mode)
+;----------- altitude ----------
+;RADIO -1 altitude MODE show(INT)
+;RADIO -1 altitude VALUE dataref(sim/cockpit2/gauges/indicators/altitude_ft_pilot)
+;----------- altitude ----------
+;RADIO -1 speed MODE show(INT)
+;RADIO -1 speed VALUE dataref(sim/cockpit2/gauges/indicators/airspeed_kts_pilot)

@@ -1,0 +1,83 @@
+; TODO CRICAL PANEL NOT FINISH
+
+BIP 5 0:0 GREEN dataref(){0.1:1.0}
+BIP 5 0:0 NAME 
+BIP 5 1:0 GREEN dataref(){0.1:1.0}
+BIP 5 1:0 NAME 
+BIP 5 2:0 GREEN dataref(){0.1:1.0}
+BIP 5 2:0 NAME 
+
+BIP 5 0:1 GREEN dataref(){0.1:1.0}
+BIP 5 0:1 NAME 
+BIP 5 1:1 GREEN dataref(){0.1:1.0}
+BIP 5 1:1 NAME 
+BIP 5 2:1 GREEN dataref(){0.1:1.0}
+BIP 5 2:1 NAME 
+
+BIP 5 0:2 GREEN dataref(){0.1:1.0}
+BIP 5 0:2 NAME 
+BIP 5 1:2 GREEN dataref(){0.1:1.0}
+BIP 5 1:2 NAME 
+BIP 5 2:2 GREEN dataref(){0.1:1.0}
+BIP 5 2:2 NAME 
+
+BIP 5 0:3 GREEN dataref(){0.1:1.0}
+BIP 5 0:3 NAME 
+BIP 5 1:3 GREEN dataref(){0.1:1.0}
+BIP 5 1:3 NAME 
+BIP 5 2:3 GREEN dataref(){0.1:1.0}
+BIP 5 2:3 NAME 
+
+BIP 5 0:4 GREEN dataref(){0.1:1.0}
+BIP 5 0:4 NAME 
+BIP 5 1:4 GREEN dataref(){0.1:1.0}
+BIP 5 1:4 NAME 
+BIP 5 2:4 GREEN dataref(){0.1:1.0}
+BIP 5 2:4 NAME 
+
+BIP 5 0:5 GREEN dataref(){0.1:1.0}
+BIP 5 0:5 NAME 
+BIP 5 1:5 GREEN dataref(){0.1:1.0}
+BIP 5 1:5 NAME 
+BIP 5 2:5 GREEN dataref(){0.1:1.0}
+BIP 5 2:5 NAME 
+
+BIP 5 0:6 GREEN dataref(){0.1:1.0}
+BIP 5 0:6 NAME 
+BIP 5 1:6 GREEN dataref(){0.1:1.0}
+BIP 5 1:6 NAME 
+BIP 5 2:6 GREEN dataref(){0.1:1.0}
+BIP 5 2:6 NAME 
+
+BIP 5 0:7 GREEN dataref(){0.1:1.0}
+BIP 5 0:7 NAME 
+BIP 5 1:7 GREEN dataref(){0.1:1.0}
+BIP 5 1:7 NAME 
+BIP 5 2:7 GREEN dataref(){0.1:1.0}
+BIP 5 2:7 NAME 
+
+ENGINE 1 OVERHEAT					laminar/B738/annunciator/engine1_ovht
+ENGINE 1 FIRE						laminar/B738/annunciator/engine1_fire
+
+WHEEL WELL FIRE						laminar/B738/annunciator/wheel_well_fire
+FIRE FAULT INOP						laminar/B738/annunciator/fire_fault_inop
+
+;APU FAULT							laminar/B738/annunciator/apu_fault
+;APU FIRE							laminar/B738/annunciator/apu_fire
+
+ENGINE 2 OVERHEAT					laminar/B738/annunciator/engine2_ovht
+ENGINE 2 FIRE						laminar/B738/annunciator/engine2_fire
+
+LEFT BOTTLE DISCHARGE				laminar/B738/annunciator/l_bottle_discharge
+RIGHT BOTTLE DISCHARGE				laminar/B738/annunciator/r_bottle_discharge
+
+SMOKE								laminar/B738/annunciator/smoke
+CARGO FIRE							laminar/B738/annunciator/cargo_fire
+
+
+TRANSPONDER FAIL					laminar/B738/transponder/indicators/xpond_fail
+WING BODY OVERHEAT					laminar/B738/annunciator/wing_body_ovht
+FIRE BELL							laminar/B738/annunciator/fire_bell_annun
+EXTINGUISHER CIRCUIT 1				laminar/B738/annunciator/extinguisher_circuit_annun1
+EXTINGUISHER CIRCUIT 2				laminar/B738/annunciator/extinguisher_circuit_annun2
+FDR OFF								laminar/B738/annunciator/fdr_off

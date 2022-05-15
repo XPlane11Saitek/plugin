@@ -48,6 +48,15 @@ void Monitor::SetAll()
             this->state[item] = 8;
 }
 
+void Monitor::SetCode(int value)
+{
+    for (int item = 0; item < 5; item++)
+        if (this->isRadio)
+            this->state[item] = value;
+        else
+            this->state[item] = value;
+}
+
 bool Monitor::IsChange(int blockStartPos, unsigned char *writeBuffer)
 {
     bool res = false;

@@ -8,9 +8,9 @@
 #include "XPLMPlugin.h"
 #endif
 
-CustomWrite::CustomWrite(const char *devName, int devID, int row, int colum)
+CustomWrite::CustomWrite(const char *devName, int devID, int item)
 {
-   snprintf(this->cmdName, STR_DATAREF_SIZE, "plugin/saitek/%s%i/led/row%i/colum%i", devName, devID, row, colum);
+   snprintf(this->cmdName, STR_DATAREF_SIZE, "plugin/saitek/%s%i/led%i", devName, devID, item);
    info("Registered %s", this->cmdName);
 #ifdef XPLANE11PLUGIN
    this->cmd = XPLMRegisterDataAccessor(this->cmdName,

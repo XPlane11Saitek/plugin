@@ -14,3 +14,22 @@ deploy:mac:
   except:
     - schedules
   when: manual
+
+deploy:win10:
+  stage: deploy
+  script:
+  - del X:\Games\Resources\plugins\saitek -Recurse -Force
+  - mkdir "X:\Games\Resources\plugins\saitek"
+  - mkdir "X:\Games\Resources\plugins\saitek\64"
+  - cp win.xpl "X:\Games\Resources\plugins\saitek\64"
+  - cp -r config "X:\Games\Resources\plugins\saitek\"
+  needs:
+    - job: build:windows
+      artifacts: true
+  tags: [win10]
+  only:
+    - merge_requests
+    - master
+  except:
+    - schedules
+  when: manual

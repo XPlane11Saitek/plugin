@@ -1,15 +1,19 @@
 ; 0:0 beacon  lights
 BIP 1 0:0 RED dataref(sim/cockpit2/switches/beacon_on){0:0}
+BIP 1 0:0 NAME BEACON
 ; 0:1 navigation  lights
 BIP 1 0:1 YELLOW dataref(sim/cockpit2/switches/navigation_lights_on){0:0}
 BIP 1 0:1 OFF dataref(sim/cockpit2/switches/beacon_on){0:0}
+BIP 1 0:1 NAME NAV
 ; 0:2 strobe  lights
 BIP 1 0:2 GREEN dataref(sim/cockpit2/switches/strobe_lights_on){0:0}
 BIP 1 0:2 OFF dataref(sim/cockpit2/switches/beacon_on){0:0}
+BIP 1 0:2 NAME STROBO
 ; 0:3 landing  lights
 BIP 1 0:3 GREEN dataref(sim/cockpit2/switches/landing_lights_on){1:1}
 BIP 1 0:3 GREEN dataref(sim/cockpit2/switches/taxi_light_on){1:1}
 BIP 1 0:3 OFF dataref(sim/cockpit2/switches/beacon_on){0:0}
+BIP 1 0:3 NAME TAXI/LAND
 ; 0:4 vacuum
 BIP 1 0:4 RED dataref(sim/cockpit2/gauges/indicators/roll_vacuum_deg_pilot){-91:-45}
 BIP 1 0:4 YELLOW dataref(sim/cockpit2/gauges/indicators/roll_vacuum_deg_pilot){-45:-35}
@@ -23,57 +27,74 @@ BIP 1 0:4 GREEN dataref(sim/cockpit2/gauges/indicators/pitch_vacuum_deg_pilot){-
 BIP 1 0:4 GREEN dataref(sim/cockpit2/gauges/indicators/pitch_vacuum_deg_pilot){12:20}
 BIP 1 0:4 YELLOW dataref(sim/cockpit2/gauges/indicators/pitch_vacuum_deg_pilot){20:30}
 BIP 1 0:4 RED dataref(sim/cockpit2/gauges/indicators/pitch_vacuum_deg_pilot){30:91}
+BIP 1 0:4 NAME AIM
 ; 0:5 STALL
 BIP 1 0:5 GREEN dataref(sim/cockpit2/gauges/indicators/turn_rate_roll_deg_pilot){-60:-27}
 BIP 1 0:5 GREEN dataref(sim/cockpit2/gauges/indicators/turn_rate_roll_deg_pilot){27:60}
+BIP 1 0:5 NAME ROLL
 ; 0:6 max  speed
 BIP 1 0:6 RED dataref(sim/flightmodel/position/indicated_airspeed){195:250}
+BIP 1 0:6 NAME SPEED MAX
 ; 0:7 LOW  SPEED
 BIP 1 0:7 GREEN dataref(sim/flightmodel/position/indicated_airspeed){79:85}
 BIP 1 0:7 YELLOW dataref(sim/flightmodel/position/indicated_airspeed){74:79}
 BIP 1 0:7 RED dataref(sim/cockpit2/annunciators/stall_warning){1:1}
+BIP 1 0:7 NAME LOW SPEED
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; 1:0 GEAR  LEFT
 BIP 1 1:0 GREEN array(sim/aircraft/parts/acf_gear_deploy[1]){1:1}
 BIP 1 1:0 YELLOW array(sim/aircraft/parts/acf_gear_deploy[1]){0.001:0.999}
+BIP 1 1:0 NAME LEFT GEAR
 ; 1:1 GEAR  LEFT
 BIP 1 1:1 GREEN array(sim/aircraft/parts/acf_gear_deploy[0]){1:1}
 BIP 1 1:1 YELLOW array(sim/aircraft/parts/acf_gear_deploy[0]){0.001:0.999}
+BIP 1 1:1 NAME CENTER GEAR
 ; 1:2 GEAR  LEFT
 BIP 1 1:2 GREEN array(sim/aircraft/parts/acf_gear_deploy[2]){1:1}
 BIP 1 1:2 YELLOW array(sim/aircraft/parts/acf_gear_deploy[2]){0.001:0.999}
+BIP 1 1:2 NAME RIGHT GEAR
 ; 1:3
 ; 1:4
 ; 1:5 fuel left
 BIP 1 1:5 GREEN array(sim/cockpit2/fuel/fuel_quantity[0]){20.18486:40.1429}
 BIP 1 1:5 YELLOW array(sim/cockpit2/fuel/fuel_quantity[0]){6.80389:20.18486}
 BIP 1 1:5 RED array(sim/cockpit2/fuel/fuel_quantity[0]){0:6.80389}
+BIP 1 1:5 NAME LEFT FUEL
 ; 1:6 fuel
 BIP 1 1:6 RED dataref(sim/cockpit2/annunciators/fuel_quantity){1:1}
+BIP 1 1:6 NAME FUEL
 ; 1:7 fuel right
 BIP 1 1:7 GREEN array(sim/cockpit2/fuel/fuel_quantity[1]){20.18486:40.1429}
 BIP 1 1:7 YELLOW array(sim/cockpit2/fuel/fuel_quantity[1]){36.80389:20.18486}
 BIP 1 1:7 RED array(sim/cockpit2/fuel/fuel_quantity[1]){0:6.80389}
+BIP 1 1:7 NAME RIGHT FUEL
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; 2:0 flap  left
 BIP 1 2:0 YELLOW array(sim/flightmodel2/wing/flap1_deg[0]){1:11}
 BIP 1 2:0 GREEN array(sim/flightmodel2/wing/flap1_deg[0]){11:13}
 BIP 1 2:0 YELLOW array(sim/flightmodel2/wing/flap1_deg[0]){13:29}
+BIP 1 2:0 NAME FLAP
 ; 2:1 flap  right
 BIP 1 2:1 YELLOW array(sim/flightmodel2/wing/flap1_deg[1]){1:11}
 BIP 1 2:1 GREEN array(sim/flightmodel2/wing/flap1_deg[1]){11:13}
 BIP 1 2:1 YELLOW array(sim/flightmodel2/wing/flap1_deg[1]){13:29}
+BIP 1 2:1 NAME FLAP
 ; 2:2 flap down left
 BIP 1 2:2 YELLOW array(sim/flightmodel2/wing/flap1_deg[0]){13:29}
 BIP 1 2:2 GREEN array(sim/flightmodel2/wing/flap1_deg[0]){29:50}
+BIP 1 2:2 NAME FLAP
 ; 2:3 flap down right
 BIP 1 2:3 YELLOW array(sim/flightmodel2/wing/flap1_deg[1]){13:29}
 BIP 1 2:3 GREEN array(sim/flightmodel2/wing/flap1_deg[1]){29:50}
+BIP 1 2:3 NAME FLAP
 ; 2:4 parking  brake
 BIP 1 2:4 RED dataref(sim/cockpit2/controls/parking_brake_ratio){1:1}
+BIP 1 2:4 NAME BRAKE
 ; 2:5 yaw_damper_on
 BIP 1 2:5 GREEN dataref(sim/cockpit2/switches/yaw_damper_on){0:0}
+BIP 1 2:5 NAME YAW
 ; 2:7 DOOR
 BIP 1 2:7 RED array(sim/cockpit2/switches/door_open[0]){1:1}
 BIP 1 2:7 RED array(sim/cockpit2/switches/door_open[1]){1:1}
+BIP 1 2:7 NAME DOOR

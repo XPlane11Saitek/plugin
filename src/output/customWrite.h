@@ -29,7 +29,7 @@ public:
     void SetNewState(int);
 
 public:
-    CustomWrite(const char *, int, int, int);
+    CustomWrite(const char *, int, int);
     ~CustomWrite();
 };
 #endif

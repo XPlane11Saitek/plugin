@@ -8,14 +8,15 @@
 // ================================================================
 #define BIP_BIT_SET_COUNT 10
 typedef unsigned char BIPSetFeature[BIP_BIT_SET_COUNT];
-void BIPSetCollorBit(const int, const int, const int, BIPSetFeature &);
+void BIPSetCollorBit(const int, const int, BIPSetFeature &);
 
 extern const BIPSetFeature ZeroBIPSetFeatureInit;
 extern const BIPSetFeature ZeroBIPSetFeatureShow;
 
 #define BIP_CELL_COLUM 8
 #define BIP_CELL_ROW 3
-typedef int BIPState[BIP_CELL_ROW][BIP_CELL_COLUM];
+#define BIP_CELL_COUNT 24
+typedef int BIPState[BIP_CELL_COUNT];
 
 // ================================================================
 //             SwitchPanel
@@ -35,6 +36,7 @@ extern const char SWButtonDataRefName[SW_BUTTON_COUNT][17];
 void SWUpdateLED(int, int, int, SWSetFeature &buffer);
 
 extern const SWSetFeature ZeroSWSetFeature;
+extern const SWGetFeature ZeroSWGetFeature;
 
 // ================================================================
 //             RadioPanel

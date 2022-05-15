@@ -1,0 +1,62 @@
+
+LOAD FROM FILE all/radio/item
+LOAD FROM FILE all/radio/mode
+LOAD FROM FILE all/radio/g1000
+
+RADIO -1 COM1 MODE next(com1-power)
+RADIO -1 com1-power MODE if((array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1})))
+RADIO -1 com1-power[T] MODE off()
+RADIO -1 com1-power[F] MODE if(dataref(sim/cockpit/electrical/avionics_on){1:1})
+RADIO -1 com1-power[F][F] MODE off()
+RADIO -1 com1-power[F][T] MODE next(com1-on)
+RADIO -1 com1-on MODE next(com1)
+
+RADIO -1 COM2 MODE next(com2-power)
+RADIO -1 com2-power MODE if((array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1})))
+RADIO -1 com2-power[T] MODE off()
+RADIO -1 com2-power[F] MODE if(dataref(sim/cockpit/electrical/avionics_on){1:1})
+RADIO -1 com2-power[F][F] MODE off()
+RADIO -1 com2-power[F][T] MODE next(com2-on)
+RADIO -1 com2-on MODE next(com2)
+
+RADIO -1 NAV1 MODE next(nav1-power)
+RADIO -1 nav1-power MODE if((array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1})))
+RADIO -1 nav1-power[T] MODE off()
+RADIO -1 nav1-power[F] MODE if(dataref(sim/cockpit/electrical/avionics_on){1:1})
+RADIO -1 nav1-power[F][F] MODE off()
+RADIO -1 nav1-power[F][T] MODE next(nav1-on)
+RADIO -1 nav1-on MODE next(nav1)
+
+RADIO -1 NAV2 MODE next(nav2-power)
+RADIO -1 nav2-power MODE if((array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1})))
+RADIO -1 nav2-power[T] MODE off()
+RADIO -1 nav2-power[F] MODE if(dataref(sim/cockpit/electrical/avionics_on){1:1})
+RADIO -1 nav2-power[F][F] MODE off()
+RADIO -1 nav2-power[F][T] MODE next(nav2-on)
+RADIO -1 nav2-on MODE next(nav2)
+
+RADIO -1 ADF MODE next(adf-power)
+RADIO -1 adf-power MODE if((array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1})))
+RADIO -1 adf-power[T] MODE off
+RADIO -1 adf-power[F] MODE if(dataref(sim/cockpit/electrical/avionics_on){1:1})
+RADIO -1 adf-power[F][F] MODE off()
+RADIO -1 adf-power[F][T] MODE next(adf-on)
+RADIO -1 adf-on MODE next(adf)
+
+RADIO -1 DME MODE next(dme-power)
+RADIO -1 dme-power MODE if((array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1})))
+RADIO -1 dme-power[T] MODE off()
+RADIO -1 dme-power[F] MODE if(dataref(sim/cockpit/electrical/avionics_on){1:1})
+RADIO -1 dme-power[F][F] MODE off()
+RADIO -1 dme-power[F][T] MODE next(dme-on)
+RADIO -1 dme-on MODE next(dme)
+
+RADIO -1 XPDR MODE next(xpdr-power)
+RADIO -1 xpdr-power MODE if((array(sim/cockpit/electrical/battery_array_on[0]){0:0}) AND ((array(sim/cockpit2/electrical/generator_amps[0]){0:1}) AND (array(sim/cockpit2/electrical/generator_amps[1]){0:1})))
+RADIO -1 xpdr-power[T] MODE off()
+RADIO -1 xpdr-power[F] MODE if(dataref(sim/cockpit/electrical/avionics_on){1:1})
+RADIO -1 xpdr-power[F][F] MODE off()
+RADIO -1 xpdr-power[F][T] MODE next(xpdr-on)
+RADIO -1 xpdr-on MODE next(xpdr)
+
+RADIO -1 FMC MODE next(g1000-fmc)

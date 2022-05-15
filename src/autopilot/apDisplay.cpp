@@ -1,5 +1,11 @@
 
 #include "apDisplay.h"
+#include "debug.h"
+#include "rangeLoader.h"
+
+#include <string>
+#include <cstring>
+#include <regex>
 
 APModeDisplay::APModeDisplay()
 {
@@ -42,9 +48,12 @@ bool APModeDisplay::swithto(int new_mode)
     return false;
 }
 
-void APModeDisplay::Activate()
+void APModeDisplay::Activate(apCaption *naming)
 {
     this->swithto(0);
+    naming->SetName(this->name);
+    for (int cell = 0; cell < MULTI_LED_COUNT; cell++)
+        naming->SetLEDName(cell, ledName[cell]);
 }
 
 void APModeDisplay::Show(Monitor *a[2], unsigned char &b)
@@ -101,4 +110,30 @@ void APModeDisplay::LoaderMode(int button, RadioMode *obj)
 void APModeDisplay::LoaderRange(int button, XPlaneRange *obj)
 {
     this->value[button] = obj;
+}
+
+AP *APModeDisplay::New(FileContent *config, const char *button)
+{
+    APModeDisplay *dsp = new APModeDisplay();
+    if (config->IsParam(button, "NAME"))
+        dsp->SetName(config->GetParam(button, "NAME"));
+    for (int pos = 0; pos < MULTI_LED_COUNT; pos++)
+    {
+        std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
+        if (config->IsParam(newButton.c_str(), "NAME"))
+            dsp->SetLedName(pos, config->GetParam(newButton.c_str(), "NAME"));
+        if (config->IsParam(newButton.c_str(), "LED"))
+            dsp->LoaderRange(pos, LoadRange(config->GetParam(newButton.c_str(), "LED")));
+        else
+            debug("SKIP MULTI PANEL LED %s", newButton.c_str());
+    }
+    for (int pos = 0; pos < MULTI_BUTTON_LOADER; pos++)
+    {
+        std::string newButton = (button + std::string(MULTIButttonLoader[pos]));
+        if (config->IsParam(newButton.c_str(), "MODE"))
+            dsp->LoaderMode(pos, RadioMode::New(config, newButton.c_str()));
+        else
+            debug("SKIP MULTI PANEL %s", newButton.c_str());
+    }
+    return dsp;
 }

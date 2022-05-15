@@ -11,6 +11,7 @@ BIP -1 -1:-1 OFF dataref(sim/cockpit/electrical/battery_on){0:0}
 
 ; 1:0 volts
 BIP 0 1:0 YELLOW array(sim/cockpit2/electrical/battery_amps[0]){-60:-5}
+BIP 0 1:0 NAME BAT
 
 ; 1:1 RPM
 BIP 0 1:1 RED array(sim/cockpit2/engine/indicators/engine_speed_rpm[0]){2500:3500}
@@ -18,10 +19,12 @@ BIP 0 1:1 GREEN array(sim/cockpit2/engine/indicators/engine_speed_rpm[0]){2450:2
 BIP 0 1:1 GREEN array(sim/cockpit2/engine/indicators/engine_speed_rpm[0]){500:700}
 BIP 0 1:1 YELLOW array(sim/cockpit2/engine/indicators/engine_speed_rpm[0]){250:500}
 BIP 0 1:1 RED array(sim/cockpit2/engine/indicators/engine_speed_rpm[0]){-100:250}
+BIP 0 1:1 NAME RPM
 
 ; 1:2 fuel
 BIP 0 1:2 RED array(sim/flightmodel/engine/ENGN_FF_[0]){0.00:0.0015}
 BIP 0 1:2 YELLOW array(sim/flightmodel/engine/ENGN_FF_[0]){0.007774:0.015548}
+BIP 0 1:2 NAME ENGN FF
 
 ; 1:3 TEMP
 
@@ -30,18 +33,22 @@ BIP 0 1:4 RED array(sim/cockpit2/engine/indicators/EGT_deg_C[0]){1400:2000}
 BIP 0 1:4 YELLOW array(sim/cockpit2/engine/indicators/EGT_deg_C[0]){1250:1400}
 BIP 0 1:4 YELLOW array(sim/cockpit2/engine/indicators/EGT_deg_C[0]){400:500}
 BIP 0 1:4 RED array(sim/cockpit2/engine/indicators/EGT_deg_C[0]){-100:400}
+BIP 0 1:4 NAME ENGN EGT
 
 ; 1:5 IOL  TEMP
 BIP 0 1:5 RED array(sim/cockpit2/engine/indicators/oil_temperature_deg_C[0]){250:1000}
 BIP 0 1:5 YELLOW array(sim/cockpit2/engine/indicators/oil_temperature_deg_C[0]){225:250}
 BIP 0 1:5 RED array(sim/cockpit2/engine/indicators/oil_temperature_deg_C[0]){-50:100}
+BIP 0 1:5 NAME OIL TEMP
 
 ; 1:6 engine press iol
 BIP 0 1:6 RED array(sim/cockpit2/engine/indicators/oil_pressure_psi[0]){105:115}
 BIP 0 1:6 RED array(sim/cockpit2/engine/indicators/oil_pressure_psi[0]){0:50}
+BIP 0 1:6 NAME OIL PRESS
 
 ; 1:7 vacuum  vaue
 BIP 0 1:7 RED dataref(sim/cockpit2/annunciators/low_vacuum){1:1}
+BIP 0 1:7 NAME LOW VACUUM
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC ;;
@@ -49,25 +56,31 @@ BIP 0 1:7 RED dataref(sim/cockpit2/annunciators/low_vacuum){1:1}
 
 ; 2:0 volts
 BIP 0 2:0 RED dataref(sim/cockpit/warnings/annunciators/low_voltage){1:1}
+BIP 0 2:0 NAME LOW VOLTAGE
 
 ; 2:1 rpm NOT --- WORK
 ;BIP 0 2:1 RED dataref(sim/cockpit/warnings/annunciators/low_rotor){1:1}
 ;BIP 0 2:1 RED dataref(sim/cockpit/warnings/annunciators/high_rotor){1:1}
+BIP 0 2:1 NAME ROTOR
 
 ; 2:2 FF
 BIP 0 2:2 RED array(sim/cockpit/warnings/annunciators/fuel_pressure_low[0]){1:1}
+BIP 0 2:2 NAME FUEL PRESS
 
 ; 2:3 FIRE - ? NOT TEST
 BIP 0 2:3 RED array(sim/cockpit/warnings/annunciators/engine_fires[0]){1:1}
+BIP 0 2:3 NAME ENGINE FIRES
 
 ; 2:4 EGT
 
 ; 2:5 IOL - TEMP NOT TEST
 BIP 0 2:5 RED array(sim/cockpit/warnings/annunciators/oil_temperature_high[0]){1:1}
+BIP 0 2:5 NAME OIL TEMP HIGH
 
 ; 2:6 IOL
 BIP 0 2:6 RED array(sim/cockpit2/annunciators/oil_pressure_low[0]){1:1}
+BIP 0 2:6 NAME OIL PRESS LO
 
 ; 2:7 vacuum
 BIP 0 2:7 RED dataref(sim/cockpit2/annunciators/low_vacuum){1:1}
-
+BIP 0 2:7 NAME LOW VACUUM

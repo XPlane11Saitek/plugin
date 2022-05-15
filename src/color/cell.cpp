@@ -2,8 +2,7 @@
 
 #include "cell.h"
 
-SingleLED::SingleLED(const char *devName, int devID, int row,
-                     int colum) : CustomWrite(devName, devID, row, colum)
+SingleLED::SingleLED(const char *devName, int devID, int item) : CustomWrite(devName, devID, item)
 {
 }
 
@@ -15,7 +14,7 @@ SingleLED::~SingleLED()
 int SingleLED::RealState()
 {
     int res = this->GetNewState();
-    for (auto row : this->content)
+    for (SaitekColor *row : this->content)
     {
         int new_state = row->GetColor();
         switch (new_state)
@@ -44,13 +43,13 @@ void SingleLED::Load(const char *color, const char *line)
 
 void SingleLED::Clear()
 {
-    for (auto row : this->content)
+    for (SaitekColor *row : this->content)
         delete row;
     this->content.clear();
 }
 
 void SingleLED::Check()
 {
-    for (auto row : this->content)
+    for (SaitekColor *row : this->content)
         row->Check();
 }

@@ -1,0 +1,26 @@
+MULTI -1 brightness MODE display()
+MULTI -1 brightness NAME brightness
+
+MULTI -1 brightness[AP] MODE value(0.05,0.1,0,1,LIMIT,FLOAT)
+MULTI -1 brightness[AP] VALUE array(sim/cockpit2/switches/instrument_brightness_ratio[1])
+MULTI -1 brightness[AP] NAME AVIONIC
+
+MULTI -1 brightness[HDG] MODE value(0.05,0.1,0,1,LIMIT,FLOAT)
+MULTI -1 brightness[HDG] VALUE array(sim/cockpit2/switches/instrument_brightness_ratio[0])
+MULTI -1 brightness[HDG] NAME SW PANEL
+
+MULTI -1 brightness[IAS] MODE value(0.05,0.1,0,1,LIMIT,FLOAT)
+MULTI -1 brightness[IAS] VALUE array(sim/cockpit2/switches/instrument_brightness_ratio[2])
+MULTI -1 brightness[IAS] NAME FULE SELECTOR
+
+MULTI -1 brightness[NAV] MODE value(0.05,0.1,0,1,LIMIT,FLOAT)
+MULTI -1 brightness[NAV] VALUE array(sim/cockpit2/switches/instrument_brightness_ratio[3])
+MULTI -1 brightness[NAV] NAME STANDBY INSTRUMENT
+
+MULTI -1 brightness[ALT] MODE value(0.05,0.1,0,1,LIMIT,FLOAT)
+MULTI -1 brightness[ALT] VALUE array(sim/cockpit2/switches/panel_brightness_ratio[0])
+MULTI -1 brightness[ALT] NAME CAPT BRIGHT
+
+MULTI -1 brightness[VS] MODE value(0.05,0.1,0,1,LIMIT,FLOAT)
+MULTI -1 brightness[VS] VALUE array(sim/cockpit2/switches/panel_brightness_ratio[1])
+MULTI -1 brightness[VS] NAME FO BRIGHT

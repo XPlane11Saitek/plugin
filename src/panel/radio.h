@@ -4,43 +4,59 @@
 #include "mode.h"
 #include "spec.h"
 #include "customRef.h"
+#include "RadioForm.h"
 
-class Radio : public Panel
+class Radio : public Panel, public RadioForm
 {
 private: // USB PANEL DEV
     RADIOGetFeature rawCommand;
     RADIOSetFeature rawDisplay;
-
-protected: // Mode
     RadioMode *upMode[RADIO_MODE_COUNT];
     RadioMode *downMode[RADIO_MODE_COUNT];
     Monitor *monitor[2][2];
-    RadioMode *upPanel;
-    RadioMode *downPanel;
-
-protected:
+    RadioMode *up;
+    RadioMode *down;
     CustomRef *upPush;
     CustomRef *downPush;
 
 private: //Read USB
-    void connectUSB();
-    void readUSBData();
-    void createRadioElement();
-    void changePos();
-    void changeUpPos(int);
-    void changeDownPos(int);
-    void rotate();
-    void changeMode();
     void check();
-    void shutdown();
-    void show(int);
+    void set();
 
 public:
+    /**
+     * @brief Construct a new Radio object
+     * 
+     */
     Radio(hid_device *, const wchar_t *, int);
+
+    /**
+     * @brief Destroy the Radio object
+     * 
+     */
     ~Radio();
 
-public:
+    /**
+     * @brief 
+     * 
+     */
     void Reload();
+
+    /**
+     * @brief 
+     * 
+     */
     void Clear();
+
+    /**
+     * @brief 
+     * 
+     */
     void Load(FileContent *);
+
+    /**
+     * @brief 
+     * 
+     */
+    int GetPanelID(char *);
 };
