@@ -59,3 +59,4 @@ build:windows:
     - msbuild saitek.sln /p:Configuration=Release
     - cp Release\plugins\saitek\64\win.xpl ./
   tags: [win10]
+  except: []

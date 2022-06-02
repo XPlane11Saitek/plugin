@@ -29,7 +29,8 @@ deploy:win10:
   tags: [win10]
   only:
     - merge_requests
-    - master
+    - branches	
+    - tags
   except:
     - schedules
   when: manual
