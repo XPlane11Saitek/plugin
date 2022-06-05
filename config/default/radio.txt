@@ -70,3 +70,5 @@ RADIO -1 XPDR[T] SMALLUP sim/transponder/transponder_34_up
 RADIO -1 XPDR[T] BIGDOWN sim/transponder/transponder_12_down
 RADIO -1 XPDR[T] BIGUP sim/transponder/transponder_12_up
 RADIO -1 XPDR[F] MODE off
+
+RADIO -1 FMC MODE off()
