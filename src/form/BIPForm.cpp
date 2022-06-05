@@ -82,7 +82,10 @@ void BIPForm::ShowForm()
         params.refcon = this;
         // Specifies the type of X-Plane 11-style "wrapper" you want around your window, if any
         //  XPLMWindowDecoration      decorateAsFloatingWindow;
-        // params.decorateAsFloatingWindow = xplm_WindowDecorationRoundRectangle;
+#if IBM
+#else
+        params.decorateAsFloatingWindow = xplm_WindowDecorationRoundRectangle;
+#endif
         //  XPLMWindowLayer           layer;
         params.layer = xplm_WindowLayerFloatingWindows;
         //  // A callback to handle the user right-clicking within your window (or NULL to ignore right clicks)

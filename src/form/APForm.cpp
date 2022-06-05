@@ -33,7 +33,7 @@ void APForm::ShowForm()
         params.structSize = sizeof(params);
         // Left bound, in global desktop boxels
         //  int                       left;
-        params.left = left + 850;
+        params.left = left + 1590;
         // Top bound, in global desktop boxels
         //  int                       top;
         params.top = bottom + 15 + height + step;
@@ -61,7 +61,10 @@ void APForm::ShowForm()
         params.refcon = this;
         // Specifies the type of X-Plane 11-style "wrapper" you want around your window, if any
         //  XPLMWindowDecoration      decorateAsFloatingWindow;
-        // params.decorateAsFloatingWindow = xplm_WindowDecorationRoundRectangle;
+#if IBM
+#else
+        params.decorateAsFloatingWindow = xplm_WindowDecorationRoundRectangle;
+#endif
         //  XPLMWindowLayer           layer;
         params.layer = xplm_WindowLayerFloatingWindows;
         //  // A callback to handle the user right-clicking within your window (or NULL to ignore right clicks)

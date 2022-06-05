@@ -26,6 +26,8 @@ build:plugin:linux:
   <<: *code
   image: tarasmal/saitek:cmake
   script:
+    - pwd
+    - ls /usr/include
     - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" -DXPLANE11PLUGIN=true
     - make
   tags: [linux]
@@ -34,6 +36,8 @@ build:check:linux:
   <<: *code
   image: tarasmal/saitek:cmake
   script:
+    - pwd
+    - ls /usr/include
     - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" 
     - make
   tags: [linux]

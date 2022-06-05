@@ -78,7 +78,7 @@ int SaitekColor::GetColor()
     if (this->value->IsValueInRange())
         if (this->blink)
         {
-            if (difftime(time(0), this->blink_lastUpdate) > 1)
+            if (difftime(time(0), this->blink_lastUpdate) >= 1)
             {
                 this->blink_main = !this->blink_main;
                 this->blink_lastUpdate = time(0);
