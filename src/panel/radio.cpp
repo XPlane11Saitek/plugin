@@ -34,6 +34,14 @@ Radio::Radio(hid_device *usbdev, const wchar_t *sn, int uids) : Panel(usbdev, sn
     // RadioMode *down;
     this->down->Activated();
 
+#if (defined XPLANE11PLUGIN)
+    if (this->panelUSBDevAddr != NULL)
+    {
+        hid_set_nonblocking(this->panelUSBDevAddr, 1);
+        hid_send_feature_report(this->panelUSBDevAddr, ZeroBIPSetFeatureInit, sizeof(ZeroBIPSetFeatureInit));
+    }
+#endif
+
     for (int i = 0; i < 4; i++)
         this->monitor[i / 2][i % 2]->SetAll();
     this->set();
