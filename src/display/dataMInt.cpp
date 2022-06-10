@@ -15,8 +15,6 @@ void STMInt::Convert(float ingress, int number[5], bool[5])
         modules = modules * 10;
         if (std::abs(data) >= modules) //
             number[item] = (std::abs(data) / modules) % 10;
-        else if ((-1 * modules < data) && (data <= (-1 * modules / 10)))
-            number[item] = 10;
     }
     number[3] = std::abs(data) % 10;
     number[4] = 10;

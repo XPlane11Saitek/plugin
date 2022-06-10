@@ -70,6 +70,8 @@ set(CODE
 
   src/display/data.cpp
   src/display/dataDiv.cpp
+  src/display/dataDouble.cpp
+  src/display/dataSmart.cpp
   src/display/dataFloat.cpp
   src/display/dataInt.cpp
   src/display/dataInt1.cpp

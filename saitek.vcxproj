@@ -28,6 +28,8 @@
     <ClCompile Include="src\display\data.cpp" />
     <ClCompile Include="src\display\dataDiv.cpp" />
     <ClCompile Include="src\display\dataFloat.cpp" />
+    <ClCompile Include="src\display\dataSmart.cpp" />
+    <ClCompile Include="src\display\dataDouble.cpp" />
     <ClCompile Include="src\display\dataInt.cpp" />
     <ClCompile Include="src\display\dataInt1.cpp" />
     <ClCompile Include="src\display\dataInt2.cpp" />
