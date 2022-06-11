@@ -41,10 +41,7 @@ Order panel by usb address based on nuber usb port.
 * `list`
 
 ### DISPLAY
-* `INT`
-* `FLOAT`
-* `SHORT`
-* `<DISPLAY>/<N>`
+[Confuguration display](display.md)
 
 # Explanation
 

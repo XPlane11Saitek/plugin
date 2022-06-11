@@ -7,6 +7,8 @@
 #include "dataMInt.h"
 #include "dataFloat.h"
 #include "dataShort.h"
+#include "dataDouble.h"
+#include "dataSmart.h"
 
 #include <regex>
 #include "debug.h"
@@ -25,10 +27,14 @@ STConvert *STConvert::New(const char *mode)
         return new STInt2();
     if (!strcmp("MINT", mode))
         return new STMInt();
+    else if (!strcmp("DOUBLE", mode))
+        return new STDouble();
     else if (!strcmp("FLOAT", mode))
         return new STFloat();
     else if (!strcmp("SHORT", mode))
         return new STShort();
+    else if (!strcmp("SMART", mode))
+        return new STSmart();
 
     std::cmatch query;
     std::regex regex("(\\w+)\\/(\\d+)");
