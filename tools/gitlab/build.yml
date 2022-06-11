@@ -15,19 +15,15 @@
     - cp -r ~/hidapi ./
   only:
     - merge_requests
-    - branches	
     - tags
   except:
-    - master
     - schedules
   stage: build
 
 build:plugin:linux:
   <<: *code
-  image: tarasmal/saitek:cmake
+  image: tarasmal/saitek:ubuntu_20_04
   script:
-    - pwd
-    - ls /usr/include
     - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" -DXPLANE11PLUGIN=true
     - make
   tags: [linux]
@@ -36,8 +32,6 @@ build:check:linux:
   <<: *code
   image: tarasmal/saitek:cmake
   script:
-    - pwd
-    - ls /usr/include
     - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" 
     - make
   tags: [linux]
@@ -48,7 +42,6 @@ build:plugin:mac:
     - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" -DXPLANE11PLUGIN=true
     - make
   tags: [mac]
-  except: []
 
 build:check:mac:
   <<: *code
@@ -63,4 +56,3 @@ build:windows:
     - msbuild saitek.sln /p:Configuration=Release
     - cp Release\plugins\saitek\64\win.xpl ./
   tags: [win10]
-  except: []

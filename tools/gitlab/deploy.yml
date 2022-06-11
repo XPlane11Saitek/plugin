@@ -10,7 +10,7 @@ deploy:mac:
   tags: [mac]
   only:
     - merge_requests
-    - master
+    - tags
   except:
     - schedules
   when: manual
@@ -29,7 +29,6 @@ deploy:win10:
   tags: [win10]
   only:
     - merge_requests
-    - branches	
     - tags
   except:
     - schedules

@@ -1,6 +1,6 @@
 Build images
 ```
-docker build -t tarasmal/saitek:cmake -f tools/linux-images/Dockerfile ./
+docker build -t tarasmal/saitek:<os> -f tools/linux-images/<os> ./
 ```
 Compile
 ```

@@ -11,6 +11,3 @@ test:check:
   tags: [mac]
   only:
     - merge_requests
-    - branches	
-  except:
-    - master
