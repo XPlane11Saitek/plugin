@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM ubuntu:jammy-20220531
 RUN apt update -y && \
   apt upgrade -y && \
   apt install -y make gcc qt5-qmake cmake g++ wget git libudev-dev pkg-config zip unzip wget libglu1-mesa-dev freeglut3-dev && apt clean git && \

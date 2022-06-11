@@ -19,6 +19,20 @@ release:
           url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin.zip"
         - name: 'mac.zip'
           url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-mac.zip"
+        - name: 'mac.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-mac.zip"
+        - name: 'lin-ubuntu_20_04.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-ubuntu_20_04.zip"
+        - name: 'lin-ubuntu_21_10.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-ubuntu_21_10.zip"
+        - name: 'lin-ubuntu_22_04.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-ubuntu_22_04.zip"
+        - name: 'lin-ubuntu_22_10.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-ubuntu_22_10.zip"
+        - name: 'lin-debian_10.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-debian_10.zip"
+        - name: 'lin-debian_11.zip'
+          url:  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-debian_11.zip"
   only:
     - master
   except:

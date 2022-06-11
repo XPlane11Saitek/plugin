@@ -15,6 +15,7 @@ include:
   # BRANCH
   - /tools/gitlab/test.yml
   - /tools/gitlab/build.yml
+  - /tools/gitlab/linux.yml
   # MASTER
   - /tools/gitlab/release.yml
   # TAGS

@@ -1,0 +1,170 @@
+
+.linux: &linux
+  artifacts:
+    expire_in: 1 week
+    name: "Plugin"
+    paths:
+      - lin.xpl
+      - check_lin64_amd64
+  before_script:
+    - cp -r ~/SDK ./
+    - cp -r ~/hidapi ./
+  only:
+    - tags
+  script:
+    - cmake CMakeLists.txt -DXPVERSION="${PLUGIN_VERSION}_${CI_COMMIT_SHORT_SHA}" ${OPTION}
+    - make
+  stage: build
+  tags: [linux]
+
+.artifacts: &artifacts
+  artifacts:
+    expire_in: 1 week
+    name: "Plugin"
+    paths:
+      - v${PLUGIN_VERSION}-lin-*.zip
+  only:
+    - tags
+  stage: build
+  tags: [mac]
+  script:
+    - mkdir -p saitek/64
+    - cp lin.xpl saitek/64/lin.xpl
+    - cp check_lin64_amd64 saitek/check_lin64_amd64
+    - cp -r config/ saitek/config/
+    - zip v${PLUGIN_VERSION}-lin-${OPTION}.zip -r saitek/config/ saitek/64/lin.xpl saitek/check_lin64_amd64
+
+build:linux:ubuntu_20_04:check:
+  <<: *linux
+  image: tarasmal/saitek:ubuntu_20_04
+  variables:
+    OPTION: ""
+build:linux:ubuntu_20_04:plugin:
+  <<: *linux
+  image: tarasmal/saitek:ubuntu_20_04
+  variables:
+    OPTION: "-DXPLANE11PLUGIN=true"
+build:linux:ubuntu_20_04:package:
+  <<: *artifacts
+  stage: package
+  variables:
+    OPTION: ubuntu_20_04
+  dependencies:
+    - build:linux:ubuntu_20_04:check
+    - build:linux:ubuntu_20_04:plugin
+
+build:linux:ubuntu_21_10:check:
+  <<: *linux
+  image: tarasmal/saitek:ubuntu_21_10
+  variables:
+    OPTION: ""
+build:linux:ubuntu_21_10:plugin:
+  <<: *linux
+  image: tarasmal/saitek:ubuntu_21_10
+  variables:
+    OPTION: "-DXPLANE11PLUGIN=true"
+build:linux:ubuntu_21_10:package:
+  <<: *artifacts
+  stage: package
+  variables:
+    OPTION: ubuntu_21_10
+  dependencies:
+    - build:linux:ubuntu_21_10:check
+    - build:linux:ubuntu_21_10:plugin
+
+build:linux:ubuntu_22_04:check:
+  <<: *linux
+  image: tarasmal/saitek:ubuntu_22_04
+  variables:
+    OPTION: ""
+build:linux:ubuntu_22_04:plugin:
+  <<: *linux
+  image: tarasmal/saitek:ubuntu_22_04
+  variables:
+    OPTION: "-DXPLANE11PLUGIN=true"
+build:linux:ubuntu_22_04:package:
+  <<: *artifacts
+  stage: package
+  variables:
+    OPTION: ubuntu_22_04
+  dependencies:
+    - build:linux:ubuntu_22_04:check
+    - build:linux:ubuntu_22_04:plugin
+
+
+build:linux:ubuntu_22_10:check:
+  <<: *linux
+  image: tarasmal/saitek:ubuntu_22_10
+  variables:
+    OPTION: ""
+build:linux:ubuntu_22_10:plugin:
+  <<: *linux
+  image: tarasmal/saitek:ubuntu_22_10
+  variables:
+    OPTION: "-DXPLANE11PLUGIN=true"
+build:linux:ubuntu_22_10:package:
+  <<: *artifacts
+  stage: package
+  variables:
+    OPTION: ubuntu_22_10
+  dependencies:
+    - build:linux:ubuntu_22_10:check
+    - build:linux:ubuntu_22_10:plugin
+
+build:linux:debian_11:check:
+  <<: *linux
+  image: tarasmal/saitek:debian_11
+  variables:
+    OPTION: ""
+build:linux:debian_11:plugin:
+  <<: *linux
+  image: tarasmal/saitek:debian_11
+  variables:
+    OPTION: "-DXPLANE11PLUGIN=true"
+build:linux:debian_11:package:
+  <<: *artifacts
+  stage: package
+  variables:
+    OPTION: debian_11
+  dependencies:
+    - build:linux:debian_11:check
+    - build:linux:debian_11:plugin
+
+build:linux:debian_10:check:
+  <<: *linux
+  image: tarasmal/saitek:debian_10
+  variables:
+    OPTION: ""
+build:linux:debian_10:plugin:
+  <<: *linux
+  image: tarasmal/saitek:debian_10
+  variables:
+    OPTION: "-DXPLANE11PLUGIN=true"
+build:linux:debian_10:package:
+  <<: *artifacts
+  stage: package
+  variables:
+    OPTION: debian_10
+  dependencies:
+    - build:linux:debian_10:check
+    - build:linux:debian_10:plugin
+
+build:linux:upload:
+  <<: *linux
+  stage: upload
+  image: curlimages/curl:latest
+  script:
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file v${PLUGIN_VERSION}-lin-ubuntu_20_04.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-ubuntu_20_04.zip"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file v${PLUGIN_VERSION}-lin-ubuntu_21_10.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-ubuntu_21_10.zip"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file v${PLUGIN_VERSION}-lin-ubuntu_22_04.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-ubuntu_22_04.zip"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file v${PLUGIN_VERSION}-lin-ubuntu_22_10.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-ubuntu_22_10.zip"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file v${PLUGIN_VERSION}-lin-debian_10.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-debian_10.zip"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file v${PLUGIN_VERSION}-lin-debian_11.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/saitek/${PLUGIN_VERSION}-${CI_COMMIT_SHORT_SHA}/v${PLUGIN_VERSION}-lin-debian_11.zip"'
+  dependencies:
+    - build:linux:ubuntu_20_04:package
+    - build:linux:ubuntu_21_10:package
+    - build:linux:ubuntu_22_04:package
+    - build:linux:ubuntu_22_10:package
+    - build:linux:debian_10:package
+    - build:linux:debian_11:package
+  tags: [mac]
